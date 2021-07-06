@@ -15,4 +15,4 @@ const MovieSchema = new Schema({
   director: String, 
 });
 
-module.exports = model("Ticket", MovieSchema);
+module.exports = model("Movie", MovieSchema);
