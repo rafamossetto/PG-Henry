@@ -7,4 +7,18 @@ export function getProducts() {
       };
 }
 
+export function addToTotal(price) {
+  return function(dispatch) {
+    dispatch({ type: ADD_TOTAL, payload: price });
+  };
+}
+
+export function substractToTotal(price) {
+  return function(dispatch) {
+    dispatch({ type: SUBSTRACT_TOTAL, payload: price });
+  };
+}
+
 export const GET_PRODUCTS = 'GET_PRODUCTS'
+export const SUBSTRACT_TOTAL = 'SUBSTRACT_TOTAL'
+export const ADD_TOTAL = 'ADD_TOTAL'

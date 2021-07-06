@@ -1,11 +1,10 @@
-
 import {GET_MOVIES_DETAIL} from '../actions/movies'
-import { GET_PRODUCTS } from '../actions/products'
-import {} from '../actions/users'
+import { GET_PRODUCTS, ADD_TOTAL, SUBSTRACT_TOTAL } from '../actions/products'
 
 const initialState = {
-    movieDetail:{},
-    products: []
+    products: [],
+    total: 0,
+    movieDetail:{}
   }
 
 export default function reducer(state = initialState, action) {
@@ -20,6 +19,18 @@ export default function reducer(state = initialState, action) {
             return{
             ...state,
             products: action.payload
+            }
+        }
+        case ADD_TOTAL: {
+            return{
+            ...state,
+            total: state.total + action.payload
+            }
+        }
+        case SUBSTRACT_TOTAL: {
+            return{
+            ...state,
+            total: state.total - action.payload
             }
         }
         default:{
