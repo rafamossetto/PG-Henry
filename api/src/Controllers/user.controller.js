@@ -1,11 +1,6 @@
-const { Router } = require("express");
-const router = Router();
-const User = require("../../../models/User");
+const User = require("../models/User");
 
-/*
-EW1 - back end - GET user para checkear que el mail y la contrasenia coincidan
-*/
-router.get("/", async (req, res) => {
+const getUsers = async (req, res) => {
   const { username, email, password } = req.body;
   try {
     const user = await User.findOne({ email });
@@ -26,6 +21,19 @@ router.get("/", async (req, res) => {
   res.json({
     message: `Succesfully ${username}`,
   });
-});
+};
 
-module.exports = router;
+const checkEmail = (req, res) => {
+  const { email } = req.body;
+  let existing = User.find({ email: email });
+  if (existing) {
+    console.log("Email ya registrado");
+    return res.status(400).json(`${email} already exists. Change it or log in`);
+  }
+  return res.status(200).json("Valid email");
+};
+
+module.exports = {
+  getUsers,
+  checkEmail,
+};
