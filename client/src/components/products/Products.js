@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
+import { getProducts } from '../../actions/products'
 
 const Products = (props) => {
-    
+
+    useEffect(() => props.getProducts(), [])
 
     return(
         <div>
@@ -24,8 +26,8 @@ const Products = (props) => {
                     <p>Combos</p>
                 </div>
                 <div>
-                    <p>Combos mapping</p>
-                </div>
+                    <p>Combos mapping</p>                    
+                </div>                
             </div>
 
             <div>
@@ -34,7 +36,13 @@ const Products = (props) => {
                 </div>
                 <div>
                     <p>Extras mapping</p>
-                </div>
+                    {props.products && props.products.map(e => 
+                    <div>
+                        <p>{e.name}</p>
+                        <p>{e.price}</p>
+                    </div>
+                    )}
+                </div>                
             </div>
 
             <div>
@@ -51,13 +59,13 @@ const Products = (props) => {
 
 function mapStateToProps(state) {
     return {
-
+        products: state.products
     };
   }
   
 function mapDispatchToProps(dispatch) {
     return {
-
+        getProducts: () => dispatch(getProducts()),
     };
 }
   
