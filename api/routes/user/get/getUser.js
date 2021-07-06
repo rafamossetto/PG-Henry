@@ -1,6 +1,6 @@
 const { Router } = require('express')
 const router = Router();
-const User = require('../../src/models/User');
+const User = require('../../../src/models/User');
 
 /*
 EW1 - back end - GET user para checkear que el mail y la contrasenia coincidan

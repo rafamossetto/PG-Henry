@@ -18,7 +18,7 @@ const UserSchema = new Schema({
   bookings: Array,
 });
 
-UserSchema.methods.validatePassword  = function (password) {
+UserSchema.methods.validatePassword = function (password) {
   return bcrypt.compare(password, this.password);
 }
 

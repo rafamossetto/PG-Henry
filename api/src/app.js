@@ -1,7 +1,7 @@
 const express = require('express')
 const morgan = require('morgan')
-const getUser = require('../routes/get/getUser');
 const app = express();
+const getUser = require('../routes/user/get/getUser');
 
 app.use(morgan("dev"));
 app.use(express.json());
