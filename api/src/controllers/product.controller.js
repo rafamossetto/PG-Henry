@@ -11,8 +11,8 @@ const getProducts = async (req, res) => {
 
 const addProduct = async (req, res) => {
   try {
-    const { name, category, price, stock } = req.body;
-    const product = await new Product({ name, category, price, stock });
+    const { name, category, price, stock, imgUrl } = req.body;
+    const product = await new Product({ name, category, price, stock, imgUrl });
     const productSaved = await product.save();
     res.status(201).send(productSaved);
   } catch (error) {
