@@ -1,14 +1,13 @@
-import fetch from 'node-fetch';
+import axios from 'axios';
 export const GET_MOVIES_DETAIL = 'GET_MOVIES_BY_DETAIL';
 
 export function getMovieById(id) {
     return function (dispatch) {
-        return fetch(`http://localhost:3001/???/${id}`)
-        .then(response => response.json())
-          .then(json => {
+        return axios.get(`http://localhost:3001/movies/${id}`)
+          .then(result => {
             dispatch({
                 type: GET_MOVIES_DETAIL, 
-                payload:json
+                payload:result.data
               
             }); 
          }).catch(error=>{

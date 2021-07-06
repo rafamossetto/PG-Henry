@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { getMovieById } from '../../actions/movies';
+import { getMovieById, clearMovie } from '../../actions/movies';
 import styled from 'styled-components';
 
 
