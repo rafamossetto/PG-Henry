@@ -1,0 +1,23 @@
+.NavBar {
+    height: 27.5%;
+    width: 99.5%;
+    background-color: #30475E;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.link {
+    color: #E8E8E8;
+    text-decoration: none;
+}
+
+.NavBar #sign {
+    height: 30px;
+    border-radius: 5px;
+    background-color: #F05454;
+    color: #E8E8E8;
+    border: none;
+}
