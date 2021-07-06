@@ -6,9 +6,9 @@ import MovieDetail from './components/details/Details'
 function App() {
   return (
     <div className="App">
-     <Route path='/' component={Header} />
+     <Route path='/' component={Header}/>
       <Route path='/products' component={Products}/>
-      <Route path='/movies/:id' component={MovieDetail}/>
+      <Route exact path='/movies/:id' component={MovieDetail}/>
     </div>
   );
 }
