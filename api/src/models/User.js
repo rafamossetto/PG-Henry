@@ -22,4 +22,4 @@ UserSchema.methods.validatePassword = function (password) {
   return bcrypt.compare(password, this.password);
 }
 
-module.export = model("User", UserSchema);
+module.exports = model("User", UserSchema);

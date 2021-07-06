@@ -7,6 +7,6 @@ const TicketSchema = new Schema({
   products: Array,
 });
 
-export default model("Ticket", TicketSchema);
+module.exports = model("Ticket", TicketSchema);
 
 //, precio, usuario, función, Productos
