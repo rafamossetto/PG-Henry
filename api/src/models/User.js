@@ -17,4 +17,4 @@ const UserSchema = new Schema({
   bookings: Array,
 });
 
-export default model("User", UserSchema);
+module.exports = model("User", UserSchema);

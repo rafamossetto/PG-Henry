@@ -11,4 +11,4 @@ const MovieSchema = new Schema({
   shows: Array,
 });
 
-export default model("Ticket", MovieSchema);
+module.exports = model("Ticket", MovieSchema);
