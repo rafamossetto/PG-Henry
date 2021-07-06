@@ -1,27 +1,14 @@
-import logo from './logo.svg';
-import './styles/App.css';
 import { Route } from 'react-router-dom';
 import Header from './components/Header';
+import Products from './components/products/Products'
+import MovieDetail from './components/details/Details'
 
 function App() {
   return (
     <div className="App">
-      {/* Este Header es un preset de React que viene con el npx, dejar comentado */}
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
-      <Route path='/' render={() => <Header />} />
+     <Route path='/' component={Header} />
+      <Route path='/products' component={Products}/>
+      <Rout path='/???/:id' component={MovieDetail}/>
     </div>
   );
 }
