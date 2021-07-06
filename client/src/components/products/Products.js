@@ -68,7 +68,7 @@ function mapDispatchToProps(dispatch) {
         getProducts: () => dispatch(getProducts()),
     };
 }
-  
+
   export default connect(
     mapStateToProps,
     mapDispatchToProps
