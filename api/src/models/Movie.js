@@ -4,7 +4,7 @@ const MovieSchema = new Schema({
   title: String,
   date: String,
   poster: String,
-  trailer: string,
+  trailer: String,
   description: String,
   genre: String,
   imdbID: String,
