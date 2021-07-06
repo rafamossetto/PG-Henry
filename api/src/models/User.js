@@ -1,4 +1,5 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 const UserSchema = new Schema({
   username: {
@@ -17,4 +18,8 @@ const UserSchema = new Schema({
   bookings: Array,
 });
 
-export default model("User", UserSchema);
+UserSchema.methods.validatePassword  = function (password) {
+  return bcrypt.compare(password, this.password);
+}
+
+module.export = model("User", UserSchema);

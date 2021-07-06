@@ -1,9 +1,14 @@
-import express from "express";
-import morgan from "morgan";
-
+const express = require('express')
+const morgan = require('morgan')
+const getUser = require('../routes/get/getUser');
 const app = express();
 
 app.use(morgan("dev"));
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
-export default app;
+// Ruta GET /user
+app.use('/user', getUser);
+
+
+module.exports = app;
