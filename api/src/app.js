@@ -5,7 +5,6 @@ const app = express();
 const cors = require('cors')
 
 
-
 app.use(morgan("dev"));
 app.use(express.json());
 
