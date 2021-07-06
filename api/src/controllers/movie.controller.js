@@ -10,6 +10,16 @@ const getMovieById = async (req, res) => {
   }
 };
 
+const getMovie = async (req, res) => {
+  try {
+    const movie = await Movie.find();
+    res.json(movie);
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 module.exports = {
   getMovieById,
+  getMovie,
 };
