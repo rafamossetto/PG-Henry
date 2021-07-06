@@ -7,9 +7,13 @@ const MovieSchema = new Schema({
   trailer: string,
   description: String,
   genre: String,
-  imdbID: String,
   onBillboard: Boolean,
   shows: Array,
+  cast: String,
+  trailer: String,
+  rated: String,
+  runtime: String,
+  director: String, 
 });
 
 module.exports = model("Ticket", MovieSchema);
