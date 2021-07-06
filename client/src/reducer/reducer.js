@@ -3,8 +3,7 @@ import {} from '../actions/products'
 import {} from '../actions/users'
 
 const initialState = {
-    dinos: undefined,
-    img: undefined
+    
   }
 
 export default function reducer(state = initialState, action) {
