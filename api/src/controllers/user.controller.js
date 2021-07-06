@@ -1,11 +1,37 @@
 const User = require("../models/User");
+const jwt = require("jsonwebtoken");
 
-const createUser = async (req, res) => {
+const signUp = async (req, res) => {
   try {
     const { username, email, password } = req.body;
-    let newUser = await new User({ username, email, password });
+    let newUser = await new User({
+      username,
+      email,
+      password: await User.hashPassword(password),
+      isAdmin: false,
+      bookings: [],
+    });
     let userSaved = await newUser.save();
-    res.status(201).send(userSaved);
+
+    const token = await jwt.sign({ id: userSaved._id }, "group8", {
+      expiresIn: 86400,
+    });
+
+    res.status(201).send({ token });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const logIn = async (req, res) => {
+  try {
+    const { username, email, password } = req.body;
+    let user = User.findOne({ email });
+    const token = await jwt.sign({ id: user._id }, "group8", {
+      expiresIn: 86400,
+    });
+
+    res.status(200).send({ token });
   } catch (error) {
     console.log(error);
   }
@@ -21,6 +47,7 @@ const getUsers = async (req, res) => {
 };
 
 module.exports = {
-  createUser,
+  signUp,
+  logIn,
   getUsers,
 };
