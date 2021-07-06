@@ -10,7 +10,6 @@ const MovieSchema = new Schema({
   onBillboard: Boolean,
   shows: Array,
   cast: String,
-  trailer: String,
   rated: String,
   runtime: String,
   director: String, 
