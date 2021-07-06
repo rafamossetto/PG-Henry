@@ -12,14 +12,40 @@ const getMovieById = async (req, res) => {
 
 const getMovie = async (req, res) => {
   try {
-    const movie = await Movie.find();
-    res.json(movie);
+    const movies = await Movie.find();
+    return res.json(movies);
   } catch (error) {
-    console.log(error)
+    res.status(400).send(error)
+  }
+}
+
+const postMovie = async (req, res) => {
+  try {
+    const { title, date, poster, description, genre, onBillboard, shows, cast, trailer, rated, runtime, director } = req.body;
+    const movie = await new Movie({
+      title,
+      date,
+      poster,
+      description,
+      genre,
+      onBillboard,
+      shows,
+      cast,
+      trailer,
+      rated,
+      runtime,
+      director  
+  });
+  const movieSaved = await movie.save();
+  console.log(movie);
+  res.send(movieSaved)
+  } catch (error) {
+    res.status(400).send(error)
   }
 }
 
 module.exports = {
   getMovieById,
   getMovie,
+  postMovie,
 };
