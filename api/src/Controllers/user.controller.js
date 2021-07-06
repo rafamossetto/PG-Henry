@@ -27,7 +27,7 @@ const checkEmail = (req, res) => {
   const { email } = req.body;
   let existing = User.find({ email: email });
   if (existing) {
-    console.log("Email ya registrado");
+    console.log("Email registred");
     return res.status(400).json(`${email} already exists. Change it or log in`);
   }
   return res.status(200).json("Valid email");
