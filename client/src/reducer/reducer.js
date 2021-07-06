@@ -1,9 +1,11 @@
+
 import {GET_MOVIES_DETAIL} from '../actions/movies'
-import {} from '../actions/products'
+import { GET_PRODUCTS } from '../actions/products'
 import {} from '../actions/users'
 
 const initialState = {
-    movieDetail:{}
+    movieDetail:{},
+    products: []
   }
 
 export default function reducer(state = initialState, action) {
@@ -14,6 +16,12 @@ export default function reducer(state = initialState, action) {
                 ...state,
                 movieDetail: action.payload
               }
+        case GET_PRODUCTS: {
+            return{
+            ...state,
+            products: action.payload
+            }
+        }
         default:{
             return state
         }
