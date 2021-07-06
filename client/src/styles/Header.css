@@ -1,0 +1,17 @@
+.Header {
+    position: fixed;
+    height: 25%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.head {
+    background-color: #F05454;
+    width: 99.5%;
+    height: 67.5%;
+    margin-bottom: 6.5px;
+}
