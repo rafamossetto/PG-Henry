@@ -11,6 +11,16 @@ const createUser = async (req, res) => {
   }
 };
 
+const getUsers = async (req, res) => {
+  try {
+    let users = await User.find();
+    res.send(users);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   createUser,
+  getUsers,
 };
