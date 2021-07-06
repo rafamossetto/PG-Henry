@@ -6,6 +6,7 @@ const ProductSchema = new Schema({
   price: Number,
   stock: Number,
   imgUrl: String,
+  combo: Boolean,
 });
 
 module.exports = model("Product", ProductSchema);
