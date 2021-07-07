@@ -1,7 +1,8 @@
+
 import axios from 'axios';
 export const GET_MOVIES_DETAIL = 'GET_MOVIES_BY_DETAIL';
 
-export function getMovieById(id) {
+export function getMovieById(id){
     return function (dispatch) {
         return axios.get(`http://localhost:3001/movies/${id}`)
           .then(result => {
@@ -11,7 +12,7 @@ export function getMovieById(id) {
               
             }); 
          }).catch(error=>{
-           if(error.response?.status!== 404) alert('Algo salió Mal');
+           if(error.response?.status!== 404) alert('something wrong');
            dispatch({type:GET_MOVIES_DETAIL, payload:null})
          })
        }

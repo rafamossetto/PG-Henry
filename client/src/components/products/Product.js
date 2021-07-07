@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import {addToTotal, substractToTotal } from '../../actions/products'
-
+import {ProductBox, ButtonBox, Button, CounterBox, Counter, TextBox, InfoBox, ImgBox, Price, Text } from './ProductStyles'
 
 const Product = (props) => {
-    console.log(props)
+    console.log(props.imgUrl)
     const[state, setState] = useState({
         counter: 0,
     })
@@ -29,15 +29,30 @@ const Product = (props) => {
         }
     }
     return(
-        <div>
-            <p>{props.name}</p>
-            <p>{props.price}</p>
+        <ProductBox>
             <div>
-                <button onClick={handleSubtract}>-</button><p>{state.counter}</p><button onClick={handleAdd}>+</button>
+            <InfoBox>
+                <div>
+                <ImgBox>
+                    <img src={props.imgUrl} height='75px' width='80px' alt=''/>
+                </ImgBox>
+                <TextBox>
+                    <Text><p>{props.name}</p></Text>
+                    <Text><Price>${props.price}</Price></Text>
+                </TextBox>
+                </div>
+            </InfoBox>
+            <ButtonBox>
+                <Button onClick={handleSubtract}>-</Button>
+                <CounterBox><Counter>{state.counter}</Counter></CounterBox>
+                <Button onClick={handleAdd}>+</Button>
+            </ButtonBox>
             </div>
-        </div>
+        </ProductBox>
     )
 }
+
+
 
 function mapStateToProps(state) {
     return {
