@@ -1,12 +1,12 @@
 import React from 'react';
-import '../styles/Header.css';
 import NavBar from './NavBar';
+import { HeaderAlpha, Head } from './Styles';
 
 export default function Header() {
     return (
-        <div className="Header">
-            <div className="head">Henry Autocinema</div>
+        <HeaderAlpha>
+            <Head>Henry Autocinema</Head>
             <NavBar />
-        </div>
+        </HeaderAlpha>
     )
 }
