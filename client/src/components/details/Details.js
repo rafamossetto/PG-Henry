@@ -1,9 +1,6 @@
-<<<<<<< Updated upstream
 import React, { useEffect} from 'react';
 import {useParams} from 'react-router-dom';
-=======
 import React, { useEffect, useParams } from 'react';
->>>>>>> Stashed changes
 import {useDispatch, useSelector} from 'react-redux';
 import { getMovieById, clearMovie } from '../../actions/movies';
 import styled from 'styled-components';
