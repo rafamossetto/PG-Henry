@@ -49,12 +49,12 @@ export default function reducer(state = initialState, action) {
       if (!action.payload) {
         return {
           ...state,
-          users: [...users].sort((a, b) => a - b)
+          users: [...state.users].sort((a, b) => a - b)
         }
       }
       return {
         ...state,
-        users: [...users].sort((a, b) => a + b)
+        users: [...state.users].sort((a, b) => a + b)
       }
     }
     default: {
