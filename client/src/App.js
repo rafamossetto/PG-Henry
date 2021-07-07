@@ -7,7 +7,7 @@ import MovieDetail from './components/details/Details'
 function App() {
   return (
     <div className="App">
-     <Route path='/' component={Header}/>
+     <Route  path='/' component={Header}/>
       <Route path='/products' component={Products}/>
 <<<<<<< Updated upstream
       <Route path='/signup' component={SignupForm}/>
