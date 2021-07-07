@@ -1,7 +1,4 @@
-<<<<<<< Updated upstream
-=======
-// import fetch from 'node-fetch';
->>>>>>> Stashed changes
+
 import axios from 'axios';
 export const GET_MOVIES_DETAIL = 'GET_MOVIES_BY_DETAIL';
 

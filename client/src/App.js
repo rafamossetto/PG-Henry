@@ -9,12 +9,8 @@ function App() {
     <div className="App">
      <Route  path='/' component={Header}/>
       <Route path='/products' component={Products}/>
-<<<<<<< Updated upstream
       <Route path='/signup' component={SignupForm}/>
-      <Route exact path='/movies/:id' component={MovieDetail}/>
-=======
       <Route path='/movies/:id' component={MovieDetail}/>
->>>>>>> Stashed changes
     </div>
   );
 }
