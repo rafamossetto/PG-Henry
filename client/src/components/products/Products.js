@@ -3,28 +3,33 @@ import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { getProducts } from '../../actions/products'
 import Product from './Product'
-
+import {ProductsBox, Container, MovieData, MovieDetails, ParkingLot, RedText, BuyBox, BuyButton} from './ProductsStyles'
 const Products = (props) => {
 
     useEffect(() => props.getProducts(), [])
 
     return(
-        <div>
+        <Container>
 
-            <div> 
-                <div>
+            <MovieData> 
+                <MovieDetails>
                     <h3>Movie Title</h3>
                     <p>field</p>
                     <p>Time</p>
                     <p>Date</p>
                     <p>Price</p>
+                </MovieDetails>
+                <div>
+                    <RedText>Select your parking lot</RedText>
+                    <ParkingLot>                    
+                        <div>Parking Lot</div>
+                    </ParkingLot>
                 </div>
-                <div>Parking Lot</div>
-            </div>
+            </MovieData>
 
             <div>
                 <div>
-                    <p>Combos</p>
+                    <RedText>Combos</RedText>
                 </div>
                 <div>
                     <p>Combos mapping</p>                    
@@ -33,25 +38,24 @@ const Products = (props) => {
 
             <div>
                 <div>
-                    <p>Extras</p>
+                    <RedText>Extras</RedText>
                 </div>
-                <div>
-                    <p>Extras mapping</p>
+                <ProductsBox>
                     {props.products && props.products.map(e => 
-                    <Product name={e.name} price={e.price}/>
+                    <Product name={e.name} price={e.price} imgUrl={e.imgUrl}/>
                     )}
-                </div>                
+                </ProductsBox>                
             </div>
 
             <div>
-                <p>* You can choose sweet or salty once you get there!</p>
-                <div>
+                <RedText>* You can choose sweet or salty once you get there!</RedText>
+                <BuyBox>
                     <p>Total: {props.total}</p>
-                    <button>Buy</button>
-                </div>
+                    <BuyButton>Buy</BuyButton>
+                </BuyBox>
             </div>
 
-        </div>
+        </Container>
     )
 }
 
