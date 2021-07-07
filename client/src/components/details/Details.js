@@ -19,7 +19,8 @@ function MovieDetail(){
 
 
  return(
-     <Container className="container">
+     
+     <Container>
      {/* {movieDetail? <h1>{movieDetail.title}</h1>:<h1>No encontrado</h1>} */}
 
      {typeof movieDetail=== 'object' && (<Grid>
@@ -57,23 +58,8 @@ function MovieDetail(){
          <SubH2>Genre</SubH2><br></br> 
          <Box>{movieDetail.genre}</Box><br></br>
          <SubH2>Shows</SubH2><br></br> 
-     </Grid>)}
+      </Grid>)} 
      </Container>
-     {typeof movieDetail=== 'object' && (<div>
-         <label>{movieDetail.title}</label><br></br>
-         <label>{movieDetail.poster}</label><br></br>
-         <label>{movieDetail.trailer}</label><br></br>
-         <label>{movieDetail.date}</label><br></br>
-         <label>{movieDetail.description}</label><br></br>
-         <label>{movieDetail.genre}</label><br></br>
-         <label>{movieDetail.cast}</label><br></br>
-         <label>{movieDetail.runtime}</label><br></br>
-         <label>{movieDetail.rated}</label><br></br>
-         <label>{movieDetail.director}</label><br></br>
-         <label>{movieDetail.shows}</label><br></br>
-     </div>)}
-     </>
-
  )
 }
 
