@@ -10,7 +10,10 @@ const checkUser = async (req, res, next) => {
         .json({ message: "The user with email provided not exist" });
     }
 
-    const isValidPassword = await user.validatePassword(password);
+    const isValidPassword = await user.validatePassword(
+      password,
+      user.password
+    );
 
     if (!isValidPassword) {
       return res.status(401).json({ message: "Invalid Password" });

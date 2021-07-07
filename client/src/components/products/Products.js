@@ -1,19 +1,17 @@
-import { Link } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import { getProducts } from '../../actions/products'
 import Product from './Product'
-import {ProductsBox, Container, MovieData, MovieDetails, ParkingLot, RedText, BuyBox, BuyButton} from './ProductsStyles'
+import {ProductsBox, Container, MovieData, MovieDetails, ParkingLot, RedText, BuyBox, BuyButton, Total} from './ProductsStyles'
 const Products = (props) => {
 
-    useEffect(() => props.getProducts(), [])
-
+    useEffect(() => props.getProducts(), [props])
     return(
         <Container>
 
             <MovieData> 
                 <MovieDetails>
-                    <h3>Movie Title</h3>
+                    <h3>{props.movie.title || 'Title'}</h3>
                     <p>field</p>
                     <p>Time</p>
                     <p>Date</p>
@@ -32,7 +30,11 @@ const Products = (props) => {
                     <RedText>Combos</RedText>
                 </div>
                 <div>
-                    <p>Combos mapping</p>                    
+                <ProductsBox>
+                    {props.products && props.products.filter(e => e.combo === true).map(e => 
+                    <Product name={e.name} price={e.price} imgUrl={e.imgUrl}/>
+                    )}
+                </ProductsBox>                    
                 </div>                
             </div>
 
@@ -41,7 +43,7 @@ const Products = (props) => {
                     <RedText>Extras</RedText>
                 </div>
                 <ProductsBox>
-                    {props.products && props.products.map(e => 
+                    {props.products && props.products.filter(e => e.combo === false).map(e => 
                     <Product name={e.name} price={e.price} imgUrl={e.imgUrl}/>
                     )}
                 </ProductsBox>                
@@ -50,7 +52,7 @@ const Products = (props) => {
             <div>
                 <RedText>* You can choose sweet or salty once you get there!</RedText>
                 <BuyBox>
-                    <p>Total: {props.total}</p>
+                    <Total>Total: ${props.total}</Total>
                     <BuyButton>Buy</BuyButton>
                 </BuyBox>
             </div>
@@ -61,6 +63,7 @@ const Products = (props) => {
 
 function mapStateToProps(state) {
     return {
+        movie: state.movieDetail,
         products: state.products,
         total: state.total
     };

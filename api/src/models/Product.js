@@ -7,6 +7,11 @@ const ProductSchema = new Schema({
   stock: Number,
   imgUrl: String,
   combo: Boolean,
-});
+  },
+  {
+    timestamps: true,
+    versionKey: false,
+  }
+);
 
 module.exports = model("Product", ProductSchema);
