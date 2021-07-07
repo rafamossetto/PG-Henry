@@ -3,17 +3,16 @@ import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { getProducts } from '../../actions/products'
 import Product from './Product'
-import {ProductsBox, Container, MovieData, MovieDetails, ParkingLot, RedText, BuyBox, BuyButton} from './ProductsStyles'
+import {ProductsBox, Container, MovieData, MovieDetails, ParkingLot, RedText, BuyBox, BuyButton, Total} from './ProductsStyles'
 const Products = (props) => {
 
     useEffect(() => props.getProducts(), [])
-
     return(
         <Container>
 
             <MovieData> 
                 <MovieDetails>
-                    <h3>Movie Title</h3>
+                    <h3>{props.movie.title || 'Title'}</h3>
                     <p>field</p>
                     <p>Time</p>
                     <p>Date</p>
@@ -54,7 +53,7 @@ const Products = (props) => {
             <div>
                 <RedText>* You can choose sweet or salty once you get there!</RedText>
                 <BuyBox>
-                    <p>Total: ${props.total}</p>
+                    <Total>Total: ${props.total}</Total>
                     <BuyButton>Buy</BuyButton>
                 </BuyBox>
             </div>
@@ -65,6 +64,7 @@ const Products = (props) => {
 
 function mapStateToProps(state) {
     return {
+        movie: state.movieDetail,
         products: state.products,
         total: state.total
     };
