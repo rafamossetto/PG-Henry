@@ -54,7 +54,7 @@ const Products = (props) => {
             <div>
                 <RedText>* You can choose sweet or salty once you get there!</RedText>
                 <BuyBox>
-                    <p>Total: {props.total}</p>
+                    <p>Total: ${props.total}</p>
                     <BuyButton>Buy</BuyButton>
                 </BuyBox>
             </div>
