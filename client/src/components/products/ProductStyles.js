@@ -47,6 +47,7 @@ export const ButtonBox = styled.div`
 `;
 export const Button = styled.button`
     color:rgb(232, 232, 232);
+    width:20px;
     background-color:rgba(234, 84, 85, 1);
     border-radius: 10px;
     border:none;    
@@ -62,7 +63,10 @@ export const CounterBox = styled.div`
     background-color: rgb(232, 232, 232); 
 `;
 export const Counter = styled.p`
-    margin:7px;
+    margin:5px;
     color:rgb(34, 40, 49);
 `;
-
+export const Center = styled.div`
+    display:flex;
+    justify-content: center;
+`;

@@ -8,7 +8,6 @@ export const ProductsBox = styled.div`
 export const Container = styled.div`
     background-color: rgba(45, 64, 89, 1);
     padding-top: 140px;
-    display:block;
 `;
 export const MovieData = styled.div`
     display:flex;
@@ -31,6 +30,8 @@ export const ParkingLot = styled.div`
     background-color: rgb(48, 71, 94);
 `;
 export const RedText = styled.div`
+    display:flex;
+    justify-content: flex-start;
     margin-left:10px;   
     color:rgb(234, 84, 85);
     font-family: Questrial;
@@ -60,6 +61,9 @@ export const BuyButton = styled.button`
         background-color:rgba(234, 84, 85, 0.7);
     }
 `;
+export const Total = styled.p`
+    margin-top:10px;
+`
 
 
 
