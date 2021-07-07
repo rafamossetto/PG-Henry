@@ -1,6 +1,5 @@
-import React, { useEffect} from 'react';
 import {useParams} from 'react-router-dom';
-import React, { useEffect, useParams } from 'react';
+import React, { useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { getMovieById, clearMovie } from '../../actions/movies';
 import {Box, Container, Btn, Grid, Poster, SubH2, Title, Trailer, Rated} from './styled';

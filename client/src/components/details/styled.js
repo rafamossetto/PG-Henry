@@ -16,11 +16,10 @@ export const Box = styled.label`
 `;
 
 export const Container =styled.div`
-  &.container{
+
       background-color: #222831;
-      padding: 0%;
-      marging:none;
-    }
+    
+    
 `;
 
 export const Btn = styled.button`
@@ -65,7 +64,7 @@ export const Title = styled.h1`
 
 export const Trailer = styled.div`
    
-   margin: 330px 10px 0px -150px;
+   margin: 330px 10px 0px -60px;
 `;
 
 export const Rated = styled.div`
