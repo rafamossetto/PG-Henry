@@ -4,7 +4,7 @@ import {addToTotal, substractToTotal } from '../../actions/products'
 import {ProductBox, ButtonBox, Button, CounterBox, Counter, TextBox, InfoBox, ImgBox, Price, Text } from './ProductStyles'
 
 const Product = (props) => {
-    console.log(props)
+    console.log(props.imgUrl)
     const[state, setState] = useState({
         counter: 0,
     })
@@ -34,7 +34,7 @@ const Product = (props) => {
             <InfoBox>
                 <div>
                 <ImgBox>
-                    <img src={props.imgUrl} height='90px' width='65px' alt=''/>
+                    <img src={props.imgUrl} height='75px' width='80px' alt=''/>
                 </ImgBox>
                 <TextBox>
                     <Text><p>{props.name}</p></Text>

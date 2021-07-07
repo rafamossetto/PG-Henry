@@ -32,7 +32,11 @@ const Products = (props) => {
                     <RedText>Combos</RedText>
                 </div>
                 <div>
-                    <p>Combos mapping</p>                    
+                <ProductsBox>
+                    {props.products && props.products.filter(e => e.combo === true).map(e => 
+                    <Product name={e.name} price={e.price} imgUrl={e.imgUrl}/>
+                    )}
+                </ProductsBox>                    
                 </div>                
             </div>
 
@@ -41,7 +45,7 @@ const Products = (props) => {
                     <RedText>Extras</RedText>
                 </div>
                 <ProductsBox>
-                    {props.products && props.products.map(e => 
+                    {props.products && props.products.filter(e => e.combo === false).map(e => 
                     <Product name={e.name} price={e.price} imgUrl={e.imgUrl}/>
                     )}
                 </ProductsBox>                
