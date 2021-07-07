@@ -12,5 +12,6 @@ const verifyLogin = require("../../middlewares/verifyLogin");
 // Si no existe un usuario con ese email, me dejaria crearlo
 
 router.post("/signup", [verifySignup.checkEmail], UserCtrl.createUser);
+router.get("/users", UserCtrl.getUsers);
 
 module.exports = router;

@@ -1,5 +1,6 @@
 import React, { useEffect} from 'react';
 import {useParams} from 'react-router-dom';
+import React, { useEffect, useParams } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { getMovieById, clearMovie } from '../../actions/movies';
 import {Box, Container, Btn, Grid, Poster, SubH2, Title, Trailer, Rated} from './styled';
@@ -20,6 +21,7 @@ function MovieDetail(){
  return(
      <Container className="container">
      {/* {movieDetail? <h1>{movieDetail.title}</h1>:<h1>No encontrado</h1>} */}
+
      {typeof movieDetail=== 'object' && (<Grid>
         <div> 
            <Title>{movieDetail.title}</Title><br></br>
@@ -57,6 +59,21 @@ function MovieDetail(){
          <SubH2>Shows</SubH2><br></br> 
      </Grid>)}
      </Container>
+     {typeof movieDetail=== 'object' && (<div>
+         <label>{movieDetail.title}</label><br></br>
+         <label>{movieDetail.poster}</label><br></br>
+         <label>{movieDetail.trailer}</label><br></br>
+         <label>{movieDetail.date}</label><br></br>
+         <label>{movieDetail.description}</label><br></br>
+         <label>{movieDetail.genre}</label><br></br>
+         <label>{movieDetail.cast}</label><br></br>
+         <label>{movieDetail.runtime}</label><br></br>
+         <label>{movieDetail.rated}</label><br></br>
+         <label>{movieDetail.director}</label><br></br>
+         <label>{movieDetail.shows}</label><br></br>
+     </div>)}
+     </>
+
  )
 }
 
