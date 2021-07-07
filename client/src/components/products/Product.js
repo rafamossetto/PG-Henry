@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from "react-redux";
 import {addToTotal, substractToTotal } from '../../actions/products'
-import {ProductBox, ButtonBox, Button, CounterBox, Counter, TextBox, InfoBox, ImgBox, Price, Text } from './ProductStyles'
+import {ProductBox, ButtonBox, Button, CounterBox, Counter, TextBox, InfoBox, ImgBox, Price, Text, Center } from './ProductStyles'
 
 const Product = (props) => {
     console.log(props.imgUrl)
@@ -42,11 +42,13 @@ const Product = (props) => {
                 </TextBox>
                 </div>
             </InfoBox>
-            <ButtonBox>
-                <Button onClick={handleSubtract}>-</Button>
-                <CounterBox><Counter>{state.counter}</Counter></CounterBox>
-                <Button onClick={handleAdd}>+</Button>
-            </ButtonBox>
+                <Center>
+                    <ButtonBox>
+                        <Button onClick={handleSubtract}>-</Button>
+                        <CounterBox><Counter>{state.counter}</Counter></CounterBox>
+                        <Button onClick={handleAdd}>+</Button>
+                    </ButtonBox>
+                </Center>
             </div>
         </ProductBox>
     )
