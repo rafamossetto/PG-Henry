@@ -1,4 +1,4 @@
-import { GET_MOVIES_DETAIL } from "../actions/movies";
+import { GET_MOVIES_DETAIL, GET_MOVIE_LIST } from "../actions/movies";
 import { GET_PRODUCTS, ADD_TOTAL, SUBSTRACT_TOTAL } from "../actions/products";
 import { GET_USERS } from "../actions/users";
 
@@ -7,6 +7,7 @@ const initialState = {
   total: 0,
   movieDetail: {},
   users: [],
+  movieList: [],
 };
 
 export default function reducer(state = initialState, action) {
@@ -41,6 +42,13 @@ export default function reducer(state = initialState, action) {
         ...state,
         users: action.payload,
       };
+    }
+    //movie list
+    case GET_MOVIE_LIST: {
+      return {
+        ...state,
+        movieList: action.payload,
+      }
     }
     default: {
       return state;
