@@ -1,4 +1,5 @@
 import { GET_MOVIES_DETAIL } from "../actions/movies";
+import { ORDER_USERS_BY_POINTS } from "../actions/points";
 import { GET_PRODUCTS, ADD_TOTAL, SUBSTRACT_TOTAL } from "../actions/products";
 import { GET_USERS } from "../actions/users";
 
@@ -41,6 +42,20 @@ export default function reducer(state = initialState, action) {
         ...state,
         users: action.payload,
       };
+    }
+    // Ordenar usuarios por cantidad de puntos asc/desc
+    case ORDER_USERS_BY_POINTS: {
+      //Si no hay payload, order desc
+      if (!action.payload) {
+        return {
+          ...state,
+          users: [...users].sort((a, b) => a - b)
+        }
+      }
+      return {
+        ...state,
+        users: [...users].sort((a, b) => a + b)
+      }
     }
     default: {
       return state;
