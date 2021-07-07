@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const ProductsBox = styled.div`
     display:flex;
+    overflow-x:auto;
+    overflow-y:hidden;
 `;
 export const Container = styled.div`
     background-color: rgba(45, 64, 89, 1);
