@@ -2,7 +2,7 @@ import {useParams} from 'react-router-dom';
 import React, { useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { getMovieById, clearMovie } from '../../actions/movies';
-import {Box, Container, Btn, Grid, Poster, SubH2, Title, Trailer, Rated} from './styled';
+import {Box, Container, Btn, Grid, Poster, SubH2, Title, Trailer, Rated, H4} from './styled';
 import ReactPlayer from 'react-player';
 
 function MovieDetail(){
@@ -28,7 +28,7 @@ function MovieDetail(){
             <ReactPlayer
               url={movieDetail.trailer}
                width ='90%'
-               height ='90%'
+               height ='100%'
                playing
                volume= '0.7'
          />
@@ -37,11 +37,13 @@ function MovieDetail(){
            <SubH2>Descripción</SubH2><br></br>
            <Box>{movieDetail.description}</Box><br></br>
            <Rated> 
-             <h4>Runtime</h4><br></br> 
-             <label>{movieDetail.runtime}</label><br></br>
-             <h4>Rated</h4><br></br> 
+             <H4>Runtime</H4><br></br> 
+             <label>{movieDetail.runtime}</label>
+             <H4>
+                <label>Rated</label><br></br>
+             </H4>
              <label>{movieDetail.rated}</label><br></br>
-           </Rated>
+           </Rated>  
          </div>
          <div>                   
            <Btn>Get Tickets</Btn>
