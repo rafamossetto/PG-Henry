@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { getProducts } from '../../actions/products'
+import Product from './Product'
 
 const Products = (props) => {
 
@@ -37,10 +38,7 @@ const Products = (props) => {
                 <div>
                     <p>Extras mapping</p>
                     {props.products && props.products.map(e => 
-                    <div>
-                        <p>{e.name}</p>
-                        <p>{e.price}</p>
-                    </div>
+                    <Product name={e.name} price={e.price}/>
                     )}
                 </div>                
             </div>
@@ -48,18 +46,19 @@ const Products = (props) => {
             <div>
                 <p>* You can choose sweet or salty once you get there!</p>
                 <div>
-                    <p>Total: XXX</p>
+                    <p>Total: {props.total}</p>
                     <button>Buy</button>
                 </div>
             </div>
- 
+
         </div>
     )
 }
 
 function mapStateToProps(state) {
     return {
-        products: state.products
+        products: state.products,
+        total: state.total
     };
   }
   
