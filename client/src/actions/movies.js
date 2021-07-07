@@ -1,6 +1,7 @@
 
 import axios from 'axios';
 export const GET_MOVIES_DETAIL = 'GET_MOVIES_BY_DETAIL';
+export const GET_MOVIE_LIST = 'GET_MOVIE_LIST';
 
 export function getMovieById(id){
     return function (dispatch) {
@@ -17,6 +18,18 @@ export function getMovieById(id){
          })
        }
   }
+
+export function getMovieList(){
+  return function (dispatch){
+    return axios.get('http://localhost:3001/movies')
+    .then(result => {
+      dispatch({
+        type: GET_MOVIE_LIST,
+        payload: result.data
+      })
+    })
+  }
+}
 
 export function clearMovie() { //se usa en el willunmount
    return  { 
