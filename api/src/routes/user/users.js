@@ -9,13 +9,17 @@ const verifySignup = require("../../middlewares/verifySignup");
 const verifyLogin = require("../../middlewares/verifyLogin");
 
 // middleware para verificar que me pasen un token por header
-const { verifyToken } = require("../../middlewares/verifyToken");
+const authentication = require("../../middlewares/authentication");
 
 // Al hacer un post a /signup, le paso el middleware para chequear si ya existe un usuario con ese email. Entonces si existe, corta la ejecución y no deja hacer el post.
 // Si no existe un usuario con ese email, me dejaria crearlo
 
 router.post("/signup", [verifySignup.checkEmail], UserCtrl.signUp);
 router.post("/login", [verifyLogin.checkUser], UserCtrl.logIn);
-router.get("/", verifyToken, UserCtrl.getUsers);
+router.get(
+  "/",
+  [authentication.verifyToken, authentication.isAdmin],
+  UserCtrl.getUsers
+);
 
 module.exports = router;

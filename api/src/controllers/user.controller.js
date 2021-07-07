@@ -26,8 +26,8 @@ const signUp = async (req, res) => {
 const logIn = async (req, res) => {
   try {
     const { username, email, password } = req.body;
-    let user = User.findOne({ email });
-    const token = await jwt.sign({ id: user._id }, "group8", {
+    let user = await User.findOne({ email });
+    const token = jwt.sign({ id: user._id }, "group8", {
       expiresIn: 86400,
     });
 
