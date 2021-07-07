@@ -44,8 +44,34 @@ const postMovie = async (req, res) => {
   }
 }
 
+const putMovie = async (req, res) => {
+  try {
+    const { title, date, poster, description, genre, onBillboard, shows, cast, trailer, rated, runtime, director } = req.body;
+    const newMovie = ({
+      title,
+      date,
+      poster,
+      description,
+      genre,
+      onBillboard,
+      shows,
+      cast,
+      trailer,
+      rated,
+      runtime,
+      director  
+  });
+  await Movie.findByIdAndUpdate(req.params.id, newMovie);
+  console.log(newMovie);
+  res.json({status: 'Movie Updated'})
+  } catch (error) {
+    res.status(400).send(error)
+  }
+}
+
 module.exports = {
   getMovieById,
   getMovie,
   postMovie,
+  putMovie,
 };
