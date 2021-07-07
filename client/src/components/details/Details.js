@@ -20,8 +20,6 @@ function MovieDetail(){
 
  return(
      <Container>
-     {/* {movieDetail? <h1>{movieDetail.title}</h1>:<h1>No encontrado</h1>} */}
-
      {typeof movieDetail=== 'object' && (<Grid>
         <div> 
            <Title>{movieDetail.title}</Title><br></br>
@@ -57,9 +55,10 @@ function MovieDetail(){
          <SubH2>Genre</SubH2><br></br> 
          <Box>{movieDetail.genre}</Box><br></br>
          <SubH2>Shows</SubH2><br></br> 
+
      </Grid>)}
      </Container> 
-   )
+  )
 }
 
 export default MovieDetail
