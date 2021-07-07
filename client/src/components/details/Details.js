@@ -55,7 +55,7 @@ function MovieDetail(){
          <Box>{movieDetail.cast}</Box><br></br>
          <SubH2>Genre</SubH2><br></br> 
          <Box>{movieDetail.genre}</Box><br></br>
-         <SubH2>Shows</SubH2><br></br> 
+         <SubH2>Shows </SubH2><br></br> 
 
      </Grid>)}
      </Container> 
