@@ -45,7 +45,7 @@ function MovieDetail(){
            </Rated>
          </div>
          <div>                   
-           <Btn>Get Ticket</Btn>
+           <Btn>Get Tickets</Btn>
            <label>{movieDetail.shows}</label><br></br>
          </div>
          <SubH2>Director</SubH2><br></br> 
