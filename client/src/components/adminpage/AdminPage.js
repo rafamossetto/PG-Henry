@@ -18,7 +18,7 @@ function AdminPage() {
     verifyAdmin();
     dispatch(getMovieList());
     dispatch(getUsers());
-  }, []);
+  }, [dispatch]);
 
   return (
     <AdminContainer>
@@ -39,6 +39,7 @@ function AdminPage() {
             <img
               src="https://res.cloudinary.com/juancereceda/image/upload/v1625756429/swap_mgwmdl.png"
               className="swapButton"
+              alt=""
               onClick={() => alert("Not functional yet")}
             />
             <div className="movieBox">
