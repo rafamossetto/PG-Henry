@@ -19,6 +19,7 @@ export default function reducer(state = initialState, action) {
         ...state,
         movieList: action.payload,
       }
+    }
     case GET_MOVIES_DETAIL:
       return {
         ...state,
@@ -49,6 +50,7 @@ export default function reducer(state = initialState, action) {
         ...state,
         users: action.payload,
       };
+    }
     // Ordenar usuarios por cantidad de puntos asc/desc
     case ORDER_USERS_BY_POINTS: {
       //Si no hay payload, order desc
