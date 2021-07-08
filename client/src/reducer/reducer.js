@@ -7,7 +7,7 @@ import { GET_USERS, SIGNUP, LOGIN } from "../actions/users";
 const initialState = {
   products: [],
   purchase:{
-    slot:'',
+    parking:'',
     day:'',
     time:'',
     title:'',
@@ -48,7 +48,7 @@ export default function reducer(state = initialState, action) {
         ...state,
         purchase:{
           ...state.purchase,
-          slot:action.payload.slot,
+          parking:action.payload.parking,
           day:action.payload.day,
           time:action.payload.time,
           title:action.payload.title,
