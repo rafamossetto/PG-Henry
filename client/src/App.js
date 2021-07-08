@@ -4,6 +4,7 @@ import Products from './components/products/Products'
 import SignupForm from './components/user/SignupForm'
 import MovieDetail from './components/details/Details'
 import Billboard from './components/billboard/Billboard';
+import Home from './components/home/Home';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route path='/signup' component={SignupForm} />
       <Route path='/movies/:id' component={MovieDetail}/>
       <Route path='/billboard' component={Billboard} />
+      <Route path='/home' component={Home} />
     </div>
   );
 }

@@ -1,4 +1,7 @@
-import axios from 'axios'
+import axios from 'axios';
+export const GET_PRODUCTS = 'GET_PRODUCTS';
+export const SUBSTRACT_TOTAL = 'SUBSTRACT_TOTAL';
+export const ADD_TOTAL = 'ADD_TOTAL';
 
 export function getProducts() {
       return async function(dispatch) {
@@ -18,7 +21,3 @@ export function substractToTotal(price) {
     dispatch({ type: SUBSTRACT_TOTAL, payload: price });
   };
 }
-
-export const GET_PRODUCTS = 'GET_PRODUCTS'
-export const SUBSTRACT_TOTAL = 'SUBSTRACT_TOTAL'
-export const ADD_TOTAL = 'ADD_TOTAL'
