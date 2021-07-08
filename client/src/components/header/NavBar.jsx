@@ -32,11 +32,11 @@ export default function NavBar() {
 
     return (
         <NavBarAlpha>
-            <div><Linked to='/home'>Home</Linked></div>
+            <div><Linked to='/'>Home</Linked></div>
             <div><Linked to='/billboard'>Billboard</Linked></div>
             <div><Linked to='/comingsoon'>Coming Soon</Linked></div>
             <div><Linked to='/contact'>Contact</Linked></div>
-            <div><Linked to='/products'>Merchandaising</Linked></div>
+            <div><Linked to='/merch'>Merchandaising</Linked></div>
             <Linked to='/mycart'><Cart size="25" /></Linked>
           { 
                 admin ? 
