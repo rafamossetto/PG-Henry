@@ -26,7 +26,7 @@ export const MovieDetails = styled.div`
 export const ParkingLot = styled.div`
     display:flex;
     flex-direction: column;
-    width:400px;
+    width:520px;
     height:200px;
     background-color: rgb(48, 71, 94);
 `;
