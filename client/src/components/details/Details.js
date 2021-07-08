@@ -8,6 +8,7 @@ import ReactPlayer from 'react-player';
 function MovieDetail(){
  const dispatch = useDispatch();
  const movieDetail = useSelector(state => state.movieDetail);
+
  const {id}= useParams();
     useEffect(()=>{
       dispatch(getMovieById(id))
@@ -46,8 +47,19 @@ function MovieDetail(){
            </Rated>  
          </div>
          <div>                   
-           <Btn>Get Tickets</Btn>
-           <label>{movieDetail.shows}</label><br></br>
+           <Btn>Get Tickets</Btn><br></br>
+           <label>{movieDetail.shows? (movieDetail.shows.map(el=>
+              <div>{el.field1.map(ele=>
+                <div>
+                  <div>{ele.Day}</div>
+                  <button>{ele.show1.time}</button>
+                  <button>{ele.show2.time}</button>
+                  <button>{ele.show3.time}</button>
+                </div> 
+             )}  
+              </div>
+           )):<h2>No Shows</h2>}</label>
+           
          </div>
          <SubH2>Director</SubH2><br></br> 
          <Box>{movieDetail.director}</Box><br></br>
