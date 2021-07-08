@@ -45,8 +45,24 @@ const getUsers = async (req, res) => {
   }
 };
 
+const verifyAdmin = async (req, res) => {
+  try {
+    const token = req.headers["x-access-token"];
+    const decoded = await jwt.verify(token, "group8");
+    const user = await User.findById(decoded.id);
+    if (!user) {
+      return res.status(404).send({ message: "no user found" });
+    } else {
+      return res.send({ isAdmin: user.isAdmin });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   signUp,
   logIn,
   getUsers,
+  verifyAdmin,
 };

@@ -9,6 +9,7 @@ const initialState = {
   purchase:{
     parking:'',
     price:0,
+    slot:'',    
     day:'',
     time:'',
     title:'',
@@ -17,12 +18,13 @@ const initialState = {
   },
   movieDetail: {},
   users: [],
+  movieList: [],
   token: getTokenLocalStorage(),
 };
 
 export function getTokenLocalStorage() {
   const token = window.localStorage.getItem("token");
-  return token ? JSON.parse(token) : {};
+  return token ? JSON.parse(token) : "";
 }
 
 function setTokenLocalStorage(token) {
@@ -62,7 +64,7 @@ export default function reducer(state = initialState, action) {
         products: action.payload,
       };
     }
-    case ADD_TOTAL: {
+    case ADD_TOTAL: 
       return {
         ...state,
         purchase:{
@@ -70,7 +72,6 @@ export default function reducer(state = initialState, action) {
           total: state.purchase.total + action.payload,
         } 
       };
-    };
     case SUBSTRACT_TOTAL: {
       return {
         ...state,

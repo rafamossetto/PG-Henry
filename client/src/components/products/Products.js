@@ -14,7 +14,7 @@ const Products = (props) => {
         {slot: 'c1', ocupied:false}, {slot: 'c2', ocupied:false}, {slot: 'c3', ocupied:true}, {slot: 'c4', ocupied:false}, {slot: 'c5', ocupied:true},
         {slot: 'c6', ocupied:false}, {slot: 'c7', ocupied:false}, {slot: 'c8', ocupied:false}, {slot: 'c9', ocupied:true}, {slot: 'c10', ocupied:false},
     ]
-    useEffect(() => props.getProducts(), [])
+    useEffect(() => props.getProducts(), [props])
 
     const handleBuy =() => {
         var mensaje;

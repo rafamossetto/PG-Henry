@@ -11,11 +11,7 @@ export default function Home() {
 
     useEffect(() => {
         dispatch(getMovieList())
-    }, []);
-
-    useEffect(() => {
-        dispatch(getMovieList())
-    }, []);
+    }, [dispatch]);
 
     return (
         <HomeCont>
