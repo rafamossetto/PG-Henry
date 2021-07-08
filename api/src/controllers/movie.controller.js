@@ -10,7 +10,7 @@ const getMovieById = async (req, res) => {
   }
 };
 
-const getMovie = async (req, res) => {
+const getMovies = async (req, res) => {
   try {
     const movies = await Movie.find();
     return res.json(movies);
@@ -71,7 +71,7 @@ const putMovie = async (req, res) => {
 
 module.exports = {
   getMovieById,
-  getMovie,
+  getMovies,
   postMovie,
   putMovie,
 };
