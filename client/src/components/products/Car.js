@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from "react-redux";
 import {saveSlot} from '../../actions/products'
 import {WhiteCar, RedCar, BlackCar} from './carStyles'
@@ -27,9 +27,9 @@ const Car = (props) => {
     }
     return(
         <div>
-        {state.clicked && <BlackCar onClick={handleClick}><img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,w_40/v1625694896/blueCar_anvl0c.png"/></BlackCar> 
-        || props.ocupied && <RedCar><img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,w_40/v1625694896/redCar_bydkdo.png" /></RedCar> 
-        || <WhiteCar onClick={handleClick}><img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,w_40/v1625694896/whiteCar_cafb44.png"/> </WhiteCar>}
+        {state.clicked ? <BlackCar onClick={handleClick}><img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,w_40/v1625694896/blueCar_anvl0c.png" alt=''/></BlackCar> 
+        : props.ocupied ? <RedCar><img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,w_40/v1625694896/redCar_bydkdo.png" alt=''/></RedCar> 
+        : <WhiteCar onClick={handleClick}><img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,w_40/v1625694896/whiteCar_cafb44.png" alt=''/> </WhiteCar>}
         </div>
     )
 }
