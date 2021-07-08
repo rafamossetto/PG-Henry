@@ -23,11 +23,12 @@ export default function NavBar() {
         setViewForm(viewForm = true);
     }
 
-    function onClose(e) {
-        e.preventDefault();
+    // Hasta añadir funcionalidad on close al reducer
+    // function onClose(e) {
+    //     e.preventDefault();
 
-        setViewForm(viewForm = false);
-    }
+    //     setViewForm(viewForm = false);
+    // }
 
     return (
         <NavBarAlpha>
