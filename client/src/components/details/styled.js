@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {IoIosArrowDown as Arrow} from 'react-icons/io'
 
 const desktopStartWidth = 996;
 // const desktop = `@media (min-width: ${desktopStartWidth}px)`;
@@ -23,12 +24,16 @@ export const Container =styled.div`
 `;
 
 export const Btn = styled.button`
+   display: flex;
+   direction: row;
+   justify-content: center;
+   align-items: center;
    margin-top: 100px;
    color: #222831; 
    background:#F05454;
    border: 3px solid #30475E;
    border-radius: 12px;
-   width: 200px;
+   width: 250px;
    height: 50px;
    font-size: 30px;
 
@@ -81,4 +86,9 @@ export const H4 = styled.h4`
   padding-left:30px;
   padding-right: 10px;
   color:#F05454;
+`;
+
+export const ArrowDown = styled(Arrow)`
+  padding-left: 20px;
+  
 `;

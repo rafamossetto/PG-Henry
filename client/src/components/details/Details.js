@@ -2,12 +2,13 @@ import {useParams} from 'react-router-dom';
 import React, { useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { getMovieById, clearMovie } from '../../actions/movies';
-import {Box, Container, Btn, Grid, Poster, SubH2, Title, Trailer, Rated, H4} from './styled';
+import {Box, Container, Btn, Grid, Poster, SubH2, Title, Trailer, Rated, H4, ArrowDown} from './styled';
 import ReactPlayer from 'react-player';
 
 function MovieDetail(){
  const dispatch = useDispatch();
  const movieDetail = useSelector(state => state.movieDetail);
+ 
 
  const {id}= useParams();
     useEffect(()=>{
@@ -47,7 +48,7 @@ function MovieDetail(){
            </Rated>  
          </div>
          <div>                   
-           <Btn>Get Tickets</Btn><br></br>
+           <Btn>Get Tickets<ArrowDown size='35'/></Btn><br></br>
            <label>{movieDetail.shows? (movieDetail.shows.map(el=>
               <div>{el.field1.map(ele=>
                 <div>
