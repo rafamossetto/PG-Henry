@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { NavBarAlpha, SignButton, Cart, Linked } from './Styles';
 import SignForm from './SignForm';
 
@@ -12,11 +11,12 @@ export default function NavBar() {
         setViewForm(viewForm = true);
     }
 
-    function onClose(e) {
-        e.preventDefault();
+    // Hasta añadir funcionalidad on close al reducer
+    // function onClose(e) {
+    //     e.preventDefault();
 
-        setViewForm(viewForm = false);
-    }
+    //     setViewForm(viewForm = false);
+    // }
 
     return (
         <NavBarAlpha>

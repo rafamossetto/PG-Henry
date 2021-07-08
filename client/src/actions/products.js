@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from 'axios';
 
 export function getProducts() {
       return async function(dispatch) {
@@ -47,3 +47,4 @@ export const SAVE_SLOT = 'SAVE_SLOT'
 export const SAVE_PRODUCT = 'SAVE_PRODUCT'
 export const DELETE_PRODUCT = 'DELETE_PRODUCT'
 export const SEND_TO_PRODUCTS = 'SEND_TO_PRODUCTS'
+
