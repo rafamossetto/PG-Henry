@@ -8,6 +8,7 @@ const initialState = {
   products: [],
   purchase:{
     parking:'',
+    slot:'',    
     day:'',
     time:'',
     title:'',
