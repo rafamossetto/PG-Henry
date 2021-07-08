@@ -6,7 +6,7 @@ export const ProductsBox = styled.div`
     overflow-y:hidden;
 `;
 export const Container = styled.div`
-    background-color: rgba(45, 64, 89, 1);
+    background-color: rgba(34, 40, 49, 1);
     padding-top: 140px;
 `;
 export const MovieData = styled.div`
@@ -24,10 +24,15 @@ export const MovieDetails = styled.div`
     flex-direction: column;
 `;
 export const ParkingLot = styled.div`
-    display:block;
-    width:400px;
-    height:250px;
+    display:flex;
+    flex-direction: column;
+    width:520px;
+    height:200px;
     background-color: rgb(48, 71, 94);
+`;
+export const ParkingLine = styled.div`
+    display:flex;
+    flex-direction: row;
 `;
 export const RedText = styled.div`
     display:flex;
@@ -38,14 +43,10 @@ export const RedText = styled.div`
     font-size: 13px;
 `;
 export const BuyBox = styled.div`
-    background-color: rgba(45, 64, 89, 1);
     display:flex;
     flex-direction: row;
     justify-content: flex-end;
     margin-right: 50px;
-    color:rgba(255, 255, 255, 1);
-    font-family: Questrial;
-    font-size: 12px;
 `;
 export const BuyButton = styled.button`
     margin-left:10px;
@@ -62,7 +63,17 @@ export const BuyButton = styled.button`
     }
 `;
 export const Total = styled.p`
+    color:rgba(255, 255, 255, 1);
+    margin-top:8px;
+    font-family: Questrial;
+    font-size: 15px;
+`
+export const StoredProducts = styled.p`
+    color:rgba(255, 255, 255, 1);
     margin-top:10px;
+    font-family: Questrial;
+    font-size: 13px;
+    margin-right:7px;
 `
 
 
