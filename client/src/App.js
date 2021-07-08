@@ -21,7 +21,7 @@ function App() {
       <Route path="/billboard" component={Billboard} />
       <Route path="/administration" component={AdminPage} />
       <Route path="/profile" component={UserProfile} />
-      <Route path='/home' component={Home} />
+      <Route exact path='/' component={Home} />
 
     </div>
   );
