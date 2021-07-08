@@ -5,6 +5,7 @@ const router = Router();
 
 router.get("/:id", movieCtrl.getMovieById);
 router.get("/", movieCtrl.getMovie);
-router.post("/", movieCtrl.postMovie)
+router.post("/", movieCtrl.postMovie);
+router.put("/:id", movieCtrl.putMovie);
 
 module.exports = router;

@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import { getProducts } from '../../actions/products'
 import Product from './Product'
 import Car from './Car'
 import {ProductsBox, Container, MovieData, MovieDetails, ParkingLot, RedText, BuyBox, BuyButton, Total, ParkingLine, StoredProducts} from './ProductsStyles'
 const Products = (props) => {
+
     let Parking = [
         {slot: 'a1', ocupied:false}, {slot: 'a2', ocupied:true}, {slot: 'a3', ocupied:true}, {slot: 'a4', ocupied:false}, {slot: 'a5', ocupied:false},
         {slot: 'a6', ocupied:false}, {slot: 'a7', ocupied:true}, {slot: 'a8', ocupied:true}, {slot: 'a9', ocupied:false}, {slot: 'a10', ocupied:false},
@@ -14,7 +14,8 @@ const Products = (props) => {
         {slot: 'c1', ocupied:false}, {slot: 'c2', ocupied:true}, {slot: 'c3', ocupied:true}, {slot: 'c4', ocupied:false}, {slot: 'c5', ocupied:false},
         {slot: 'c6', ocupied:false}, {slot: 'c7', ocupied:true}, {slot: 'c8', ocupied:true}, {slot: 'c9', ocupied:false}, {slot: 'c10', ocupied:false},
     ]
-    useEffect(() => props.getProducts(), [])
+    useEffect(() => props.getProducts(), [props])
+
     return(
         <Container>
 

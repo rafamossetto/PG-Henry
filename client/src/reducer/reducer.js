@@ -1,6 +1,8 @@
-import { GET_MOVIES_DETAIL } from "../actions/movies";
+import { GET_MOVIES_DETAIL, GET_MOVIE_LIST } from "../actions/movies";
+import { ORDER_USERS_BY_POINTS } from "../actions/points";
 import { GET_PRODUCTS, ADD_TOTAL, SUBSTRACT_TOTAL, SAVE_SLOT, SAVE_PRODUCT, DELETE_PRODUCT } from "../actions/products";
-import { GET_USERS } from "../actions/users";
+import { GET_USERS, SIGNUP, LOGIN } from "../actions/users";
+
 
 const initialState = {
   products: [],
@@ -14,15 +16,33 @@ const initialState = {
   },
   movieDetail: {},
   users: [],
+  token: getTokenLocalStorage(),
 };
+
+export function getTokenLocalStorage() {
+  const token = window.localStorage.getItem("token");
+  return token ? JSON.parse(token) : {};
+}
+
+function setTokenLocalStorage(token) {
+  window.localStorage.setItem("token", JSON.stringify(token));
+}
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case GET_MOVIES_DETAIL:
+    //movie list
+    case GET_MOVIE_LIST: {
+      return {
+        ...state,
+        movieList: action.payload,
+      };
+    }
+    case GET_MOVIES_DETAIL: {
       return {
         ...state,
         movieDetail: action.payload,
       };
+    }
     case GET_PRODUCTS: {
       return {
         ...state,
@@ -100,6 +120,36 @@ export default function reducer(state = initialState, action) {
         users: action.payload,
       };
     }
+    // Ordenar usuarios por cantidad de puntos asc/desc
+    case ORDER_USERS_BY_POINTS: {
+      //Si no hay payload, order desc
+      if (!action.payload) {
+        return {
+          ...state,
+          users: [...state.users].sort((a, b) => a - b),
+        };
+      }
+      return {
+        ...state,
+        users: [...state.users].sort((a, b) => a + b),
+      };
+    }
+    //authentication
+    case LOGIN: {
+      setTokenLocalStorage(action.payload);
+      return {
+        ...state,
+        token: action.payload,
+      };
+    }
+    case SIGNUP: {
+      setTokenLocalStorage(action.payload);
+      return {
+        ...state,
+        token: action.payload,
+      };
+    }
+
     default: {
       return state;
     }
