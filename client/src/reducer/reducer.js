@@ -125,7 +125,7 @@ export default function reducer(state = initialState, action) {
       }
     }
     //users
-    case GET_USERS:
+    case GET_USERS:{
       // Para que en la pantalla del admin se muestren los usuarios
       return {
         ...state,
