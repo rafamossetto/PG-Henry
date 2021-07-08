@@ -1,6 +1,10 @@
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { AiFillTwitterCircle as Twitter, AiFillFacebook as Fb, AiFillInstagram as Instagram } from "react-icons/ai";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import {
+  AiFillTwitterCircle as Twitter,
+  AiFillFacebook as Fb,
+  AiFillInstagram as Instagram,
+} from "react-icons/ai";
 import { BiCameraMovie as Camera } from "react-icons/bi";
 import { TiShoppingCart as ShoppingCart } from "react-icons/ti";
 
@@ -34,41 +38,41 @@ export const Head = styled.div`
 `;
 
 export const HeadInsider = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
 `;
 
 export const HeaderIcon = styled(Camera)`
-    height: 55px;
-    width: 55px;
-    padding: 12px;
-    background-color: #222831;
-    border-radius: 50%;
-    margin-right: 30px;
-    color: #E8E8E8;
+  height: 55px;
+  width: 55px;
+  padding: 12px;
+  background-color: #222831;
+  border-radius: 50%;
+  margin-right: 30px;
+  color: #e8e8e8;
 `;
 
 export const Socials = styled.a`
-    margin-right: 50px;
-    height: 50px;
-    width: 50px;
+  margin-right: 50px;
+  height: 50px;
+  width: 50px;
 `;
 export const Title = styled.h1`
-    color: #E8E8E8;
+  color: #e8e8e8;
 `;
 
 export const Face = styled(Fb)`
-    color: #30475E;
+  color: #30475e;
 `;
 
 export const Tweet = styled(Twitter)`
-    color: #30475E;
+  color: #30475e;
 `;
 
 export const Insta = styled(Instagram)`
-    color: #30475E;
+  color: #30475e;
 `;
 
 // ESTILOS DEL NAVBAR
@@ -88,20 +92,20 @@ export const NavBarAlpha = styled.div`
 `;
 
 export const SignButton = styled.button`
-    height: 30px;
-    border-radius: 5px;
-    background-color: #F05454;
-    color: #E8E8E8;
-    border: none;
+  height: 30px;
+  border-radius: 5px;
+  background-color: #f05454;
+  color: #e8e8e8;
+  border: none;
 `;
 
 export const Cart = styled(ShoppingCart)`
-    color: #E8E8E8;
+  color: #e8e8e8;
 `;
 
 export const Linked = styled(Link)`
-    color: #E8E8E8;
-    text-decoration: none;
+  color: #e8e8e8;
+  text-decoration: none;
 `;
 
 // ESTILOS SIGNFORM
