@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { getProducts } from '../../actions/products'
 import Product from './Product'
 import Car from './Car'
-import {ProductsBox, Container, MovieData, MovieDetails, ParkingLot, RedText, BuyBox, BuyButton, Total, ParkingLine, StoredProducts} from './ProductsStyles'
+import {ProductsBox, Container, MovieData, MovieDetails, ParkingLot, RedText, BuyBox, BuyButton, Total, ParkingLine, StoredProducts, Screen, Reference} from './ProductsStyles'
 const Products = (props) => {
 
     let Parking = [
@@ -14,7 +14,7 @@ const Products = (props) => {
         {slot: 'c1', ocupied:false}, {slot: 'c2', ocupied:true}, {slot: 'c3', ocupied:true}, {slot: 'c4', ocupied:false}, {slot: 'c5', ocupied:false},
         {slot: 'c6', ocupied:false}, {slot: 'c7', ocupied:true}, {slot: 'c8', ocupied:true}, {slot: 'c9', ocupied:false}, {slot: 'c10', ocupied:false},
     ]
-    useEffect(() => props.getProducts(), [props])
+    useEffect(() => props.getProducts(), [])
 
     const handleBuy =() => {
         var mensaje;
@@ -22,8 +22,9 @@ const Products = (props) => {
         You are about to purchase: 
         ${Object.keys(props.extras).map(e => e.concat(' x').concat(props.extras[e]))} 
         Ticket for Movie Title on the ${props.savedSlot} parking lot, 
-        for a total of $${props.total}`);
-        if (opcion == true) {
+        for a total of $${props.total}.
+        `);
+        if (opcion === true) {
             mensaje = "Has confirmado la compra";
 	    } else {
 	        mensaje = "Has cancelado la compra";
@@ -53,9 +54,29 @@ const Products = (props) => {
                         <ParkingLine> 
                             {Parking.slice(20,30).map(e => <Car slot={e.slot}ocupied={e.ocupied}/>)}
                         </ParkingLine>
+                        <Screen><div>Screen</div></Screen>
+                        <Reference>                            
+                            <img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,w_18/v1625694896/redCar_bydkdo.png" alt=''/>
+                            <div>Ocuppied</div>
+                            <img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,w_18/v1625694896/whiteCar_cafb44.png" alt=''/>
+                            <div>Available</div>
+                            <img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,w_18/v1625694896/blueCar_anvl0c.png" alt=''/>
+                            <div>Selected</div>
+                        </Reference>
                     </ParkingLot>
                 </div>
             </MovieData>
+
+            <div>
+                <div>
+                    <RedText>Extras</RedText>
+                </div>
+                <ProductsBox>
+                    {props.products && props.products.filter(e => e.combo === false).map(e => 
+                    <Product name={e.name} price={e.price} imgUrl={e.imgUrl}/>
+                    )}
+                </ProductsBox>                
+            </div>
 
             <div>
                 <div>
@@ -68,17 +89,6 @@ const Products = (props) => {
                     )}
                 </ProductsBox>                    
                 </div>                
-            </div>
-
-            <div>
-                <div>
-                    <RedText>Extras</RedText>
-                </div>
-                <ProductsBox>
-                    {props.products && props.products.filter(e => e.combo === false).map(e => 
-                    <Product name={e.name} price={e.price} imgUrl={e.imgUrl}/>
-                    )}
-                </ProductsBox>                
             </div>
 
             <div>

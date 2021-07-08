@@ -24,19 +24,36 @@ export const MovieDetails = styled.div`
     flex-direction: column;
 `;
 export const ParkingLot = styled.div`
+    margin-top: 20px;
     display:flex;
     flex-direction: column;
     width:520px;
-    height:200px;
+    height:210px;
     background-color: rgb(48, 71, 94);
 `;
 export const ParkingLine = styled.div`
     display:flex;
     flex-direction: row;
 `;
+export const Screen = styled.div`
+    margin-top: 5px;
+    display:flex;
+    justify-content: center;
+    border-radius: 6px;
+    color:rgba(255, 255, 255, 1);
+    background-color:rgba(234, 84, 85, 1);
+`;
+export const Reference = styled.div`
+    margin-top: 5px;
+    display:flex;
+    justify-content:flex-start;
+`;
+
+
 export const RedText = styled.div`
     display:flex;
     justify-content: flex-start;
+    margin-top:10px;
     margin-left:10px;   
     color:rgb(234, 84, 85);
     font-family: Questrial;
