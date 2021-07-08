@@ -34,7 +34,11 @@ export function deleteProduct(product) {
     dispatch({ type: DELETE_PRODUCT, payload: product });
   };
 }
-
+export function sendToProducts(data) {
+  return function(dispatch) {
+    dispatch({ type: SEND_TO_PRODUCTS, payload: data });
+  };
+}
 
 export const GET_PRODUCTS = 'GET_PRODUCTS'
 export const SUBSTRACT_TOTAL = 'SUBSTRACT_TOTAL'
@@ -42,3 +46,4 @@ export const ADD_TOTAL = 'ADD_TOTAL'
 export const SAVE_SLOT = 'SAVE_SLOT'
 export const SAVE_PRODUCT = 'SAVE_PRODUCT'
 export const DELETE_PRODUCT = 'DELETE_PRODUCT'
+export const SEND_TO_PRODUCTS = 'SEND_TO_PRODUCTS'

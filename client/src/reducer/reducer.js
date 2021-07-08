@@ -1,18 +1,18 @@
 import { GET_MOVIES_DETAIL, GET_MOVIE_LIST } from "../actions/movies";
 import { ORDER_USERS_BY_POINTS } from "../actions/points";
-import { GET_PRODUCTS, ADD_TOTAL, SUBSTRACT_TOTAL, SAVE_SLOT, SAVE_PRODUCT, DELETE_PRODUCT } from "../actions/products";
+import { GET_PRODUCTS, ADD_TOTAL, SUBSTRACT_TOTAL, SAVE_SLOT, SAVE_PRODUCT, DELETE_PRODUCT, SEND_TO_PRODUCTS } from "../actions/products";
 import { GET_USERS, SIGNUP, LOGIN } from "../actions/users";
 
 
 const initialState = {
   products: [],
   purchase:{
-    total:0,
     slot:'',
     day:'',
     time:'',
+    title:'',
     extras:{},
-    title:''
+    total:0
   },
   movieDetail: {},
   users: [],
@@ -41,6 +41,18 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         movieDetail: action.payload,
+      };
+    }
+    case SEND_TO_PRODUCTS: {
+      return {
+        ...state,
+        purchase:{
+          ...state.purchase,
+          slot:action.payload.slot,
+          day:action.payload.day,
+          time:action.payload.time,
+          title:action.payload.title,
+        }
       };
     }
     case GET_PRODUCTS: {
