@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { connect } from "react-redux";
-import {addToTotal, substractToTotal } from '../../actions/products'
+import {addToTotal, substractToTotal, saveProduct, deleteProduct } from '../../actions/products'
 import {ProductBox, ButtonBox, Button, CounterBox, Counter, TextBox, InfoBox, ImgBox, Price, Text, Center } from './ProductStyles'
 
 const Product = (props) => {
-    console.log(props.imgUrl)
     const[state, setState] = useState({
         counter: 0,
     })
 
     const handleSubtract = function(){
+        console.log(props.state)
         if (state.counter > 0){
             setState({
                 ...state,
@@ -17,15 +17,18 @@ const Product = (props) => {
                 totalPrice: state.totalPrice - props.price
             })
             props.substractToTotal(props.price)
+            props.deleteProduct(props.name)
         }
     }
     const handleAdd = function(){
-        if (state.counter <= 10){
+        console.log(props.state)
+        if (state.counter < 9){
             setState({
                 ...state,
                 counter: state.counter+1,                
             })
             props.addToTotal(props.price)
+            props.saveProduct(props.name)
         }
     }
     return(
@@ -58,7 +61,7 @@ const Product = (props) => {
 
 function mapStateToProps(state) {
     return {
-
+        state: state
     };
   }
   
@@ -66,6 +69,8 @@ function mapDispatchToProps(dispatch) {
     return {
         addToTotal: price => dispatch(addToTotal(price)),
         substractToTotal: price => dispatch(substractToTotal(price)),
+        saveProduct: product => dispatch(saveProduct(product)),
+        deleteProduct: product => dispatch(deleteProduct(product)),
     };
 }
 

@@ -2,10 +2,20 @@ import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import { getProducts } from '../../actions/products'
 import Product from './Product'
-import {ProductsBox, Container, MovieData, MovieDetails, ParkingLot, RedText, BuyBox, BuyButton, Total} from './ProductsStyles'
+import Car from './Car'
+import {ProductsBox, Container, MovieData, MovieDetails, ParkingLot, RedText, BuyBox, BuyButton, Total, ParkingLine, StoredProducts} from './ProductsStyles'
 const Products = (props) => {
 
+    let Parking = [
+        {slot: 'a1', ocupied:false}, {slot: 'a2', ocupied:true}, {slot: 'a3', ocupied:true}, {slot: 'a4', ocupied:false}, {slot: 'a5', ocupied:false},
+        {slot: 'a6', ocupied:false}, {slot: 'a7', ocupied:true}, {slot: 'a8', ocupied:true}, {slot: 'a9', ocupied:false}, {slot: 'a10', ocupied:false},
+        {slot: 'b1', ocupied:false}, {slot: 'b2', ocupied:true}, {slot: 'b3', ocupied:true}, {slot: 'b4', ocupied:false}, {slot: 'b5', ocupied:false},
+        {slot: 'b6', ocupied:false}, {slot: 'b7', ocupied:true}, {slot: 'b8', ocupied:true}, {slot: 'b9', ocupied:false}, {slot: 'b10', ocupied:false},
+        {slot: 'c1', ocupied:false}, {slot: 'c2', ocupied:true}, {slot: 'c3', ocupied:true}, {slot: 'c4', ocupied:false}, {slot: 'c5', ocupied:false},
+        {slot: 'c6', ocupied:false}, {slot: 'c7', ocupied:true}, {slot: 'c8', ocupied:true}, {slot: 'c9', ocupied:false}, {slot: 'c10', ocupied:false},
+    ]
     useEffect(() => props.getProducts(), [props])
+
     return(
         <Container>
 
@@ -19,8 +29,16 @@ const Products = (props) => {
                 </MovieDetails>
                 <div>
                     <RedText>Select your parking lot</RedText>
-                    <ParkingLot>                    
-                        <div>Parking Lot</div>
+                    <ParkingLot>  
+                        <ParkingLine>                 
+                            {Parking.slice(0,10).map(e => <Car slot={e.slot}ocupied={e.ocupied}/>)}
+                        </ParkingLine> 
+                        <ParkingLine> 
+                            {Parking.slice(10,20).map(e => <Car slot={e.slot}ocupied={e.ocupied}/>)}
+                        </ParkingLine> 
+                        <ParkingLine> 
+                            {Parking.slice(20,30).map(e => <Car slot={e.slot}ocupied={e.ocupied}/>)}
+                        </ParkingLine>
                     </ParkingLot>
                 </div>
             </MovieData>
@@ -52,6 +70,9 @@ const Products = (props) => {
             <div>
                 <RedText>* You can choose sweet or salty once you get there!</RedText>
                 <BuyBox>
+                    {Object.keys(props.extras).length > 0 && <StoredProducts>Extras:</StoredProducts>}
+                    {Object.keys(props.extras).map(e =><StoredProducts>{e}&nbsp;x&nbsp;{props.extras[e]}&nbsp;-</StoredProducts>)}
+                    {props.savedSlot !== '' ? <StoredProducts>Parking Lot:&nbsp;{props.savedSlot}</StoredProducts> :null}
                     <Total>Total: ${props.total}</Total>
                     <BuyButton>Buy</BuyButton>
                 </BuyBox>
@@ -65,7 +86,9 @@ function mapStateToProps(state) {
     return {
         movie: state.movieDetail,
         products: state.products,
-        total: state.total
+        total: state.purchase.total,
+        extras: state.purchase.extras,
+        savedSlot: state.purchase.slot
     };
   }
   
