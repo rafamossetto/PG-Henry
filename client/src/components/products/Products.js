@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import { getProducts } from '../../actions/products'
 import Product from './Product'
 import Car from './Car'
-import {ProductsBox, Container, MovieData, MovieDetails, ParkingLot, RedText, BuyBox, BuyButton, Total, ParkingLine, StoredProducts, Screen, Reference} from './ProductsStyles'
+import {ProductsBox, Container, MovieData, MovieDetails, ParkingLot, RedText,
+BuyBox, BuyButton, Total, ParkingLine, StoredProducts, Screen, Reference} from './ProductsStyles'
+
 const Products = (props) => {
 
     let Parking = [
@@ -20,7 +22,7 @@ const Products = (props) => {
         var mensaje;
         var opcion = window.confirm(`
         You are about to purchase: 
-        ${Object.keys(props.extras).map(e => e.concat(' x').concat(props.extras[e]))} 
+        ${Object.keys(props.extras).map(e => e.concat(' x').concat(props.extras[e]))},
         Ticket for Movie Title on the ${props.savedSlot} parking lot, 
         for a total of $${props.total}.
         `);
@@ -31,6 +33,7 @@ const Products = (props) => {
 	    }
 	    document.getElementById("purchase").innerHTML = mensaje;
     }
+    
     return(
         <Container>
 
