@@ -35,7 +35,7 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         movieList: action.payload,
-      };
+      }
     }
     case GET_MOVIES_DETAIL: {
       return {
