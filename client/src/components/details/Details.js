@@ -2,14 +2,21 @@ import {useParams} from 'react-router-dom';
 import React, { useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { getMovieById, clearMovie } from '../../actions/movies';
+import {sendToProducts} from'../../actions/products';
 import {Box, Container, Btn, Grid, Poster, SubH2, Title, Trailer, Rated, H4, ArrowDown} from './styled';
 import ReactPlayer from 'react-player';
 
 function MovieDetail(){
  const dispatch = useDispatch();
  const movieDetail = useSelector(state => state.movieDetail);
+ const[state, setState]=React.useState({
+    title:'',
+    time:'',
+    price:0,
+    day:'',
+    parking:[]
+ })
  
-
  const {id}= useParams();
     useEffect(()=>{
       dispatch(getMovieById(id))
@@ -17,6 +24,15 @@ function MovieDetail(){
         dispatch(clearMovie())
       }
     },[dispatch, id])
+
+  function handlePayMovie(e){
+    e.preventDefault()
+    setState({
+      ...state,
+      time: e.target.value,
+      day: e.target.value,
+    })
+  }
 
 
  return(
@@ -53,9 +69,9 @@ function MovieDetail(){
               <div>{el.field1.map(ele=>
                 <div>
                   <div>{ele.Day}</div>
-                  <button>{ele.show1.time}</button>
-                  <button>{ele.show2.time}</button>
-                  <button>{ele.show3.time}</button>
+                  <button onClick= {event => handlePayMovie(event)} value={ele.show1, ele.day}>{ele.show1.time}</button>
+                  <button onClick={event => handlePayMovie(event)} value={ele.show2, ele.day}>{ele.show2.time}</button>
+                  <button onClick={event => handlePayMovie(event)} value={ele.show3, ele.day}>{ele.show3.time}</button>
                 </div> 
              )}  
               </div>
