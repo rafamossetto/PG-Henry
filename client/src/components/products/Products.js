@@ -16,6 +16,20 @@ const Products = (props) => {
     ]
     useEffect(() => props.getProducts(), [props])
 
+    const handleBuy =() => {
+        var mensaje;
+        var opcion = window.confirm(`
+        You are about to purchase: 
+        ${Object.keys(props.extras).map(e => e.concat(' x').concat(props.extras[e]))} 
+        Ticket for Movie Title on the ${props.savedSlot} parking lot, 
+        for a total of $${props.total}`);
+        if (opcion == true) {
+            mensaje = "Has confirmado la compra";
+	    } else {
+	        mensaje = "Has cancelado la compra";
+	    }
+	    document.getElementById("ejemplo").innerHTML = mensaje;
+    }
     return(
         <Container>
 
@@ -70,11 +84,12 @@ const Products = (props) => {
             <div>
                 <RedText>* You can choose sweet or salty once you get there!</RedText>
                 <BuyBox>
+                    <p id="ejemplo"></p>
                     {Object.keys(props.extras).length > 0 && <StoredProducts>Extras:</StoredProducts>}
                     {Object.keys(props.extras).map(e =><StoredProducts>{e}&nbsp;x&nbsp;{props.extras[e]}&nbsp;-</StoredProducts>)}
                     {props.savedSlot !== '' ? <StoredProducts>Parking Lot:&nbsp;{props.savedSlot}</StoredProducts> :null}
                     <Total>Total: ${props.total}</Total>
-                    <BuyButton>Buy</BuyButton>
+                    <BuyButton onClick={handleBuy}>Buy</BuyButton>
                 </BuyBox>
             </div>
 
