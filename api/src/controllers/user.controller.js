@@ -12,7 +12,6 @@ const signUp = async (req, res) => {
       bookings: [],
     });
     let userSaved = await newUser.save();
-
     const token = await jwt.sign({ id: userSaved._id }, "group8", {
       expiresIn: 86400,
     });
