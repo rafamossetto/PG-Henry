@@ -7,13 +7,14 @@ const initialState = {
   products: [],
   total: 0,
   movieDetail: {},
+  movieList: [],
   users: [],
   token: getTokenLocalStorage(),
 };
 
 export function getTokenLocalStorage() {
   const token = window.localStorage.getItem("token");
-  return token ? JSON.parse(token) : {};
+  return token ? JSON.parse(token) : "";
 }
 
 function setTokenLocalStorage(token) {
