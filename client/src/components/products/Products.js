@@ -7,12 +7,12 @@ import {ProductsBox, Container, MovieData, MovieDetails, ParkingLot, RedText, Bu
 const Products = (props) => {
 
     let Parking = [
-        {slot: 'a1', ocupied:false}, {slot: 'a2', ocupied:true}, {slot: 'a3', ocupied:true}, {slot: 'a4', ocupied:false}, {slot: 'a5', ocupied:false},
-        {slot: 'a6', ocupied:false}, {slot: 'a7', ocupied:true}, {slot: 'a8', ocupied:true}, {slot: 'a9', ocupied:false}, {slot: 'a10', ocupied:false},
-        {slot: 'b1', ocupied:false}, {slot: 'b2', ocupied:true}, {slot: 'b3', ocupied:true}, {slot: 'b4', ocupied:false}, {slot: 'b5', ocupied:false},
-        {slot: 'b6', ocupied:false}, {slot: 'b7', ocupied:true}, {slot: 'b8', ocupied:true}, {slot: 'b9', ocupied:false}, {slot: 'b10', ocupied:false},
-        {slot: 'c1', ocupied:false}, {slot: 'c2', ocupied:true}, {slot: 'c3', ocupied:true}, {slot: 'c4', ocupied:false}, {slot: 'c5', ocupied:false},
-        {slot: 'c6', ocupied:false}, {slot: 'c7', ocupied:true}, {slot: 'c8', ocupied:true}, {slot: 'c9', ocupied:false}, {slot: 'c10', ocupied:false},
+        {slot: 'a1', ocupied:false}, {slot: 'a2', ocupied:true}, {slot: 'a3', ocupied:true}, {slot: 'a4', ocupied:true}, {slot: 'a5', ocupied:false},
+        {slot: 'a6', ocupied:true}, {slot: 'a7', ocupied:false}, {slot: 'a8', ocupied:true}, {slot: 'a9', ocupied:true}, {slot: 'a10', ocupied:false},
+        {slot: 'b1', ocupied:false}, {slot: 'b2', ocupied:false}, {slot: 'b3', ocupied:false}, {slot: 'b4', ocupied:false}, {slot: 'b5', ocupied:false},
+        {slot: 'b6', ocupied:true}, {slot: 'b7', ocupied:true}, {slot: 'b8', ocupied:false}, {slot: 'b9', ocupied:true}, {slot: 'b10', ocupied:false},
+        {slot: 'c1', ocupied:false}, {slot: 'c2', ocupied:false}, {slot: 'c3', ocupied:true}, {slot: 'c4', ocupied:false}, {slot: 'c5', ocupied:true},
+        {slot: 'c6', ocupied:false}, {slot: 'c7', ocupied:false}, {slot: 'c8', ocupied:false}, {slot: 'c9', ocupied:true}, {slot: 'c10', ocupied:false},
     ]
     useEffect(() => props.getProducts(), [])
 
@@ -25,11 +25,11 @@ const Products = (props) => {
         for a total of $${props.total}.
         `);
         if (opcion === true) {
-            mensaje = "Has confirmado la compra";
+            mensaje = "Purchase confirmed";
 	    } else {
-	        mensaje = "Has cancelado la compra";
+	        mensaje = "Purchase canceled";
 	    }
-	    document.getElementById("ejemplo").innerHTML = mensaje;
+	    document.getElementById("purchase").innerHTML = mensaje;
     }
     return(
         <Container>
@@ -45,15 +45,15 @@ const Products = (props) => {
                 <div>
                     <RedText>Select your parking lot</RedText>
                     <ParkingLot>  
+                    <ParkingLine> 
+                            {Parking.slice(20,30).map(e => <Car slot={e.slot}ocupied={e.ocupied}/>)}
+                        </ParkingLine>
+                        <ParkingLine> 
+                            {Parking.slice(10,20).map(e => <Car slot={e.slot}ocupied={e.ocupied}/>)}
+                        </ParkingLine>                         
                         <ParkingLine>                 
                             {Parking.slice(0,10).map(e => <Car slot={e.slot}ocupied={e.ocupied}/>)}
                         </ParkingLine> 
-                        <ParkingLine> 
-                            {Parking.slice(10,20).map(e => <Car slot={e.slot}ocupied={e.ocupied}/>)}
-                        </ParkingLine> 
-                        <ParkingLine> 
-                            {Parking.slice(20,30).map(e => <Car slot={e.slot}ocupied={e.ocupied}/>)}
-                        </ParkingLine>
                         <Screen><div>Screen</div></Screen>
                         <Reference>                            
                             <img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,w_18/v1625694896/redCar_bydkdo.png" alt=''/>
@@ -90,11 +90,11 @@ const Products = (props) => {
                 </ProductsBox>                    
                 </div>                
             </div>
-
+            
             <div>
-                <RedText>* You can choose sweet or salty once you get there!</RedText>
-                <BuyBox>
-                    <p id="ejemplo"></p>
+                <RedText>* You can choose sweet or salty popcorn once you get there!</RedText>
+                <p id="purchase"></p>
+                <BuyBox>                    
                     {Object.keys(props.extras).length > 0 && <StoredProducts>Extras:</StoredProducts>}
                     {Object.keys(props.extras).map(e =><StoredProducts>{e}&nbsp;x&nbsp;{props.extras[e]}&nbsp;-</StoredProducts>)}
                     {props.savedSlot !== '' ? <StoredProducts>Parking Lot:&nbsp;{props.savedSlot}</StoredProducts> :null}
