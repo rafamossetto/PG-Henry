@@ -15,6 +15,7 @@ export const HeaderAlpha = styled.div`
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    background-color: #222831;
 `;
 
 export const Head = styled.div`
@@ -27,6 +28,9 @@ export const Head = styled.div`
     justify-content: space-around;
     align-items: center;    
     border-radius: 10px;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.7),
+                inset 2px 3px 5px rgba(0,0,0,0.3),
+                inset -2px -3px 5px rgba(0,0,0,0.5);
 `;
 
 export const HeadInsider = styled.div`
@@ -78,6 +82,9 @@ export const NavBarAlpha = styled.div`
     justify-content: space-evenly;
     align-items: center;
     border-radius: 5px;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.7),
+                inset 2px 3px 5px rgba(0,0,0,0.3),
+                inset -2px -3px 5px rgba(0,0,0,0.5);
 `;
 
 export const SignButton = styled.button`
@@ -103,55 +110,82 @@ export const Signform = styled.div`
     position: fixed;
     top: 15%;
     left: 30%;
-    height: 70%;
-    width: 40%;
-    background-color: rgba(48, 71, 94, 0.75);
-    border-radius: 10px;
-    border: solid 1px #E8E8E8;
+    height: 60%;
+    width: 30%;
+    padding: 10px;
+    background-color: #30475E;
     padding-top: 25px;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.7),
+                inset 2px 3px 5px rgba(0,0,0,0.3),
+                inset -2px -3px 5px rgba(0,0,0,0.5);
 `;
 
 export const FormForm = styled.form`
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+`;
+
+export const Inputs = styled.input`
+    font-size: 25px;
+    padding: 5px;
+    margin-top: -20px;
+`;
+
+export const Buttons = styled.div`
+    width: 80%;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 20px;
 `;
 
-export const FormTitle = styled.h1`
-    color: #E8E8E8;
-    font-size: 150%;
-    margin-bottom: 50px;
-`;
-
-export const Labeling = styled.label`
-    color: #E8E8E8;
-    align-self: flex-start;
-    margin-bottom: 5px;
-    margin-left: 80px;
-`;
-
-export const Inputs = styled.input`
-    margin-bottom: 75px;
-    align-self: flex-start;
-    margin-left: 80px;
-`;
-
-export const Buttons = styled.div`
+export const TwoButtons = styled.div`
+    margin-top: 5px;
     display: flex;
     flex-direction: row;
-    margin-top: 20px;
-    margin-right: 80px;
-    align-self: flex-end;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 `;
 
-export const FormButton = styled.button`
-    height: 30px;
+export const GoogleButton = styled.button`
+    height: 40px;
+    width: 100%;
+    background-color: #E8E8E8;
+    border-radius: 5px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+`;
+
+export const LogButton = styled.button`
+    height: 40px;
+    width: 49%;
+    font-size: 20px;
     background-color: #F05454;
     color: #E8E8E8;
-    border: none;
-    margin-left: 5px;
     border-radius: 5px;
+`;
+
+export const SigButton = styled.button`
+    height: 40px;
+    width: 49%;
+    font-size: 20px;
+    background-color: #E8E8E8;
+    border-radius: 5px;
+`;
+
+export const Linking = styled(Link)`
+    color: black;
+    text-decoration: none;
 `;
 
 export const CloseButton = styled.button`
@@ -159,8 +193,7 @@ export const CloseButton = styled.button`
     width: 25px;
     background-color: #F05454;
     color: #E8E8E8;
-    border-radius: 10px;
-    border: none;
-    margin-right: 20px;
+    text-align: center;
     align-self: flex-end;
+    margin-top: -15px;
 `;

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
-import { Signform, FormForm, FormTitle, Labeling, Inputs, Buttons, FormButton, CloseButton } from './Styles';
+import { Signform, FormForm, Inputs, Buttons, TwoButtons, LogButton, SigButton, Linking, GoogleButton, CloseButton } from './Styles';
+import { FcGoogle } from "react-icons/fc";
 
 export default function SignForm() {
     const [user, setUser] = useState({name: "", password: ""});
@@ -25,14 +26,14 @@ export default function SignForm() {
         <Signform>
             <FormForm onSubmit={(e) => handleSubmit(e)}>
                 <CloseButton type="button">X</CloseButton>
-                <FormTitle>Already have an account? Log in!</FormTitle>
-                <Labeling>Username:</Labeling>
-                <Inputs name="name" type="text" value={user.name} onChange={(e) => handleChange(e)} />
-                <Labeling>Password:</Labeling>
-                <Inputs name="password" type="password" value={user.password} onChange={(e) => handleChange(e)} />
+                <Inputs name="name" type="text" value={user.name} placeholder="Username..." onChange={(e) => handleChange(e)} />
+                <Inputs name="password" type="password" value={user.password} placeholder="Password..." onChange={(e) => handleChange(e)} />
                 <Buttons>
-                    <FormButton type="submit">Log-in</FormButton>
-                    <Link to='/signup' ><FormButton type="button">Register</FormButton></Link>
+                    <GoogleButton><FcGoogle size="35"/>Login with Google</GoogleButton>
+                    <TwoButtons>
+                        <LogButton type="submit">Log in</LogButton>
+                        <SigButton type="button"><Linking to='/signup' >Sign up</Linking></SigButton>
+                    </TwoButtons>
                 </Buttons>
             </FormForm>
         </Signform>
