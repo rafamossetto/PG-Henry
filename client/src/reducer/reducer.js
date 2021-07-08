@@ -16,7 +16,6 @@ const initialState = {
     total:0
   },
   movieDetail: {},
-  movieList: [],
   users: [],
   movieList: [],
   token: getTokenLocalStorage(),
@@ -64,7 +63,7 @@ export default function reducer(state = initialState, action) {
         products: action.payload,
       };
     }
-    case ADD_TOTAL: {
+    case ADD_TOTAL: 
       return {
         ...state,
         purchase:{
@@ -72,7 +71,6 @@ export default function reducer(state = initialState, action) {
           total: state.purchase.total + action.payload,
         } 
       };
-    };
     case SUBSTRACT_TOTAL: {
       return {
         ...state,
