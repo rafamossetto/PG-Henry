@@ -15,6 +15,7 @@ export function getUsers() {
   return async function (dispatch) {
     const result = await axios.get("http://localhost:3001/users", config);
     dispatch({ type: GET_USERS, payload: result.data });
+    console.log(result);
   };
 }
 
@@ -38,4 +39,13 @@ export function logIn(username, email, password) {
     });
     dispatch({ type: LOGIN, payload: token.data.token });
   };
+}
+
+export async function isAdmin() {
+  const result = await axios.get(
+    "http://localhost:3001/users/verifyadmin",
+    config
+  );
+  console.log(result.data.isAdmin);
+  return result.data.isAdmin;
 }

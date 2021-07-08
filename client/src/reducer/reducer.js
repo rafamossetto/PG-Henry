@@ -15,6 +15,7 @@ const initialState = {
     total:0
   },
   movieDetail: {},
+  movieList: [],
   users: [],
   movieList: [],
   token: getTokenLocalStorage(),
@@ -22,7 +23,7 @@ const initialState = {
 
 export function getTokenLocalStorage() {
   const token = window.localStorage.getItem("token");
-  return token ? JSON.parse(token) : {};
+  return token ? JSON.parse(token) : "";
 }
 
 function setTokenLocalStorage(token) {
