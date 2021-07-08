@@ -10,7 +10,6 @@ export const StyledTitle = styled.h1`
 `;
 
 export const StyledBillboard = styled.div`
-    @import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
     display: flex;
     position: absolute;
     flex-wrap: wrap;
@@ -20,7 +19,6 @@ export const StyledBillboard = styled.div`
     align-items: center;
     z-index: -100;
     margin: auto;
-    font-family: 'Questrial', sans-serif;
 `;
 
 export const StyledAside = styled.aside`
@@ -32,9 +30,4 @@ export const StyledAside = styled.aside`
     background-color: #30475E88;
     border: 5px solid #30475E;
     box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-
 `;

@@ -10,26 +10,23 @@ const MoviesColors = {
 export const StyledForm = styled.form`
     background-color: ${MoviesColors.grey};
     color: ${MoviesColors.black};
-    padding: .5% 2%;
-    top: 29%;
+    padding: 1% 5%;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(-50%);
     position: absolute;
     display: grid;
-    width: 35%;
+    width: 40%;
     grid-template-columns: 25% 5% 70%;
     grid-template-rows: repeat(4, 1fr);
-    border: 1px solid ${MoviesColors.white};
-    border-radius: 1rem;
-    box-sizing: border-box;
 `;
 
 export const StyledInput = styled.input`
     margin: 20px 0;
-    font-size: 2rem;
+    font-size: 3rem;
     grid-column-start: 1;
     grid-column-end: 4;
-    padding: .2rem .3rem;
+    padding: .5rem 1.5rem;
 `;
 
 export const StyledButton = styled.input`
@@ -43,7 +40,6 @@ export const StyledButton = styled.input`
         background-position: 47% 50.5%;
         background-size: 128.5% 250%;
         border-radius: .5rem;
-        border: 1px solid ${MoviesColors.grey};
     }
     &.left{
         height: 5rem;

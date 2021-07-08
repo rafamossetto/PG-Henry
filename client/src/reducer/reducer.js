@@ -16,7 +16,6 @@ const initialState = {
   },
   movieDetail: {},
   users: [],
-  movieList: [],
   token: getTokenLocalStorage(),
 };
 
