@@ -5,17 +5,12 @@ import { getMovieById, clearMovie } from '../../actions/movies';
 import {sendToProducts} from'../../actions/products';
 import {Box, Container, Btn, Grid, Poster, SubH2, Title, Trailer, Rated, H4, ArrowDown} from './styled';
 import ReactPlayer from 'react-player';
+import { Link } from "react-router-dom";
 
 function MovieDetail(){
  const dispatch = useDispatch();
  const movieDetail = useSelector(state => state.movieDetail);
- const[state, setState]=React.useState({
-    title:'',
-    time:'',
-    price:0,
-    day:'',
-    parking:[]
- })
+ 
  
  const {id}= useParams();
     useEffect(()=>{
@@ -25,15 +20,63 @@ function MovieDetail(){
       }
     },[dispatch, id])
 
-  function handlePayMovie(e){
+  function handleShow1(e){
     e.preventDefault()
-    setState({
-      ...state,
-      time: e.target.value,
-      day: e.target.value,
-    })
+    
+    const day= e.target.value.split(',')
+    
+    
+    const elemento = movieDetail.shows[0].field1.filter(el=>el.show1.time=== day[1] && el.Day === day[0])[0]
+    console.log(elemento) 
+    const info ={
+        title: movieDetail.title,
+        price: elemento.show1.price,
+        time: elemento.show1.time,
+        day: elemento.Day,
+        parking: elemento.show1.parkingLot
+    } 
+    sendToProducts(info)    
+      
+    
+  }
+  function handleShow2(e){
+    e.preventDefault()
+    
+    const day= e.target.value.split(',')
+    console.log(day)
+    
+    const elemento = movieDetail.shows[0].field1.filter(el=>el.show2.time=== day[1] && el.Day === day[0])[0]
+    const info ={
+      title: movieDetail.title,
+      price: elemento.show2.price,
+      time: elemento.show2.time,
+      day: elemento.Day,
+      parking: elemento.show2.parkingLot
+  } 
+  sendToProducts(info)  
+    
+  }
+  function handleShow3(e){
+    e.preventDefault()
+    
+    const day= e.target.value.split(',')
+    console.log(day)
+    
+    const elemento = movieDetail.shows[0].field1.filter(el=>el.show3.time=== day[1] && el.Day === day[0])[0]
+    console.log(elemento) 
+    const info ={
+      title: movieDetail.title,
+      price: elemento.show3.price,
+      time: elemento.show3.time,
+      day: elemento.Day,
+      parking: elemento.show3.parkingLot
+  } 
+  sendToProducts(info)  
+    
   }
 
+
+ 
 
  return(
      <Container>
@@ -67,16 +110,16 @@ function MovieDetail(){
            <Btn>Get Tickets<ArrowDown size='35'/></Btn><br></br>
            <label>{movieDetail.shows? (movieDetail.shows.map(el=>
               <div>{el.field1.map(ele=>
+      
                 <div>
-                  <div>{ele.Day}</div>
-                  <button onClick= {event => handlePayMovie(event)} value={ele.show1, ele.day}>{ele.show1.time}</button>
-                  <button onClick={event => handlePayMovie(event)} value={ele.show2, ele.day}>{ele.show2.time}</button>
-                  <button onClick={event => handlePayMovie(event)} value={ele.show3, ele.day}>{ele.show3.time}</button>
+                  <input type= 'button' onClick= {handleShow1} value={[ele.Day, ele.show1.time]}/>
+                  <input type='button' onClick={handleShow2} value={[ele.Day,ele.show2.time]}/>
+                  <input type= 'button' onClick={handleShow3} value={[ele.Day, ele.show3.time]}/>
                 </div> 
              )}  
               </div>
            )):<h2>No Shows</h2>}</label>
-           
+         <Link to ='/products'><button>Confirm</button> </Link>
          </div>
          <SubH2>Director</SubH2><br></br> 
          <Box>{movieDetail.director}</Box><br></br>
