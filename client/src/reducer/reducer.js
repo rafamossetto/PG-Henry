@@ -6,16 +6,17 @@ import { GET_USERS, SIGNUP, LOGIN } from "../actions/users";
 
 const initialState = {
   products: [],
-  purchase:{
+/*   purchase:{
     parking:'',
     price:0,
-    slot:'',    
     day:'',
     time:'',
     title:'',
+    slot:'',
     extras:{},
     total:0
-  },
+  }, */
+  purchase:getPurchaseLocalStorage() ? getPurchaseLocalStorage() : {},
   movieDetail: {},
   users: [],
   movieList: [],
@@ -29,6 +30,14 @@ export function getTokenLocalStorage() {
 
 function setTokenLocalStorage(token) {
   window.localStorage.setItem("token", JSON.stringify(token));
+}
+export function getPurchaseLocalStorage() {
+  const purchase = window.localStorage.getItem("purchase");
+  return purchase ? JSON.parse(purchase) : "";
+}
+
+function setPurchaseLocalStorage(purchase) {
+  window.localStorage.setItem("purchase", JSON.stringify(purchase));
 }
 
 export default function reducer(state = initialState, action) {
@@ -47,8 +56,14 @@ export default function reducer(state = initialState, action) {
       };
     }
     case SEND_TO_PRODUCTS: {
-      console.log('reducer --->', action.payload)
-      return {
+      let purchase = action.payload;
+      purchase.total = action.payload.price;
+      purchase.extras = {};
+      purchase.slot = '';
+      setPurchaseLocalStorage(action.payload);
+      console.log(state.purchase);
+      return state;
+      /* return {
         ...state,
         purchase:{
           ...state.purchase,
@@ -58,7 +73,7 @@ export default function reducer(state = initialState, action) {
           title:action.payload.title,
           price:action.payload.price
         }
-      };
+      }; */
     }
     case GET_PRODUCTS: {
       return {
@@ -67,51 +82,68 @@ export default function reducer(state = initialState, action) {
       };
     }
     case ADD_TOTAL: 
-      return {
+      let purchase = getPurchaseLocalStorage()
+      purchase.total = purchase.total + action.payload
+      setPurchaseLocalStorage(purchase)
+      return state;
+      /* return {
         ...state,
         purchase:{
           ...state.purchase,
           total: state.purchase.total + action.payload,
         } 
-      };
+      }; */
     case SUBSTRACT_TOTAL: {
-      return {
+      let purchase = getPurchaseLocalStorage()
+      purchase.total = purchase.total - action.payload
+      setPurchaseLocalStorage(purchase)
+      return state;
+     /*  return {
         ...state,
         purchase:{
           ...state.purchase,
           total: state.purchase.total - action.payload,
         } 
-      };
+      }; */
     }
     case SAVE_SLOT: {
-      return {
+      let purchase = getPurchaseLocalStorage()
+      purchase.slot = action.payload
+      console.log(purchase)
+      setPurchaseLocalStorage(purchase)
+      return state;
+      /* return {
         ...state,
         purchase:{
           ...state.purchase,
           slot: action.payload,
         } 
-      };
+      }; */
     }
     case SAVE_PRODUCT: {
-      if(!state.purchase.extras.hasOwnProperty(action.payload)){
-        state.purchase.extras[action.payload]=1;
-        return state
+      let purchase = getPurchaseLocalStorage()
+      if(!purchase.extras.hasOwnProperty(action.payload)){
+        purchase.extras[action.payload]=1;
+        setPurchaseLocalStorage(purchase)        
       }
       else{
-        return {
-          ...state,
-          purchase:{
-            ...state.purchase,
-            extras: {
-              ...state.purchase.extras,
-              [action.payload]: state.purchase.extras[action.payload] +1,
-              }
-          } 
-        };
+        purchase.extras[action.payload] = purchase.extras[action.payload] + 1
+        setPurchaseLocalStorage(purchase)
       }
+      return state
     }
     case DELETE_PRODUCT: {
-      if(state.purchase.extras[action.payload] - 1 === 0){
+      let purchase = getPurchaseLocalStorage()
+      if(purchase.extras[action.payload] - 1 === 0){
+        delete purchase.extras[action.payload]
+        setPurchaseLocalStorage(purchase)
+      }
+      else{
+        purchase.extras[action.payload] = purchase.extras[action.payload] - 1
+        setPurchaseLocalStorage(purchase)
+      }
+      return state
+      /* if(state.purchase.extras[action.payload] - 1 === 0){
         delete state.purchase.extras[action.payload]
         return state;
       }
@@ -126,7 +158,7 @@ export default function reducer(state = initialState, action) {
               }
           } 
         };
-      }
+      } */
     }
     //users
     case GET_USERS:{
