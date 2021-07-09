@@ -35,6 +35,7 @@ export function deleteProduct(product) {
   };
 }
 export function sendToProducts(data) {
+  console.log('action--->', )
   return function(dispatch) {
     dispatch({ type: SEND_TO_PRODUCTS, payload: data });
   };
