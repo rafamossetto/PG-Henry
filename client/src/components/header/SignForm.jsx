@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
+import { useDispatch } from 'react-redux';
 import { Signform, FormForm, Inputs, Buttons, TwoButtons, LogButton, SigButton, Linking, GoogleButton, CloseButton } from './Styles';
 import { FcGoogle } from "react-icons/fc";
+import { logIn } from "../../actions/users"
 
 export default function SignForm() {
+    const dispatch = useDispatch();
     const [user, setUser] = useState({name: "", password: ""});
 
     function handleChange(e) {
@@ -17,15 +20,16 @@ export default function SignForm() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        alert("Aquí autenticás");
-        setUser({name: "", password: ""});
+        //console.log(user.name, user.password)
+        dispatch(logIn(user.name, user.password));
+       setUser({name: "", password: ""});
     }
 
     return (
         <Signform>
             <FormForm onSubmit={(e) => handleSubmit(e)}>
                 <CloseButton type="button">X</CloseButton>
-                <Inputs name="name" type="text" value={user.name} placeholder="Username..." onChange={(e) => handleChange(e)} />
+                <Inputs name="name" type="text" value={user.name} placeholder="Username or email..." onChange={(e) => handleChange(e)} />
                 <Inputs name="password" type="password" value={user.password} placeholder="Password..." onChange={(e) => handleChange(e)} />
                 <Buttons>
                     <GoogleButton><FcGoogle size="35"/>Login with Google</GoogleButton>
