@@ -9,26 +9,17 @@ import {getPurchaseLocalStorage} from '../../reducer/reducer'
 
 const Products = (props) => {
 
-    /* let Parking = [
-        {slot: 'a1', ocupied:false}, {slot: 'a2', ocupied:true}, {slot: 'a3', ocupied:true}, {slot: 'a4', ocupied:true}, {slot: 'a5', ocupied:false},
-        {slot: 'a6', ocupied:true}, {slot: 'a7', ocupied:false}, {slot: 'a8', ocupied:true}, {slot: 'a9', ocupied:true}, {slot: 'a10', ocupied:false},
-        {slot: 'b1', ocupied:false}, {slot: 'b2', ocupied:false}, {slot: 'b3', ocupied:false}, {slot: 'b4', ocupied:false}, {slot: 'b5', ocupied:false},
-        {slot: 'b6', ocupied:true}, {slot: 'b7', ocupied:true}, {slot: 'b8', ocupied:false}, {slot: 'b9', ocupied:true}, {slot: 'b10', ocupied:false},
-        {slot: 'c1', ocupied:false}, {slot: 'c2', ocupied:false}, {slot: 'c3', ocupied:true}, {slot: 'c4', ocupied:false}, {slot: 'c5', ocupied:true},
-        {slot: 'c6', ocupied:false}, {slot: 'c7', ocupied:false}, {slot: 'c8', ocupied:false}, {slot: 'c9', ocupied:true}, {slot: 'c10', ocupied:false},
-    ] */
     useEffect(() => {
         props.getProducts()
-
     }, [props])
 
     const handleBuy =() => {
         var mensaje;
         var opcion = window.confirm(`
         You are about to purchase: 
-        ${Object.keys(props.extras).map(e => e.concat(' x').concat(props.extras[e]))},
-        Ticket for Movie Title on the ${props.savedSlot} parking lot, 
-        for a total of $${props.total}.
+        ${Object.keys(getPurchaseLocalStorage().extras).map(e => e.concat(' x').concat(getPurchaseLocalStorage().extras[e]))},
+        Ticket for Movie Title on the ${getPurchaseLocalStorage().slot} parking lot, 
+        for a total of $${getPurchaseLocalStorage().total}.
         `);
         if (opcion === true) {
             mensaje = "Purchase confirmed";
