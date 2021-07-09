@@ -12,7 +12,7 @@ export const Box = styled.label`
   text-align: justify;
   width:48em;
   color: #E8E8E8;
-  padding-left: 0.5rem;
+  padding-left: 1rem;
   ${mobile}{
       width:100%;
   }
@@ -65,6 +65,7 @@ export const SubH2 = styled.h2`
    color: #F05454;
    padding:1rem 1rem 0rem;
    text-align: left;
+   margin: 0%;
 `;
 
 export const Title = styled.h1`
@@ -82,26 +83,30 @@ export const Trailer = styled.div`
 export const Rated = styled.div`
   display:flex;
   text-align: center;
-  width:10%;
+  width:120%;
   margin-left: 10rem;
   color:#E8E8E8;  
 `;
+
 export const H4 = styled.h4`
   padding-left:25px;
   padding-right: 10px;
   color:#F05454;
 `;
 
+export const Label = styled.label`
+  padding:20px
+`;
+
 export const ArrowDown = styled(Arrow)`
   padding-left: 20px;
-  
 `;
 
 export const Show = styled.div`
    width: 60%;
    display:grid;
    grid-template-columns:30% 30% 30%;
-   margin: 3px;
+   margin: 1px;
    padding-left: 200px;
    `;
 
@@ -116,6 +121,11 @@ export const Inp = styled.input`
       border: 2px solid #30475E;
   
     }
+`;
+
+export const TH3 = styled.h3`
+   color: #30475E; 
+   margin-left: 350px;
 `;
 
 export const Confirm = styled.button`
