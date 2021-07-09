@@ -150,7 +150,7 @@ export default function reducer(state = initialState, action) {
     }
     //authentication
     case LOGIN: {
-      setTokenLocalStorage(action.payload);
+      action.payload.token && setTokenLocalStorage(action.payload.token);
       return {
         ...state,
         token: action.payload,
