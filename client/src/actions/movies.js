@@ -1,5 +1,4 @@
-
-import axios from 'axios';
+import axios from "axios";
 import { getTokenLocalStorage } from "../reducer/reducer";
 export const GET_MOVIES_DETAIL = 'GET_MOVIES_BY_DETAIL';
 export const GET_MOVIE_LIST = 'GET_MOVIE_LIST';
@@ -13,31 +12,32 @@ const config = {
   },
 };
 
-export function getMovieById(id){
+export function getMovieById(id) {
   return function (dispatch) {
-    return axios.get(`http://localhost:3001/movies/${id}`)
-      .then(result => {
-      dispatch({
-        type: GET_MOVIES_DETAIL, 
-        payload:result.data        
-      }); 
-      }).catch(error=>{
-        if(error.response?.status!== 404) alert('something wrong');
-        dispatch({type:GET_MOVIES_DETAIL, payload:null})
+    return axios
+      .get(`http://localhost:3001/movies/${id}`)
+      .then((result) => {
+        dispatch({
+          type: GET_MOVIES_DETAIL,
+          payload: result.data,
+        });
       })
-  }
+      .catch((error) => {
+        if (error.response?.status !== 404) alert("something wrong");
+        dispatch({ type: GET_MOVIES_DETAIL, payload: null });
+      });
+  };
 }
 
-export function getMovieList(){
-  return function (dispatch){
-    return axios.get('http://localhost:3001/movies')
-    .then(result => {
+export function getMovieList() {
+  return function (dispatch) {
+    return axios.get("http://localhost:3001/movies").then((result) => {
       dispatch({
         type: GET_MOVIE_LIST,
-        payload: result.data
-      })
-    })
-  }
+        payload: result.data,
+      });
+    });
+  };
 }
 
 export function clearMovie() { //se usa en el willunmount
@@ -58,3 +58,4 @@ export function postMovie(movie) {
 export function updateMovie(movie, id) {
   axios.put(`http://localhost:3001/movies/${id}`, movie, config)
 }
+

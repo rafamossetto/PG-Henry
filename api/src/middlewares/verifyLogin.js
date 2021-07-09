@@ -1,13 +1,13 @@
 const User = require("../models/User");
 
 const checkUser = async (req, res, next) => {
-  const { username, email, password } = req.body;
+  const { name, password } = req.body;
   try {
-    const user = await User.findOne({ email: email });
+    const user = await User.findOne({ email: name }) || await User.findOne({ username: name});
     if (!user) {
       return res
-        .status(404)
-        .json({ message: "The user with email provided not exist" });
+        // .status(404)
+        .json({ message: "Invalid username or email" });
     }
 
     const isValidPassword = await user.validatePassword(
@@ -16,7 +16,9 @@ const checkUser = async (req, res, next) => {
     );
 
     if (!isValidPassword) {
-      return res.status(401).json({ message: "Invalid Password" });
+      return res
+      // .status(401)
+      .json({ message: "Invalid Password" });
     }
     next();
   } catch (error) {

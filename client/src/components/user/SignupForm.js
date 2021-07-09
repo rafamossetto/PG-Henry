@@ -1,9 +1,15 @@
 import React from 'react';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import { StyledForm, StyledInput, StyledButton } from './SignupFormStyle.js';
-
+import { signUp } from '../../actions/users'
 
 export default function SignupForm() {
+    const dispatch = useDispatch();
+
+    const history = useHistory();
+
     const [info, setInfo] = useState({
         username: undefined,
         email: undefined,
@@ -12,6 +18,9 @@ export default function SignupForm() {
         isAdmin: false,
         bookings: []
     });
+
+    const selector = useSelector(state => state)
+
     /*info = {
         username: Username.value,
         email : E-Mail.value,
@@ -19,26 +28,38 @@ export default function SignupForm() {
         isAdmin: false,
         bookings: []
     }*/
+
     function ChangeHandler (event) {
         const property = event.target.id;
         const value = event.target.value;
         setInfo({...info, [property]: value})
     }
+
     function PasswordCorroboration (event) {
         const password = info.password;
         const comparation = event.target.value;
         password === comparation ? setInfo({...info, passMatch: true}) : setInfo({...info, passMatch: false});
     }
-    function SubmitHandler (event) {
+
+    async function SubmitHandler (event) {
         event.preventDefault();
-        !info.passMatch ? alert("Passwords doesn't match") : alert("Account created");
+        if(info.passMatch){
+            const response = await dispatch(signUp(info.username, info.email, info.password));
+            alert(response);
+            if(response === 'Account created'){
+                history.push('/')
+            }
+        }else{
+            return alert("Passwords does'nt match");
+        }
     }
+
     return (
             <StyledForm onSubmit={SubmitHandler}>
-                <StyledInput type="text" onChange={ChangeHandler} id="username" placeholder="Username"/>
-                <StyledInput type="email" onChange={ChangeHandler} id="email" placeholder="Email"/>
-                <StyledInput type="password" onChange={ChangeHandler} id="password" placeholder="Password"/>
-                <StyledInput type="password" onChange={PasswordCorroboration} id="password-confirm" placeholder="Confirm password"/>
+                <StyledInput type="text" onChange={ChangeHandler} id="username" placeholder="Username" required/>
+                <StyledInput type="email" onChange={ChangeHandler} id="email" placeholder="Email" required/>
+                <StyledInput type="password" onChange={ChangeHandler} id="password" placeholder="Password" required/>
+                <StyledInput type="password" onChange={PasswordCorroboration} id="password-confirm" placeholder="Confirm password" required/>
                 <StyledButton type="button" value="" className="up"/>
                 <StyledButton type="submit" value="Sign up" className="left"/>
                 <StyledButton type="button" value='Already have an account? Sign in!' className="right"/>
