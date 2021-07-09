@@ -30,14 +30,14 @@ export function signUp(username, email, password) {
   };
 }
 
-export function logIn(username, email, password) {
+export function logIn(name, password) {
   return async function (dispatch) {
-    const token = await axios.post("http://localhost:3001/users/login", {
-      username,
-      email,
+    const response = await axios.post("http://localhost:3001/users/login", {
+      name,
       password,
     });
-    dispatch({ type: LOGIN, payload: token.data.token });
+    //console.log(response.data)
+    dispatch({ type: LOGIN, payload: response.data });
   };
 }
 
