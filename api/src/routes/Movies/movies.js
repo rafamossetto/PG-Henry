@@ -5,7 +5,7 @@ const authentication = require("../../middlewares/authentication");
 const router = Router();
 
 router.get("/:id", movieCtrl.getMovieById);
-router.get("/", movieCtrl.getMovie);
+router.get("/", movieCtrl.getMovies);
 router.post(
   "/",
   [authentication.verifyToken, authentication.isAdmin],
@@ -16,5 +16,7 @@ router.put(
   [authentication.verifyToken, authentication.isAdmin],
   movieCtrl.putMovie
 );
+
+
 
 module.exports = router;

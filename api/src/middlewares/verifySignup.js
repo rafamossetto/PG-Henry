@@ -3,13 +3,13 @@ const User = require("../models/User");
 const checkEmail = async (req, res, next) => {
   try {
     const { email, username } = req.body;
-    let existingEmail = await User.findOne({ email: email });
+    let existingEmail = await User.findOne({ email });
     if (existingEmail) {
       return res
         .status(400)
         .json(`Email ${email} already exists. Change it or log in`);
     }
-    let existingUsername = await User.findOne({ username: username });
+    let existingUsername = await User.findOne({ username });
     if (existingUsername) {
       return res
         .status(400)

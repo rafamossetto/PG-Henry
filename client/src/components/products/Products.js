@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import { getProducts } from '../../actions/products'
 import Product from './Product'
 import Car from './Car'
-import {ProductsBox, Container, MovieData, MovieDetails, ParkingLot, RedText, BuyBox, BuyButton, Total, ParkingLine, StoredProducts, Screen, Reference} from './ProductsStyles'
+import {ProductsBox, Container, MovieData, MovieDetails, ParkingLot, RedText,
+BuyBox, BuyButton, Total, ParkingLine, StoredProducts, Screen, Reference} from './ProductsStyles'
+
 const Products = (props) => {
 
     let Parking = [
@@ -20,7 +22,7 @@ const Products = (props) => {
         var mensaje;
         var opcion = window.confirm(`
         You are about to purchase: 
-        ${Object.keys(props.extras).map(e => e.concat(' x').concat(props.extras[e]))} 
+        ${Object.keys(props.extras).map(e => e.concat(' x').concat(props.extras[e]))},
         Ticket for Movie Title on the ${props.savedSlot} parking lot, 
         for a total of $${props.total}.
         `);
@@ -31,39 +33,44 @@ const Products = (props) => {
 	    }
 	    document.getElementById("purchase").innerHTML = mensaje;
     }
+    
     return(
         <Container>
 
             <MovieData> 
                 <MovieDetails>
-                    <h3>{props.movie.title || 'Title'}</h3>
+                    <h3>{props.title || 'Title'}</h3>
                     <p>field</p>
-                    <p>Time</p>
-                    <p>Date</p>
-                    <p>Price</p>
+                    <p>Time: {props.time || 'Time'}</p>
+                    <p>Day: {props.day || 'Day'}</p>
+                    <p>Price:${props.price || 'Price'}</p>
                 </MovieDetails>
                 <div>
                     <RedText>Select your parking lot</RedText>
+                    {props.parking ? 
                     <ParkingLot>  
                     <ParkingLine> 
-                            {Parking.slice(20,30).map(e => <Car slot={e.slot}ocupied={e.ocupied}/>)}
+                            {props.parking.slice(20,30).map(e => <Car slot={e.slot}ocupied={e.ocupied}/>)}
                         </ParkingLine>
                         <ParkingLine> 
-                            {Parking.slice(10,20).map(e => <Car slot={e.slot}ocupied={e.ocupied}/>)}
+                            {props.parking.slice(10,20).map(e => <Car slot={e.slot}ocupied={e.ocupied}/>)}
                         </ParkingLine>                         
                         <ParkingLine>                 
-                            {Parking.slice(0,10).map(e => <Car slot={e.slot}ocupied={e.ocupied}/>)}
+                            {props.parking.slice(0,10).map(e => <Car slot={e.slot}ocupied={e.ocupied}/>)}
                         </ParkingLine> 
                         <Screen><div>Screen</div></Screen>
                         <Reference>                            
-                            <img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,w_18/v1625694896/redCar_bydkdo.png" alt=''/>
+                            <img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,h_40/v1625694896/redCar_bydkdo.png" alt=''/>
                             <div>Ocuppied</div>
-                            <img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,w_18/v1625694896/whiteCar_cafb44.png" alt=''/>
+                            <img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,h_40/v1625694896/whiteCar_cafb44.png" alt=''/>
                             <div>Available</div>
-                            <img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,w_18/v1625694896/blueCar_anvl0c.png" alt=''/>
+                            <img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,h_40/v1625694896/blueCar_anvl0c.png" alt=''/>
                             <div>Selected</div>
                         </Reference>
-                    </ParkingLot>
+                    </ParkingLot> 
+                    :
+                    <h1>ParkingLot</h1>
+                    }
                 </div>
             </MovieData>
 
@@ -113,7 +120,13 @@ function mapStateToProps(state) {
         products: state.products,
         total: state.purchase.total,
         extras: state.purchase.extras,
-        savedSlot: state.purchase.slot
+        savedSlot: state.purchase.slot,
+        parking: state.purchase.parking,
+        title:state.purchase.title,
+        price:state.purchase.price,
+        day:state.purchase.day,
+        time:state.purchase.time
+
     };
   }
   

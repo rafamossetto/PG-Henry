@@ -27,9 +27,9 @@ const Car = (props) => {
     }
     return(
         <div>
-        {state.clicked ? <BlackCar onClick={handleClick}><img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,w_40/v1625694896/blueCar_anvl0c.png" alt=''/></BlackCar> 
-        : props.ocupied ? <RedCar><img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,w_40/v1625694896/redCar_bydkdo.png" alt=''/></RedCar> 
-        : <WhiteCar onClick={handleClick}><img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,w_40/v1625694896/whiteCar_cafb44.png" alt=''/> </WhiteCar>}
+        {state.clicked ? <BlackCar onClick={handleClick}><img src="https://res.cloudinary.com/djunuon2e/image/upload/v1625694896/blueCar_anvl0c.png" alt=''/></BlackCar> 
+        : props.ocupied ? <RedCar><img src="https://res.cloudinary.com/djunuon2e/image/upload/v1625694896/redCar_bydkdo.png" alt=''/></RedCar> 
+        : <WhiteCar onClick={handleClick}><img src="https://res.cloudinary.com/djunuon2e/image/upload/v1625694896/whiteCar_cafb44.png" alt=''/> </WhiteCar>}
         </div>
     )
 }

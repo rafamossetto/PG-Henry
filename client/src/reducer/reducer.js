@@ -8,6 +8,7 @@ const initialState = {
   products: [],
   purchase:{
     parking:'',
+    price:0,
     slot:'',    
     day:'',
     time:'',
@@ -46,6 +47,7 @@ export default function reducer(state = initialState, action) {
       };
     }
     case SEND_TO_PRODUCTS: {
+      console.log('reducer --->', action.payload)
       return {
         ...state,
         purchase:{
@@ -54,6 +56,7 @@ export default function reducer(state = initialState, action) {
           day:action.payload.day,
           time:action.payload.time,
           title:action.payload.title,
+          price:action.payload.price
         }
       };
     }
@@ -149,7 +152,7 @@ export default function reducer(state = initialState, action) {
     }
     //authentication
     case LOGIN: {
-      setTokenLocalStorage(action.payload);
+      action.payload.token && setTokenLocalStorage(action.payload.token);
       return {
         ...state,
         token: action.payload,
