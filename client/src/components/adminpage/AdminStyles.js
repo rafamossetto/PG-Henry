@@ -35,6 +35,53 @@ const AdminContainer = styled.div`
   .swapButton {
     height: 75px;
     width: 75px;
+    &:hover {
+      opacity: 0.5;
+      transition: 0.2s;
+    }
+  }
+
+  .movieCnt {
+    display: flex;
+    justify-content: space-between;
+    .checkMovie {
+      display: flex;
+      h4 {
+        margin-left: 5px;
+        margin-top: 0px;
+      }
+      input {
+        margin-top: 0px;
+      }
+    }
+    .removeEdit {
+      margin-right: 10px;
+      display: flex;
+      .remove {
+        background-color: #f05353;
+        color: white;
+        height: 18px;
+        width: 18px;
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        &:hover {
+          opacity: 0.5;
+          transition: 0.2s;
+        }
+      }
+      .edit {
+        height: 18px;
+        width: 18px;
+        margin-left: 5px;
+        &:hover {
+          opacity: 0.5;
+          transition: 0.2s;
+        }
+      }
+    }
   }
 
   .userBox {
@@ -87,6 +134,7 @@ const AdminContainer = styled.div`
     color: #ffffff;
     font-size: 18px;
     border-radius: 12px;
+    border: none;
     &:hover {
       background-color: #d93c3c;
       transition: 0.3s;

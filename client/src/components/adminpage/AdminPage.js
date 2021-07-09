@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getMovieList } from "../../actions/movies";
-import { getUsers, isAdmin } from "../../actions/users";
+import { getMovieList, updateMovie } from "../../actions/movies";
+import { getUsers, isAdmin, logIn } from "../../actions/users";
 import AdminContainer from "./AdminStyles";
 
 function AdminPage() {
@@ -9,6 +9,7 @@ function AdminPage() {
   const [admin, setAdmin] = useState(null);
   const movies = useSelector((state) => state.movieList);
   const users = useSelector((state) => state.users);
+  const [movieToSwap, setMovieToSwap] = useState(null);
 
   useEffect(() => {
     let verifyAdmin = async () => {
@@ -19,6 +20,31 @@ function AdminPage() {
     dispatch(getMovieList());
     dispatch(getUsers());
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getMovieList());
+  }, [movies]);
+
+  function handleRadioChange(e) {
+    let radio = document.getElementById(e.target.id);
+    if (radio.checked) {
+      let movie = movies.find((el) => el._id === e.target.value);
+      setMovieToSwap(movie);
+    }
+  }
+
+  function handleSwap() {
+    if (movieToSwap) {
+      updateMovie(
+        {
+          ...movieToSwap,
+          onBillboard: !movieToSwap.onBillboard,
+        },
+        movieToSwap._id
+      );
+    }
+    setMovieToSwap(null);
+  }
 
   return (
     <AdminContainer>
@@ -32,7 +58,33 @@ function AdminPage() {
                   movies
                     .filter((movie) => movie.onBillboard)
                     .map((movie) => {
-                      return <h4>{movie.title}</h4>;
+                      return (
+                        <div className="movieCnt">
+                          <div className="checkMovie">
+                            <input
+                              type="radio"
+                              id={movie._id}
+                              name="movie"
+                              value={movie._id}
+                              onChange={(e) => handleRadioChange(e)}
+                            ></input>
+                            <h4>{movie.title}</h4>
+                          </div>
+                          <div className="removeEdit">
+                            <button
+                              className="remove"
+                              onClick={() => alert("Delete")}
+                            >
+                              X
+                            </button>
+                            <img
+                              className="edit"
+                              onClick={() => alert("Edit")}
+                              src="https://res.cloudinary.com/juancereceda/image/upload/v1625795867/edit_3_qmb0hj.png"
+                            />
+                          </div>
+                        </div>
+                      );
                     })}
               </div>
             </div>
@@ -40,7 +92,7 @@ function AdminPage() {
               src="https://res.cloudinary.com/juancereceda/image/upload/v1625756429/swap_mgwmdl.png"
               className="swapButton"
               alt=""
-              onClick={() => alert("Not functional yet")}
+              onClick={() => handleSwap()}
             />
             <div className="movieBox">
               <h2 className="boxTitle">Coming soon</h2>
@@ -49,7 +101,33 @@ function AdminPage() {
                   movies
                     .filter((movie) => !movie.onBillboard)
                     .map((movie) => {
-                      return <h4>{movie.title}</h4>;
+                      return (
+                        <div className="movieCnt">
+                          <div className="checkMovie">
+                            <input
+                              type="radio"
+                              id={movie._id}
+                              name="movie"
+                              value={movie._id}
+                              onChange={(e) => handleRadioChange(e)}
+                            ></input>
+                            <h4>{movie.title}</h4>
+                          </div>
+                          <div className="removeEdit">
+                            <button
+                              className="remove"
+                              onClick={() => alert("Delete")}
+                            >
+                              X
+                            </button>
+                            <img
+                              className="edit"
+                              onClick={() => alert("Edit")}
+                              src="https://res.cloudinary.com/juancereceda/image/upload/v1625795867/edit_3_qmb0hj.png"
+                            />
+                          </div>
+                        </div>
+                      );
                     })}
               </div>
             </div>
