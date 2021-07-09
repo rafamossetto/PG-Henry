@@ -58,24 +58,29 @@ export const Labels = styled.label`
     margin-bottom: 5px;
     margin-top: 5px;
     color: #e8e8e8;
+    font-size: 10px;
 `;
 
 export const Stores = styled.div`
     margin: 1.25%;
-    border: solid 1px green;
+    background-color: #30475E;
     height: fill-available;
     width: 15%;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.7),
+                inset 2px 3px 5px rgba(0,0,0,0.3),
+                inset -2px -3px 5px rgba(0,0,0,0.5);
 `;
 
 // ESTILOS MOVIE CARDS
 
 export const Movie = styled.img`
     height: 100%;
-    width: 20%;
+    width: auto;
     margin-left: 10px;
     margin-right: 10px;
 `;
