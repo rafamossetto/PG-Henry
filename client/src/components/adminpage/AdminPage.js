@@ -103,10 +103,22 @@ function AdminPage() {
     if(!obj.description) {
       alert("Hey! Don't forget the description.")
       return
-    }
-    
+    }        
     dispatch(postMovie(movie));
     alert("Movie update successfully!");
+    setMovie({
+      title: "",
+      date: "",
+      poster: "",
+      description: "",
+      genre: "",
+      shows: "",
+      cast: "",
+      trailer: "",
+      rated: "",
+      runtime: "",
+      director: "",
+    });    
   }
   useEffect(() => {
     dispatch(getMovieList());
@@ -133,20 +145,8 @@ function AdminPage() {
     setMovieToSwap(null);
   }
 
-    setMovie({
-      title: "",
-      date: "",
-      poster: "",
-      description: "",
-      genre: "",
-      shows: "",
-      cast: "",
-      trailer: "",
-      rated: "",
-      runtime: "",
-      director: "",
-    });
-  ;
+    
+  
     
   return (
     <AdminContainer>
