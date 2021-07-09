@@ -58,7 +58,7 @@ function AdminPage() {
       runtime: movie.runtime,
       director: movie.director,
     };
-
+  
     // Validaciones
     if(!obj.title) {
       alert("Hey! Don't forget the title.")
@@ -103,11 +103,23 @@ function AdminPage() {
     if(!obj.description) {
       alert("Hey! Don't forget the description.")
       return
-    }
-    
+    }        
     dispatch(postMovie(movie));
     alert("Movie update successfully!");
-
+    setMovie({
+      title: "",
+      date: "",
+      poster: "",
+      description: "",
+      genre: "",
+      shows: "",
+      cast: "",
+      trailer: "",
+      rated: "",
+      runtime: "",
+      director: "",
+    });    
+  }
   useEffect(() => {
     dispatch(getMovieList());
   }, [movies]);
@@ -133,20 +145,8 @@ function AdminPage() {
     setMovieToSwap(null);
   }
 
-    setMovie({
-      title: "",
-      date: "",
-      poster: "",
-      description: "",
-      genre: "",
-      shows: "",
-      cast: "",
-      trailer: "",
-      rated: "",
-      runtime: "",
-      director: "",
-    });
-  };
+    
+  
     
   return (
     <AdminContainer>

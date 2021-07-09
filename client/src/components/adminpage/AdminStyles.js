@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const AdminContainer = styled.div`
   font-family: Questrial;
-  padding-top: 160px;
+  padding-top: 20%;
   .isAdmin {
     display: flex;
     flex-direction: column;
