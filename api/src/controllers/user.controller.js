@@ -24,13 +24,13 @@ const signUp = async (req, res) => {
 
 const logIn = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
-    let user = await User.findOne({ email });
+    const { name } = req.body;
+    let user = await User.findOne({ email: name }) || await User.findOne({ username: name });
     const token = jwt.sign({ id: user._id }, "group8", {
       expiresIn: 86400,
     });
 
-    res.status(200).send({ token });
+    res.status(200).json({ token });
   } catch (error) {
     console.log(error);
   }
