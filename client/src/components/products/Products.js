@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import { getProducts } from '../../actions/products'
 import Product from './Product'
 import Car from './Car'
-import {ProductsBox, Container, MovieData, MovieDetails, ParkingLot, RedText, BuyBox, BuyButton, Total, ParkingLine, StoredProducts, Screen, Reference} from './ProductsStyles'
+import {ProductsBox, Container, MovieData, MovieDetails, ParkingLot, RedText,
+BuyBox, BuyButton, Total, ParkingLine, StoredProducts, Screen, Reference} from './ProductsStyles'
+
 const Products = (props) => {
 
     let Parking = [
@@ -20,7 +22,7 @@ const Products = (props) => {
         var mensaje;
         var opcion = window.confirm(`
         You are about to purchase: 
-        ${Object.keys(props.extras).map(e => e.concat(' x').concat(props.extras[e]))} 
+        ${Object.keys(props.extras).map(e => e.concat(' x').concat(props.extras[e]))},
         Ticket for Movie Title on the ${props.savedSlot} parking lot, 
         for a total of $${props.total}.
         `);
@@ -31,16 +33,17 @@ const Products = (props) => {
 	    }
 	    document.getElementById("purchase").innerHTML = mensaje;
     }
+    
     return(
         <Container>
 
             <MovieData> 
                 <MovieDetails>
-                    <h3>{props.movie.title || 'Title'}</h3>
+                    <h3>{props.title || 'Title'}</h3>
                     <p>field</p>
-                    <p>Time</p>
-                    <p>Date</p>
-                    <p>Price</p>
+                    <p>Time: {props.time || 'Time'}</p>
+                    <p>Day: {props.day || 'Day'}</p>
+                    <p>Price:${props.price || 'Price'}</p>
                 </MovieDetails>
                 <div>
                     <RedText>Select your parking lot</RedText>
@@ -113,7 +116,13 @@ function mapStateToProps(state) {
         products: state.products,
         total: state.purchase.total,
         extras: state.purchase.extras,
-        savedSlot: state.purchase.slot
+        savedSlot: state.purchase.slot,
+        parking: state.purchase.parking,
+        title:state.purchase.title,
+        price:state.purchase.price,
+        day:state.purchase.day,
+        time:state.purchase.time
+
     };
   }
   
