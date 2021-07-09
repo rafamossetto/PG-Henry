@@ -4,12 +4,13 @@ import {addToTotal, substractToTotal, saveProduct, deleteProduct } from '../../a
 import {ProductBox, ButtonBox, Button, CounterBox, Counter, TextBox, InfoBox, ImgBox, Price, Text, Center } from './ProductStyles'
 
 const Product = (props) => {
+    console.log(props.counter)
     const[state, setState] = useState({
-        counter: 0,
+        counter: props.counter.hasOwnProperty(props.name) ? props.counter[props.name] : 0,
     })
 
-    const handleSubtract = function(){
-        console.log(props.state)
+    const handleSubtract = function(e){
+        e.preventDefault()
         if (state.counter > 0){
             setState({
                 ...state,
@@ -20,8 +21,8 @@ const Product = (props) => {
             props.deleteProduct(props.name)
         }
     }
-    const handleAdd = function(){
-        console.log(props.state)
+    const handleAdd = function(e){
+        e.preventDefault(e)
         if (state.counter < 9){
             setState({
                 ...state,
@@ -47,9 +48,9 @@ const Product = (props) => {
             </InfoBox>
                 <Center>
                     <ButtonBox>
-                        <Button onClick={handleSubtract}>-</Button>
+                        <Button onClick={event => handleSubtract(event)}>-</Button>
                         <CounterBox><Counter>{state.counter}</Counter></CounterBox>
-                        <Button onClick={handleAdd}>+</Button>
+                        <Button onClick={event => handleAdd(event)}>+</Button>
                     </ButtonBox>
                 </Center>
             </div>
@@ -61,7 +62,7 @@ const Product = (props) => {
 
 function mapStateToProps(state) {
     return {
-        state: state
+        counter: state.purchase.extras
     };
   }
   
