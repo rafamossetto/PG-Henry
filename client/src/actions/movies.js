@@ -1,8 +1,9 @@
 import axios from "axios";
 import { getTokenLocalStorage } from "../reducer/reducer";
-
-export const GET_MOVIES_DETAIL = "GET_MOVIES_BY_DETAIL";
-export const GET_MOVIE_LIST = "GET_MOVIE_LIST";
+export const GET_MOVIES_DETAIL = 'GET_MOVIES_BY_DETAIL';
+export const GET_MOVIE_LIST = 'GET_MOVIE_LIST';
+export const POST_MOVIE = 'POST_MOVIE';
+export const UPDATE_MOVIE = 'UPDATE_MOVIE';
 
 const config = {
   headers: {
@@ -39,18 +40,22 @@ export function getMovieList() {
   };
 }
 
-export function clearMovie() {
-  //se usa en el willunmount
-  return {
+export function clearMovie() { //se usa en el willunmount
+   return  { 
     type: GET_MOVIES_DETAIL, // va a usar el mismo reducer de la acción getMovieById
-    payload: undefined,
-  };
+    payload: undefined
+  };  
 }
 
 export function postMovie(movie) {
-  axios.post("http://localhost:3001/movies", movie, config);
+  return(dispatch) =>
+    axios.post("http://localhost:3001/movies", movie, config)
+    .then((res) => {
+      dispatch({type: POST_MOVIE, payload: res.data});
+    });
+}    
+    
+export function updateMovie(movie, id) {
+  axios.put(`http://localhost:3001/movies/${id}`, movie, config)
 }
 
-export function updateMovie(movie, id) {
-  axios.put(`http://localhost:3001/movies/${id}`, movie, config);
-}

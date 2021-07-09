@@ -7,7 +7,7 @@ const AdminContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 10px;
+    padding-top: 50px;
   }
   .boxTitle {
     color: #f05454;
@@ -85,13 +85,13 @@ const AdminContainer = styled.div`
   }
 
   .userBox {
-    margin: 30px 0px 0px 100px;
+    margin: 30px 10px 300px 100px;
     width: 180px;
     background-color: #2d4059;
     padding: 0px 5px 5px 5px;
     .boxTitle {
-      padding-left: 10px;
-    }
+    padding-left: 10px;
+  }
   }
   .userList {
     overflow-y: scroll;
@@ -103,8 +103,8 @@ const AdminContainer = styled.div`
 
   .postMovieForm {
     background-color: #2d4059;
-    height: 500px;
-    width: 650px;
+    height: 600px;
+    width: 850px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
