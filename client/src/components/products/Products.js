@@ -39,11 +39,11 @@ const Products = (props) => {
 
             <MovieData> 
                 <MovieDetails>
-                    <h3>{props.movie.title || 'Title'}</h3>
+                    <h3>{props.title || 'Title'}</h3>
                     <p>field</p>
-                    <p>Time</p>
-                    <p>Date</p>
-                    <p>Price</p>
+                    <p>Time: {props.time || 'Time'}</p>
+                    <p>Day: {props.day || 'Day'}</p>
+                    <p>Price:${props.price || 'Price'}</p>
                 </MovieDetails>
                 <div>
                     <RedText>Select your parking lot</RedText>
@@ -116,7 +116,13 @@ function mapStateToProps(state) {
         products: state.products,
         total: state.purchase.total,
         extras: state.purchase.extras,
-        savedSlot: state.purchase.slot
+        savedSlot: state.purchase.slot,
+        parking: state.purchase.parking,
+        title:state.purchase.title,
+        price:state.purchase.price,
+        day:state.purchase.day,
+        time:state.purchase.time
+
     };
   }
   
