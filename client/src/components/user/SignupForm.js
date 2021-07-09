@@ -36,6 +36,7 @@ export default function SignupForm() {
     }
 
     function PasswordCorroboration (event) {
+        //agregar funcion de minimo 8 caracteres
         const password = info.password;
         const comparation = event.target.value;
         password === comparation ? setInfo({...info, passMatch: true}) : setInfo({...info, passMatch: false});
