@@ -5,9 +5,9 @@ export const ProductBox = styled.div`
     justify-content:center;
     height:fit-content;
     margin:10px;
-    min-width:100px;
-    padding: 5px;
-    font-size: 0.7em;    
+    min-width:200px;
+    padding: 15px;
+    font-size: 1.4em;    
     background-color: rgb(48, 71, 94);
 `;
 
@@ -38,18 +38,19 @@ export const ButtonBox = styled.div`
     display:flex;
     flex-direction:row;
     justify-content: space-around;
-    height:30px;
-    width:80px;
-    font-size: 1.0em;
-    border-radius: 10px;
+    height:60x;
+    width:190px;
+    font-size: 2.0em;
+    border-radius: 20px;
     background-color: rgba(234, 84, 85, 1);
     
 `;
 export const Button = styled.button`
     color:rgb(232, 232, 232);
-    width:20px;
+    width:40px;
     background-color:rgba(234, 84, 85, 1);
-    border-radius: 10px;
+    border-radius: 20px;
+    font-size: 30px;
     border:none;    
     &:hover{
         background-color:rgba(45, 64, 89, 0.3);
@@ -57,14 +58,15 @@ export const Button = styled.button`
 `;
 export const CounterBox = styled.div`
     color:rgb(34, 40, 49);
-    height:26px;
-    width:20px;
-    margin:2px;
+    height:52px;
+    width:40px;
+    margin:4px;
     background-color: rgb(232, 232, 232); 
 `;
 export const Counter = styled.p`
-    margin:5px;
+    margin:0px 0px 9px 11px;
     color:rgb(34, 40, 49);
+    font-size: 35px;
 `;
 export const Center = styled.div`
     display:flex;

@@ -47,26 +47,30 @@ const Products = (props) => {
                 </MovieDetails>
                 <div>
                     <RedText>Select your parking lot</RedText>
+                    {props.parking ? 
                     <ParkingLot>  
                     <ParkingLine> 
-                            {Parking.slice(20,30).map(e => <Car slot={e.slot}ocupied={e.ocupied}/>)}
+                            {props.parking.slice(20,30).map(e => <Car slot={e.slot}ocupied={e.ocupied}/>)}
                         </ParkingLine>
                         <ParkingLine> 
-                            {Parking.slice(10,20).map(e => <Car slot={e.slot}ocupied={e.ocupied}/>)}
+                            {props.parking.slice(10,20).map(e => <Car slot={e.slot}ocupied={e.ocupied}/>)}
                         </ParkingLine>                         
                         <ParkingLine>                 
-                            {Parking.slice(0,10).map(e => <Car slot={e.slot}ocupied={e.ocupied}/>)}
+                            {props.parking.slice(0,10).map(e => <Car slot={e.slot}ocupied={e.ocupied}/>)}
                         </ParkingLine> 
                         <Screen><div>Screen</div></Screen>
                         <Reference>                            
-                            <img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,w_18/v1625694896/redCar_bydkdo.png" alt=''/>
+                            <img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,h_40/v1625694896/redCar_bydkdo.png" alt=''/>
                             <div>Ocuppied</div>
-                            <img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,w_18/v1625694896/whiteCar_cafb44.png" alt=''/>
+                            <img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,h_40/v1625694896/whiteCar_cafb44.png" alt=''/>
                             <div>Available</div>
-                            <img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,w_18/v1625694896/blueCar_anvl0c.png" alt=''/>
+                            <img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,h_40/v1625694896/blueCar_anvl0c.png" alt=''/>
                             <div>Selected</div>
                         </Reference>
-                    </ParkingLot>
+                    </ParkingLot> 
+                    :
+                    <h1>ParkingLot</h1>
+                    }
                 </div>
             </MovieData>
 

@@ -37,7 +37,7 @@ const Product = (props) => {
             <InfoBox>
                 <div>
                 <ImgBox>
-                    <img src={props.imgUrl} height='75px' width='80px' alt=''/>
+                    <img src={props.imgUrl} height='150px' width='160px' alt=''/>
                 </ImgBox>
                 <TextBox>
                     <Text><p>{props.name}</p></Text>
