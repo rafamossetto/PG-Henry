@@ -47,6 +47,7 @@ export default function reducer(state = initialState, action) {
       };
     }
     case SEND_TO_PRODUCTS: {
+      console.log('reducer --->', action.payload)
       return {
         ...state,
         purchase:{
@@ -55,6 +56,7 @@ export default function reducer(state = initialState, action) {
           day:action.payload.day,
           time:action.payload.time,
           title:action.payload.title,
+          price:action.payload.price
         }
       };
     }
