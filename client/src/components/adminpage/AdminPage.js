@@ -58,7 +58,7 @@ function AdminPage() {
       runtime: movie.runtime,
       director: movie.director,
     };
-
+  
     // Validaciones
     if(!obj.title) {
       alert("Hey! Don't forget the title.")
@@ -107,7 +107,7 @@ function AdminPage() {
     
     dispatch(postMovie(movie));
     alert("Movie update successfully!");
-
+  }
   useEffect(() => {
     dispatch(getMovieList());
   }, [movies]);
@@ -146,7 +146,7 @@ function AdminPage() {
       runtime: "",
       director: "",
     });
-  };
+  ;
     
   return (
     <AdminContainer>

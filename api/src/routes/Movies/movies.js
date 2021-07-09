@@ -1,9 +1,7 @@
 const { Router } = require("express");
 const movieCtrl = require("../../controllers/movie.controller");
 const authentication = require("../../middlewares/authentication");
-
 const router = Router();
-const authentication = require("../../middlewares/authentication");
 
 router.get("/:id", movieCtrl.getMovieById);
 router.post("/", [authentication.verifyToken, authentication.isAdmin], movieCtrl.postMovie);
