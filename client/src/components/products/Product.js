@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { connect } from "react-redux";
-import {addToTotal, substractToTotal, saveProduct, deleteProduct } from '../../actions/products'
+import {addToTotal, substractToTotal, saveProduct, deleteProduct, getProducts } from '../../actions/products'
 import {ProductBox, ButtonBox, Button, CounterBox, Counter, TextBox, InfoBox, ImgBox, Price, Text, Center } from './ProductStyles'
 import {getPurchaseLocalStorage} from '../../reducer/reducer'
 
 const Product = (props) => {
-    console.log(props.counter)
     const[state, setState] = useState({
         counter: getPurchaseLocalStorage().extras.hasOwnProperty(props.name) ? getPurchaseLocalStorage().extras[props.name] : 0,
     })
 
     const handleSubtract = function(e){
         e.preventDefault()
+        props.getProducts()
         if (state.counter > 0){
             setState({
                 ...state,
@@ -24,6 +24,7 @@ const Product = (props) => {
     }
     const handleAdd = function(e){
         e.preventDefault(e)
+        props.getProducts()
         if (state.counter < 9){
             setState({
                 ...state,
@@ -69,6 +70,7 @@ function mapStateToProps(state) {
   
 function mapDispatchToProps(dispatch) {
     return {
+        getProducts: () => dispatch(getProducts()),
         addToTotal: price => dispatch(addToTotal(price)),
         substractToTotal: price => dispatch(substractToTotal(price)),
         saveProduct: product => dispatch(saveProduct(product)),

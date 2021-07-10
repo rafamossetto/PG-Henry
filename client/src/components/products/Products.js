@@ -8,18 +8,20 @@ BuyBox, BuyButton, Total, ParkingLine, StoredProducts, Screen, Reference} from '
 import {getPurchaseLocalStorage} from '../../reducer/reducer'
 
 const Products = (props) => {
-
+    const purchaseStore = getPurchaseLocalStorage()
     useEffect(() => {
         props.getProducts()
-    }, [props])
+    }, [])
 
-    const handleBuy =() => {
+    const handleBuy =(e) => {
+        e.preventDefault()
+        props.getProducts()
         var mensaje;
         var opcion = window.confirm(`
         You are about to purchase: 
-        ${Object.keys(getPurchaseLocalStorage().extras).map(e => e.concat(' x').concat(getPurchaseLocalStorage().extras[e]))},
-        Ticket for Movie Title on the ${getPurchaseLocalStorage().slot} parking lot, 
-        for a total of $${getPurchaseLocalStorage().total}.
+        ${Object.keys(purchaseStore.extras).map(e => e.concat(' x').concat(purchaseStore.extras[e]))},
+        Ticket for Movie Title on the ${purchaseStore.slot} parking lot, 
+        for a total of $${purchaseStore.total}.
         `);
         if (opcion === true) {
             mensaje = "Purchase confirmed";
@@ -34,24 +36,24 @@ const Products = (props) => {
 
             <MovieData> 
                 <MovieDetails>
-                    <h3>{getPurchaseLocalStorage().title || 'Title'}</h3>
+                    <h3>{purchaseStore.title || 'Title'}</h3>
 {/*                     <p>field</p> */}
-                    <p>Schedule: {getPurchaseLocalStorage().day.concat(', ').concat(getPurchaseLocalStorage().time) || 'Day and time'}</p>
+                    <p>Schedule: {purchaseStore.day.concat(', ').concat(purchaseStore.time) || 'Day and time'}</p>
 
-                    <p>Price:${getPurchaseLocalStorage().price || 'Price'}</p>
+                    <p>Price:${purchaseStore.price || 'Price'}</p>
                 </MovieDetails>
                 <div>
                     <RedText>Select your parking lot</RedText>
-                    {getPurchaseLocalStorage().parking ? 
+                    {purchaseStore.parking ? 
                     <ParkingLot>  
                     <ParkingLine> 
-                            {getPurchaseLocalStorage().parking.slice(20,30).map(e => <Car slot={e.slot} ocuppied={e.ocuppied}/>)}
+                            {purchaseStore.parking.slice(20,30).map(e => <Car slot={e.slot} ocuppied={e.ocuppied}/>)}
                         </ParkingLine>
                         <ParkingLine> 
-                            {getPurchaseLocalStorage().parking.slice(10,20).map(e => <Car slot={e.slot} ocuppied={e.ocuppied}/>)}
+                            {purchaseStore.parking.slice(10,20).map(e => <Car slot={e.slot} ocuppied={e.ocuppied}/>)}
                         </ParkingLine>                         
                         <ParkingLine>                 
-                            {getPurchaseLocalStorage().parking.slice(0,10).map(e => <Car slot={e.slot} ocuppied={e.ocuppied}/>)}
+                            {purchaseStore.parking.slice(0,10).map(e => <Car slot={e.slot} ocuppied={e.ocuppied}/>)}
                         </ParkingLine> 
                         <Screen><div>Screen</div></Screen>
                         <Reference>                            
@@ -61,7 +63,7 @@ const Products = (props) => {
                             <div>Available</div>
                             <img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,h_40/v1625694896/blueCar_anvl0c.png" alt=''/>
                             <div>Selected</div>
-                            &nbsp;&nbsp;{getPurchaseLocalStorage().slot !== '' ? <div>Parking Lot:&nbsp;{getPurchaseLocalStorage().slot}</div> :null}
+                            &nbsp;&nbsp;{purchaseStore.slot !== '' ? <div>Parking Lot:&nbsp;{purchaseStore.slot}</div> :null}
                         </Reference>
                     </ParkingLot> 
                     :
@@ -98,11 +100,11 @@ const Products = (props) => {
                 <RedText>* You can choose sweet or salty popcorn once you get there!</RedText>
                 <p id="purchase"></p>
                 <BuyBox>                    
-                    {getPurchaseLocalStorage().extras && Object.keys(getPurchaseLocalStorage().extras).length > 0 && <StoredProducts>Extras:</StoredProducts>}
-                    {getPurchaseLocalStorage().extras && Object.keys(getPurchaseLocalStorage().extras).map(e =><StoredProducts>{e}&nbsp;x&nbsp;{getPurchaseLocalStorage().extras[e]}&nbsp;-</StoredProducts>)}
+                    {purchaseStore.extras && Object.keys(purchaseStore.extras).length > 0 && <StoredProducts>Extras:</StoredProducts>}
+                    {purchaseStore.extras && Object.keys(purchaseStore.extras).map(e =><StoredProducts>{e}&nbsp;x&nbsp;{purchaseStore.extras[e]}&nbsp;-</StoredProducts>)}
                     
-                    <Total>Total: ${getPurchaseLocalStorage().total}</Total>
-                    <BuyButton onClick={handleBuy}>Buy</BuyButton>
+                    <Total>Total: ${purchaseStore.total}</Total>
+                    <BuyButton onClick={event => handleBuy(event)}>Buy</BuyButton>
                 </BuyBox>
             </div>
         </Container>
@@ -112,15 +114,6 @@ const Products = (props) => {
 function mapStateToProps(state) {
     return {
         products: state.products,
-        total: state.purchase.total,
-        extras: state.purchase.extras,
-        savedSlot: state.purchase.slot,
-        parking: state.purchase.parking,
-        title:state.purchase.title,
-        price:state.purchase.price,
-        day:state.purchase.day,
-        time:state.purchase.time
-
     };
   }
   

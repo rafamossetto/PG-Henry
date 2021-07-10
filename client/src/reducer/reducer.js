@@ -69,17 +69,6 @@ export default function reducer(state = initialState, action) {
       purchase.slot = '';
       setPurchaseLocalStorage(purchase);
       return state;
-      /* return {
-        ...state,
-        purchase:{
-          ...state.purchase,
-          parking:action.payload.parking,
-          day:action.payload.day,
-          time:action.payload.time,
-          title:action.payload.title,
-          price:action.payload.price
-        }
-      }; */
     }
     case GET_PRODUCTS: {
       return {
@@ -87,44 +76,23 @@ export default function reducer(state = initialState, action) {
         products: action.payload,
       };
     }
-    case ADD_TOTAL:
+    case ADD_TOTAL: {
       let purchase = getPurchaseLocalStorage();
       purchase.total = purchase.total + action.payload;
       setPurchaseLocalStorage(purchase);
       return state;
-    /* return {
-        ...state,
-        purchase:{
-          ...state.purchase,
-          total: state.purchase.total + action.payload,
-        } 
-      }; */
+    }
     case SUBSTRACT_TOTAL: {
       let purchase = getPurchaseLocalStorage();
       purchase.total = purchase.total - action.payload;
       setPurchaseLocalStorage(purchase);
       return state;
-      /*  return {
-        ...state,
-        purchase:{
-          ...state.purchase,
-          total: state.purchase.total - action.payload,
-        } 
-      }; */
     }
     case SAVE_SLOT: {
       let purchase = getPurchaseLocalStorage();
       purchase.slot = action.payload;
-      console.log(purchase);
       setPurchaseLocalStorage(purchase);
       return state;
-      /* return {
-        ...state,
-        purchase:{
-          ...state.purchase,
-          slot: action.payload,
-        } 
-      }; */
     }
     case SAVE_PRODUCT: {
       let purchase = getPurchaseLocalStorage();
@@ -147,23 +115,8 @@ export default function reducer(state = initialState, action) {
         setPurchaseLocalStorage(purchase);
       }
       return state;
-      /* if(state.purchase.extras[action.payload] - 1 === 0){
-        delete state.purchase.extras[action.payload]
-        return state;
-      }
-      else{
-        return {
-          ...state,
-          purchase:{
-            ...state.purchase,
-            extras: {
-              ...state.purchase.extras,
-              [action.payload]: state.purchase.extras[action.payload] -1,
-              }
-          } 
-        };
-      } */
     }
+
     //users
     case GET_USERS: {
       // Para que en la pantalla del admin se muestren los usuarios
