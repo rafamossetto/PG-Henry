@@ -13,7 +13,7 @@ const Car = (props) => {
         setState({
             clicked: storage === props.slot ? true : false
         })
-    }, [props.slotSaved])
+    }, [props.slotSaved, props.slot, storage])
 
     const handleClick= function(e){
         e.preventDefault()        
