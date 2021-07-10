@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { StyledForm, StyledInput, StyledButton } from './SignupFormStyle.js';
 import { signUp } from '../../actions/users'
@@ -19,7 +19,7 @@ export default function SignupForm() {
         bookings: []
     });
 
-    const selector = useSelector(state => state)
+    // const selector = useSelector(state => state)
 
     /*info = {
         username: Username.value,
