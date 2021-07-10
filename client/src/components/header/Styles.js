@@ -10,8 +10,7 @@ import { TiShoppingCart as ShoppingCart } from "react-icons/ti";
 
 // ESTILOS DEL HEADER
 
-export const HeaderAlpha = styled.div`
-    position: fixed;
+export const HeaderAlpha = styled.div`    
     height: 25%;
     width: 100%;
     display: flex;
@@ -26,12 +25,13 @@ export const Head = styled.div`
     background-color: #F05454;
     width: 98%;
     height: 67.5%;
-    margin-bottom: 6.5px;
+    margin-bottom: .3em;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: space-between;
     align-items: center;    
-    border-radius: 10px;
+    border-radius: .7em;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.7),
                 inset 2px 3px 5px rgba(0,0,0,0.3),
                 inset -2px -3px 5px rgba(0,0,0,0.5);
@@ -40,27 +40,27 @@ export const Head = styled.div`
 export const HeadInsider = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
+  align-items: center;  
 `;
 
 export const HeaderIcon = styled(Camera)`
-  height: 55px;
-  width: 55px;
-  padding: 12px;
+  height: 3em;
+  width: 3em;
+  padding: 1em;
   background-color: #222831;
   border-radius: 50%;
-  margin-right: 30px;
+  margin: .8em .8em .8em .5em;
   color: #e8e8e8;
 `;
 
 export const Socials = styled.a`
-  margin-right: 50px;
-  height: 50px;
-  width: 50px;
+  margin: 2em;
+  height: 3em;
+  width: 3em;
 `;
 export const Title = styled.h1`
   color: #e8e8e8;
+  margin-left: .6em;
 `;
 
 export const Face = styled(Fb)`
@@ -80,19 +80,20 @@ export const Insta = styled(Instagram)`
 export const NavBarAlpha = styled.div`
     height: 27.5%;
     width: 98%;
+    padding: 1.2em 0;
     background-color: #30475E;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    border-radius: 5px;
+    border-radius: .7em;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.7),
                 inset 2px 3px 5px rgba(0,0,0,0.3),
                 inset -2px -3px 5px rgba(0,0,0,0.5);
 `;
 
 export const SignButton = styled.button`
-  height: 30px;
+  height: 2.2em;
   border-radius: 5px;
   background-color: #f05454;
   color: #e8e8e8;
