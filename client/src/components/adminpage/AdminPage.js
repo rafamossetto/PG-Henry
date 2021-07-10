@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMovieList, postMovie, updateMovie } from "../../actions/movies";
-import { getUsers, isAdmin, logIn } from "../../actions/users";
+import { getUsers, isAdmin } from "../../actions/users";
 import AdminContainer from "./AdminStyles";
 
 function AdminPage() {
