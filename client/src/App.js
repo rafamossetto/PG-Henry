@@ -13,6 +13,7 @@ function App() {
   return (
     <div className="App">
       <Route path="/" component={Header} />
+      <Route exact path="/" component={Home} />
       <Route path="/products" component={Products} />
       <Route path="/signup" component={SignupForm} />
       <Route path="/login" component={LogInForm} />
@@ -20,7 +21,6 @@ function App() {
       <Route path="/billboard" component={Billboard} />
       <Route path="/administration" component={AdminPage} />
       <Route path="/profile" component={UserProfile} />
-      <Route exact path="/" component={Home} />
     </div>
   );
 }

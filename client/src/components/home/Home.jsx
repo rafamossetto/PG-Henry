@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
-import { HomeCont, ContMovies, Movies, Billboard, ComingSoon, Stores, Labels } from './Styles';
-import MovieCard from './Movies';
+import { HomeCont, ContMovies, Movies, Billboard, ComingSoon, Stores, Labels, MerchCard, PubliCard, Icon, Linked } from './Styles';
+import MovieCard from './MovieCard';
 import { useSelector, useDispatch } from 'react-redux';
 import { getMovieList } from "../../actions/movies";
 
@@ -27,8 +27,11 @@ export default function Home() {
                     </ComingSoon>
                 </Movies>
                 <Stores>
-                    <div className="Combos" />
-                    <div className="Merch" />
+                    <MerchCard><Linked to='/products'><Icon src="https://image.flaticon.com/icons/png/512/864/864818.png" /></Linked></MerchCard>
+                    <MerchCard><Linked to='/products'><Icon src="https://image.flaticon.com/icons/png/512/86/86511.png" /></Linked></MerchCard>
+                    <PubliCard>
+                        Publicity
+                    </PubliCard>
                 </Stores>
             </ContMovies>
             <div className="Footer"></div>
