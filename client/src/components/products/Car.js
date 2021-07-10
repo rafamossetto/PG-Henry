@@ -8,12 +8,13 @@ const Car = (props) => {
     const[state, setState] = useState({
         clicked:props.slot === getPurchaseLocalStorage().slot ? true : false,
     })
+    let storage = getPurchaseLocalStorage()
     useEffect(() => {        
         setState({
             ...state,
             clicked:props.slot === getPurchaseLocalStorage().slot ? true : false,
         })
-    }, [getPurchaseLocalStorage(), props.slot, state])
+    }, [storage, props.slot, state])
 
     const handleClick= function(){
         if(getPurchaseLocalStorage().slot !== props.slot){
