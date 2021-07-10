@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { connect } from "react-redux";
 import {addToTotal, substractToTotal, saveProduct, deleteProduct } from '../../actions/products'
 import {ProductBox, ButtonBox, Button, CounterBox, Counter, TextBox, InfoBox, ImgBox, Price, Text, Center } from './ProductStyles'
+import {getPurchaseLocalStorage} from '../../reducer/reducer'
 
 const Product = (props) => {
     console.log(props.counter)
     const[state, setState] = useState({
-        counter: props.counter.hasOwnProperty(props.name) ? props.counter[props.name] : 0,
+        counter: getPurchaseLocalStorage().extras.hasOwnProperty(props.name) ? getPurchaseLocalStorage().extras[props.name] : 0,
     })
 
     const handleSubtract = function(e){
