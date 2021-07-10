@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState } from "react";
 import StyledContainer from "./LogInStyles";
 import { logIn } from "../../actions/users";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 function LogIn() {
   const dispatch = useDispatch();
@@ -44,6 +43,7 @@ function LogIn() {
         />
         <img
           className="google"
+          alt=""
           src="https://res.cloudinary.com/juancereceda/image/upload/v1625856246/Screen_Shot_2021-07-09_at_15.43.47_jwdloi.png"
         />
         <div className="btnContainer">
