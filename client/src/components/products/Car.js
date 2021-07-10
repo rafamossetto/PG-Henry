@@ -1,56 +1,54 @@
-import React, { useState, useEffect } from 'react';
+import React/* , { useState, useEffect }  */from 'react';
 import { connect } from "react-redux";
-import {saveSlot} from '../../actions/products'
+import {saveSlot, getProducts} from '../../actions/products'
 import {WhiteCar, RedCar, BlackCar} from './carStyles'
 import {getPurchaseLocalStorage} from '../../reducer/reducer'
 
 const Car = (props) => {
-    const[state, setState] = useState({
-        clicked:props.slot === getPurchaseLocalStorage().slot ? true : false,
+    const storage = getPurchaseLocalStorage()
+/*     const[state, setState] = useState({
+        clicked:storage.slot ? storage.slot : ''
     })
-    let storage = getPurchaseLocalStorage()
-    useEffect(() => {        
+    useEffect(() => {  
         setState({
-            ...state,
-            clicked:props.slot === getPurchaseLocalStorage().slot ? true : false,
+            clicked: storage.slot
         })
-    }, [storage, props.slot, state])
+    }, [storage]) */
 
-    const handleClick= function(){
-        if(getPurchaseLocalStorage().slot !== props.slot){
-            props.saveSlot(props.slot)
-            setState({
-                ...state,
-                clicked:!state.clicked,
-            })
-            return
-        }
-        else if(props.savedSlot === props.slot){
+    const handleClick= function(e){
+        e.preventDefault()        
+        if(storage.slot === props.slot){
             props.saveSlot('')
-            setState({
-                ...state,
-                clicked:!state.clicked,
-            })
+/*             setState({
+                clicked: storage.slot
+            }) */
         }
-        
+        if(storage.slot !== props.slot){
+            props.saveSlot(props.slot)
+/*             setState({
+                clicked:storage.slot
+            }) */
+        }
+        props.getProducts()
     }
     return(
         <div>
-        {state.clicked ? <BlackCar onClick={handleClick}><img src="https://res.cloudinary.com/djunuon2e/image/upload/v1625694896/blueCar_anvl0c.png" alt=''/></BlackCar> 
+        {props.slot === storage.slot ? <BlackCar onClick={event => handleClick(event)}><img src="https://res.cloudinary.com/djunuon2e/image/upload/v1625694896/blueCar_anvl0c.png" alt=''/></BlackCar> 
         : props.ocuppied ? <RedCar><img src="https://res.cloudinary.com/djunuon2e/image/upload/v1625694896/redCar_bydkdo.png" alt=''/></RedCar> 
-        : <WhiteCar onClick={handleClick}><img src="https://res.cloudinary.com/djunuon2e/image/upload/v1625694896/whiteCar_cafb44.png" alt=''/> </WhiteCar>}
+        : <WhiteCar onClick={event => handleClick(event)}><img src="https://res.cloudinary.com/djunuon2e/image/upload/v1625694896/whiteCar_cafb44.png" alt=''/> </WhiteCar>}
         </div>
     )
 }
 
 function mapStateToProps(state) {
     return {
-        savedSlot:state.purchase.slot
+
     };
   }
   
 function mapDispatchToProps(dispatch) {
     return {
+        getProducts: () => dispatch(getProducts()),
         saveSlot: slot => dispatch(saveSlot(slot)),
     };
 }
