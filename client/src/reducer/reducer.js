@@ -60,8 +60,7 @@ export default function reducer(state = initialState, action) {
       purchase.total = action.payload.price;
       purchase.extras = {};
       purchase.slot = '';
-      setPurchaseLocalStorage(action.payload);
-      console.log(state.purchase);
+      setPurchaseLocalStorage(purchase);
       return state;
       /* return {
         ...state,
