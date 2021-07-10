@@ -4,6 +4,7 @@ export const GET_USERS = "GET_USERS";
 export const GET_LOCATION = "GET_LOCATION";
 export const SIGNUP = "SIGNUP";
 export const LOGIN = "LOGIN";
+export const LOG_OUT = "LOG_OUT";
 
 const config = {
   headers: {
@@ -54,6 +55,12 @@ export function logIn(name, password) {
     } catch (error) {
       console.log(error);
     }
+  };
+}
+
+export function logOut() {
+  return function (dispatch) {
+    dispatch({ type: LOG_OUT });
   };
 }
 

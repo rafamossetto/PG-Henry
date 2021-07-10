@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { getTokenLocalStorage } from "../../reducer/reducer";
 import { NavBarAlpha, SignButton, Cart, Linked } from './Styles';
 import SignForm from './SignForm';
-import { isAdmin} from '../../actions/users';
+import { isAdmin, logOut} from '../../actions/users';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import swal from 'sweetalert';
 
 
 export default function NavBar() {
+    const dispatch = useDispatch()
     const history = useHistory()
     const token = getTokenLocalStorage();
-    let [viewForm] = useState(false);
+  /*   let [viewForm] = useState(false); */
     let [admin, setAdmin] = useState(null);
     
     useEffect(() => {
@@ -19,6 +22,24 @@ export default function NavBar() {
         }
         verifyAdmin();
     },[])
+
+async function handleLogOut() {  
+    let willLogOut =  await swal({
+  title: "Are you sure you want to log out?",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+  if (willLogOut) {
+    await swal("You've been logged out!", {
+      icon: "success",
+    });
+    dispatch(logOut())
+    window.location.reload()
+  } else {
+    swal("Welcome back!");
+  }  
+}
 
   /*   function handleClick (e) {
         e.preventDefault();
@@ -42,12 +63,20 @@ export default function NavBar() {
             <Linked to='/mycart'><Cart size="25" /></Linked>
           { 
                 admin ? 
-                <Linked to='/administration'>Admin</Linked> 
+                <div className='accountLogout'>
+                    <Linked to='/administration'>Admin</Linked> 
+                     <img className='logout' src='https://res.cloudinary.com/juancereceda/image/upload/v1625936866/logout_nt6exa.png'onClick={() => handleLogOut()}/>
+                </div>
+                
                 : token && admin === false
-                ? <Linked to='/profile'>Account</Linked> 
+                ? 
+                <div className='accountLogout'>
+                    <Linked to='/profile'>Account</Linked>
+                    <img className='logout' src='https://res.cloudinary.com/juancereceda/image/upload/v1625936866/logout_nt6exa.png'onClick={() => handleLogOut()}/>
+                </div> 
                 : <Linked><SignButton onClick={() => history.push('/login')}>Sign In / Sign Up</SignButton></Linked>
           }
-            {!viewForm ? true : <SignForm />}
+           {/*  {!viewForm ? true : <SignForm />} */}
         </NavBarAlpha>
     )
 }

@@ -9,7 +9,7 @@ import {
   DELETE_PRODUCT,
   SEND_TO_PRODUCTS,
 } from "../actions/products";
-import { GET_USERS, SIGNUP, LOGIN } from "../actions/users";
+import { GET_USERS, SIGNUP, LOGIN, LOG_OUT } from "../actions/users";
 
 const initialState = {
   products: [],
@@ -66,7 +66,7 @@ export default function reducer(state = initialState, action) {
       let purchase = action.payload;
       purchase.total = action.payload.price;
       purchase.extras = {};
-      purchase.slot = '';
+      purchase.slot = "";
       setPurchaseLocalStorage(purchase);
       return state;
       /* return {
@@ -199,6 +199,13 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         token: action.payload,
+      };
+    }
+    case LOG_OUT: {
+      window.localStorage.removeItem("token");
+      return {
+        ...state,
+        token: "",
       };
     }
     default: {
