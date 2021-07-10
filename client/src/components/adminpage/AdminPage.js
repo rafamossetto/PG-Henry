@@ -23,7 +23,7 @@ function AdminPage() {
     rated: "",
     runtime: "",
     director: "",
-  })
+  });
 
   useEffect(() => {
     let verifyAdmin = async () => {
@@ -41,7 +41,7 @@ function AdminPage() {
       [e.target.name]: e.target.value,
     });
   };
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -58,52 +58,52 @@ function AdminPage() {
       runtime: movie.runtime,
       director: movie.director,
     };
-  
+
     // Validaciones
-    if(!obj.title) {
-      alert("Hey! Don't forget the title.")
-      return
+    if (!obj.title) {
+      alert("Hey! Don't forget the title.");
+      return;
     }
-    if(!obj.poster) {
-      alert("Hey! Don't forget the poster.")
-      return
+    if (!obj.poster) {
+      alert("Hey! Don't forget the poster.");
+      return;
     }
-    if(!obj.date) {
-      alert("Hey! Don't forget the date.")
-      return
+    if (!obj.date) {
+      alert("Hey! Don't forget the date.");
+      return;
     }
-    if(!obj.trailer) {
-      alert("Hey! Don't forget the trailer")
-      return
+    if (!obj.trailer) {
+      alert("Hey! Don't forget the trailer");
+      return;
     }
-    if(!obj.cast) {
-      alert("Hey! Don't forget the cast")
-      return
+    if (!obj.cast) {
+      alert("Hey! Don't forget the cast");
+      return;
     }
-    if(!obj.runtime) {
-      alert("Hey! Don't forget the runtime")
-      return
+    if (!obj.runtime) {
+      alert("Hey! Don't forget the runtime");
+      return;
     }
-    if(!obj.director) {
-      alert("Hey! Don't forget the director")
-      return
+    if (!obj.director) {
+      alert("Hey! Don't forget the director");
+      return;
     }
-    if(!obj.genre) {
-      alert("Hey! Don't forget the genre.")
-      return
+    if (!obj.genre) {
+      alert("Hey! Don't forget the genre.");
+      return;
     }
-    if(!obj.rated) {
-      alert("Hey! Don't forget the rated")
-      return
+    if (!obj.rated) {
+      alert("Hey! Don't forget the rated");
+      return;
     }
     // if(!obj.show) {
     //   alert("Hey! Don't forget the show")
     //   return
     // }
-    if(!obj.description) {
-      alert("Hey! Don't forget the description.")
-      return
-    }        
+    if (!obj.description) {
+      alert("Hey! Don't forget the description.");
+      return;
+    }
     dispatch(postMovie(movie));
     alert("Movie update successfully!");
     setMovie({
@@ -118,8 +118,8 @@ function AdminPage() {
       rated: "",
       runtime: "",
       director: "",
-    });    
-  }
+    });
+  };
   useEffect(() => {
     dispatch(getMovieList());
   }, [movies, dispatch]);
@@ -145,9 +145,6 @@ function AdminPage() {
     setMovieToSwap(null);
   }
 
-    
-  
-    
   return (
     <AdminContainer>
       {admin ? (
@@ -249,12 +246,13 @@ function AdminPage() {
             <form
               className="postMovieForm"
               onChange={(e) => ChangeInput(e)}
-              onSubmit={(e) => handleSubmit(e)} 
+              onSubmit={(e) => handleSubmit(e)}
             >
               <div className="formInputContainer">
                 <div>
                   <h4>Movie Title</h4>
-                  <input placeholder="Movie title" 
+                  <input
+                    placeholder="Movie title"
                     type="text"
                     name="title"
                     value={movie.title}
@@ -262,43 +260,48 @@ function AdminPage() {
                 </div>
                 <div>
                   <h4>Poster URL</h4>
-                  <input placeholder="Poster URL"
-                  type="text"
-                  name="poster"
-                  value={movie.poster}
+                  <input
+                    placeholder="Poster URL"
+                    type="text"
+                    name="poster"
+                    value={movie.poster}
                   />
                 </div>
               </div>
               <div className="formInputContainer">
                 <div>
                   <h4>Release date</h4>
-                  <input placeholder="Release date" 
+                  <input
+                    placeholder="Release date"
                     type="date"
                     name="date"
                     value={movie.date}
                   />
                 </div>
                 <div>
-                <h4>Trailer URL</h4>
-                  <input placeholder="Trailer URL" 
-                  type="text"
-                  name="trailer"
-                  value={movie.trailer}
+                  <h4>Trailer URL</h4>
+                  <input
+                    placeholder="Trailer URL"
+                    type="text"
+                    name="trailer"
+                    value={movie.trailer}
                   />
                 </div>
               </div>
               <div className="formInputContainer">
                 <div>
                   <h4>Cast</h4>
-                  <input placeholder="Cast" 
+                  <input
+                    placeholder="Cast"
                     type="text"
                     name="cast"
-                    value={ movie.cast}
+                    value={movie.cast}
                   />
                 </div>
                 <div>
                   <h4>Runtime</h4>
-                  <input placeholder="Runtime" 
+                  <input
+                    placeholder="Runtime"
                     type="text"
                     name="runtime"
                     value={movie.runtime}
@@ -308,25 +311,28 @@ function AdminPage() {
               <div className="formInputContainer">
                 <div>
                   <h4>Director</h4>
-                  <input placeholder="Director" 
-                  type="text"
-                  name="director"
-                  value={movie.director}
+                  <input
+                    placeholder="Director"
+                    type="text"
+                    name="director"
+                    value={movie.director}
                   />
                 </div>
                 <div>
                   <h4>Genre</h4>
-                  <input placeholder="Genre" 
-                  type="text"
-                  name="genre"
-                  value={movie.genre}
+                  <input
+                    placeholder="Genre"
+                    type="text"
+                    name="genre"
+                    value={movie.genre}
                   />
                 </div>
               </div>
               <div className="formInputContainer">
                 <div>
-                <h4>Rated</h4>
-                  <input placeholder="Rated" 
+                  <h4>Rated</h4>
+                  <input
+                    placeholder="Rated"
                     type="text"
                     name="rated"
                     value={movie.rated}
@@ -334,26 +340,25 @@ function AdminPage() {
                 </div>
                 <div>
                   <h4>Shows</h4>
-                  <input placeholder="Shows" 
-                  type="text"
-                  name="show"
-                  value={movie.show}
+                  <input
+                    placeholder="Shows"
+                    type="text"
+                    name="show"
+                    value={movie.show}
                   />
                 </div>
               </div>
               <div className="formInputContainer">
                 <div>
                   <h4>Description</h4>
-                  <input placeholder="Description"
-                   type="text"
-                   name="description"
-                   value={movie.description}
+                  <input
+                    placeholder="Description"
+                    type="text"
+                    name="description"
+                    value={movie.description}
                   />
                 </div>
-                <button
-                  className="postMovieButton"
-                  type="submit"
-                >
+                <button className="postMovieButton" type="submit">
                   Post movie
                 </button>
               </div>
@@ -361,7 +366,14 @@ function AdminPage() {
           </div>
         </div>
       ) : (
-        <h1>You are not an admin</h1>
+        <div className="errorCnt">
+          <img
+            className="sadFace"
+            src="https://res.cloudinary.com/juancereceda/image/upload/v1625945361/sad-face-in-rounded-square_q7qmr7.png"
+            alt="404"
+          />
+          <h1 className="errorMsg">Sorry! We've nothing for you here</h1>
+        </div>
       )}
     </AdminContainer>
   );

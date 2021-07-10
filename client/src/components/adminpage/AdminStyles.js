@@ -2,7 +2,19 @@ import styled from "styled-components";
 
 const AdminContainer = styled.div`
   font-family: Questrial;
-  padding-top: 20%;
+  display: flex;
+  justify-content: center;
+  padding-top: 5%;
+
+  .errorCnt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #e8e8e8;
+    .sadFace {
+      width: 150px;
+    }
+  }
   .isAdmin {
     display: flex;
     flex-direction: column;
@@ -90,8 +102,8 @@ const AdminContainer = styled.div`
     background-color: #2d4059;
     padding: 0px 5px 5px 5px;
     .boxTitle {
-    padding-left: 10px;
-  }
+      padding-left: 10px;
+    }
   }
   .userList {
     overflow-y: scroll;
