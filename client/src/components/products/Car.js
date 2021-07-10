@@ -13,7 +13,7 @@ const Car = (props) => {
             ...state,
             clicked:props.slot === getPurchaseLocalStorage().slot ? true : false,
         })
-    }, [getPurchaseLocalStorage()])
+    }, [getPurchaseLocalStorage(), props.slot, state])
 
     const handleClick= function(){
         if(getPurchaseLocalStorage().slot !== props.slot){

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMovieList, postMovie, updateMovie } from "../../actions/movies";
-import { getUsers, isAdmin, logIn } from "../../actions/users";
+import { getUsers, isAdmin } from "../../actions/users";
 import AdminContainer from "./AdminStyles";
 
 function AdminPage() {
@@ -122,7 +122,7 @@ function AdminPage() {
   }
   useEffect(() => {
     dispatch(getMovieList());
-  }, [movies]);
+  }, [movies, dispatch]);
 
   function handleRadioChange(e) {
     let radio = document.getElementById(e.target.id);
@@ -182,6 +182,7 @@ function AdminPage() {
                             <img
                               className="edit"
                               onClick={() => alert("Edit")}
+                              alt=""
                               src="https://res.cloudinary.com/juancereceda/image/upload/v1625795867/edit_3_qmb0hj.png"
                             />
                           </div>
@@ -225,6 +226,7 @@ function AdminPage() {
                             <img
                               className="edit"
                               onClick={() => alert("Edit")}
+                              alt=""
                               src="https://res.cloudinary.com/juancereceda/image/upload/v1625795867/edit_3_qmb0hj.png"
                             />
                           </div>
