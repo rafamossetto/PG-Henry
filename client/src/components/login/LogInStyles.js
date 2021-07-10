@@ -1,20 +1,24 @@
 import styled from "styled-components";
 
 const form = styled.div`
-  padding-top: 18%;
+  padding-top: .2em;
   width: 100%;
   display: flex;
   justify-content: center;
   form {
     display: flex;
     flex-direction: column;
-    width: 400px;
-    height: 450px;
+    width: 24em;
+    height: 30em;
     justify-content: space-evenly;
     align-items: center;
     background-color: #2d4059;
-    margin-bottom: 10%;
-    border: 1px solid #ea5455;
+    margin-top: .5em;
+    border: .1em solid #ea5455;
+    border-radius: .8em;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.7),
+                inset 2px 3px 5px rgba(0,0,0,0.3),
+                inset -2px -3px 5px rgba(0,0,0,0.5);
     input {
       font-family: Questrial;
       font-size: 18px;
