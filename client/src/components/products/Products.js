@@ -35,9 +35,9 @@ const Products = (props) => {
             <MovieData> 
                 <MovieDetails>
                     <h3>{getPurchaseLocalStorage().title || 'Title'}</h3>
-                    <p>field</p>
-                    <p>Time: {getPurchaseLocalStorage().time || 'Time'}</p>
-                    <p>Day: {getPurchaseLocalStorage().day || 'Day'}</p>
+{/*                     <p>field</p> */}
+                    <p>Schedule: {getPurchaseLocalStorage().day.concat(', ').concat(getPurchaseLocalStorage().time) || 'Day and time'}</p>
+
                     <p>Price:${getPurchaseLocalStorage().price || 'Price'}</p>
                 </MovieDetails>
                 <div>
@@ -61,6 +61,7 @@ const Products = (props) => {
                             <div>Available</div>
                             <img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,h_40/v1625694896/blueCar_anvl0c.png" alt=''/>
                             <div>Selected</div>
+                            &nbsp;&nbsp;{getPurchaseLocalStorage().slot !== '' ? <div>Parking Lot:&nbsp;{getPurchaseLocalStorage().slot}</div> :null}
                         </Reference>
                     </ParkingLot> 
                     :
@@ -99,7 +100,7 @@ const Products = (props) => {
                 <BuyBox>                    
                     {getPurchaseLocalStorage().extras && Object.keys(getPurchaseLocalStorage().extras).length > 0 && <StoredProducts>Extras:</StoredProducts>}
                     {getPurchaseLocalStorage().extras && Object.keys(getPurchaseLocalStorage().extras).map(e =><StoredProducts>{e}&nbsp;x&nbsp;{getPurchaseLocalStorage().extras[e]}&nbsp;-</StoredProducts>)}
-                    {getPurchaseLocalStorage().slot !== '' ? <StoredProducts>Parking Lot:&nbsp;{getPurchaseLocalStorage().slot}</StoredProducts> :null}
+                    
                     <Total>Total: ${getPurchaseLocalStorage().total}</Total>
                     <BuyButton onClick={handleBuy}>Buy</BuyButton>
                 </BuyBox>
