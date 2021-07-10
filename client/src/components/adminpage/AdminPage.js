@@ -122,7 +122,7 @@ function AdminPage() {
   }
   useEffect(() => {
     dispatch(getMovieList());
-  }, [movies]);
+  }, [movies, dispatch]);
 
   function handleRadioChange(e) {
     let radio = document.getElementById(e.target.id);
@@ -182,6 +182,7 @@ function AdminPage() {
                             <img
                               className="edit"
                               onClick={() => alert("Edit")}
+                              alt=""
                               src="https://res.cloudinary.com/juancereceda/image/upload/v1625795867/edit_3_qmb0hj.png"
                             />
                           </div>
@@ -225,6 +226,7 @@ function AdminPage() {
                             <img
                               className="edit"
                               onClick={() => alert("Edit")}
+                              alt=""
                               src="https://res.cloudinary.com/juancereceda/image/upload/v1625795867/edit_3_qmb0hj.png"
                             />
                           </div>
