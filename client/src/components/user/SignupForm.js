@@ -18,7 +18,7 @@ export default function SignupForm() {
         isAdmin: false,
         bookings: []
     });
-    // Borrar si no se va a utilizar ↓
+
     // const selector = useSelector(state => state)
 
     /*info = {
