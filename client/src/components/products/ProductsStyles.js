@@ -7,7 +7,6 @@ export const ProductsBox = styled.div`
 `;
 export const Container = styled.div`
     background-color: rgba(34, 40, 49, 1);
-    padding-top: 15%;
 `;
 export const MovieData = styled.div`
     display:flex;
