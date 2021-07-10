@@ -23,6 +23,7 @@ const initialState = {
     extras:{},
     total:0
   }, */
+  slot:'',
   purchase: getPurchaseLocalStorage() ? getPurchaseLocalStorage() : {},
   movieDetail: {},
   users: [],
@@ -62,11 +63,12 @@ export default function reducer(state = initialState, action) {
         movieDetail: action.payload,
       };
     }
+    //Products
     case SEND_TO_PRODUCTS: {
       let purchase = action.payload;
       purchase.total = action.payload.price;
       purchase.extras = {};
-      purchase.slot = "";
+      purchase.slot = '';
       setPurchaseLocalStorage(purchase);
       return state;
     }
@@ -92,7 +94,10 @@ export default function reducer(state = initialState, action) {
       let purchase = getPurchaseLocalStorage();
       purchase.slot = action.payload;
       setPurchaseLocalStorage(purchase);
-      return state;
+      return {
+        ...state,
+        slot: action.payload
+      }
     }
     case SAVE_PRODUCT: {
       let purchase = getPurchaseLocalStorage();

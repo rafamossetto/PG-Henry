@@ -47,13 +47,13 @@ const Products = (props) => {
                     {purchaseStore.parking ? 
                     <ParkingLot>  
                     <ParkingLine> 
-                            {purchaseStore.parking.slice(20,30).map(e => <Car slot={e.slot} ocuppied={e.ocuppied}/>)}
+                            {purchaseStore.parking.slice(20,30).map(e => <Car key={e.slot} slot={e.slot} ocuppied={e.ocuppied}/>)}
                         </ParkingLine>
                         <ParkingLine> 
-                            {purchaseStore.parking.slice(10,20).map(e => <Car slot={e.slot} ocuppied={e.ocuppied}/>)}
+                            {purchaseStore.parking.slice(10,20).map(e => <Car key={e.slot} slot={e.slot} ocuppied={e.ocuppied}/>)}
                         </ParkingLine>                         
                         <ParkingLine>                 
-                            {purchaseStore.parking.slice(0,10).map(e => <Car slot={e.slot} ocuppied={e.ocuppied}/>)}
+                            {purchaseStore.parking.slice(0,10).map(e => <Car key={e.slot} slot={e.slot} ocuppied={e.ocuppied}/>)}
                         </ParkingLine> 
                         <Screen><div>Screen</div></Screen>
                         <Reference>                            
@@ -78,7 +78,7 @@ const Products = (props) => {
                 </div>
                 <ProductsBox>
                     {props.products && props.products.filter(e => e.combo === false).map(e => 
-                    <Product name={e.name} price={e.price} imgUrl={e.imgUrl}/>
+                    <Product key={e.name} name={e.name} price={e.price} imgUrl={e.imgUrl}/>
                     )}
                 </ProductsBox>                
             </div>
@@ -90,7 +90,7 @@ const Products = (props) => {
                 <div>
                 <ProductsBox>
                     {props.products && props.products.filter(e => e.combo === true).map(e => 
-                    <Product name={e.name} price={e.price} imgUrl={e.imgUrl}/>
+                    <Product key={e.name} name={e.name} price={e.price} imgUrl={e.imgUrl}/>
                     )}
                 </ProductsBox>                    
                 </div>                
