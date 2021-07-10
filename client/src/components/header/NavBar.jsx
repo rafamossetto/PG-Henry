@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import {  useDispatch, useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
 import { getTokenLocalStorage } from "../../reducer/reducer";
 import { NavBarAlpha, SignButton, Cart, Linked } from './Styles';
 import SignForm from './SignForm';
@@ -9,9 +8,8 @@ import { useHistory } from 'react-router-dom';
 
 export default function NavBar() {
     const history = useHistory()
-    const dispatch = useDispatch()
     const token = getTokenLocalStorage();
-    let [viewForm, setViewForm] = useState(false);
+    let [viewForm] = useState(false);
     let [admin, setAdmin] = useState(null);
     
     useEffect(() => {
