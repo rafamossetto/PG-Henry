@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { StyledForm, StyledInput, StyledButton } from './SignupFormStyle.js';
 import { signUp } from '../../actions/users'
@@ -18,8 +18,8 @@ export default function SignupForm() {
         isAdmin: false,
         bookings: []
     });
-
-    const selector = useSelector(state => state)
+    // Borrar si no se va a utilizar ↓
+    // const selector = useSelector(state => state)
 
     /*info = {
         username: Username.value,
@@ -36,6 +36,7 @@ export default function SignupForm() {
     }
 
     function PasswordCorroboration (event) {
+        //agregar funcion de minimo 8 caracteres
         const password = info.password;
         const comparation = event.target.value;
         password === comparation ? setInfo({...info, passMatch: true}) : setInfo({...info, passMatch: false});

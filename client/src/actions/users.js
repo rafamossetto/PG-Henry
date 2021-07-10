@@ -1,6 +1,7 @@
 import axios from "axios";
 import { getTokenLocalStorage } from "../reducer/reducer";
 export const GET_USERS = "GET_USERS";
+export const GET_LOCATION = "GET_LOCATION";
 export const SIGNUP = "SIGNUP";
 export const LOGIN = "LOGIN";
 
@@ -28,10 +29,10 @@ export function signUp(username, email, password) {
         password,
       });
       dispatch({ type: SIGNUP, payload: token.data.token });
-      return 'Account created'
+      return "Account created";
     } catch (error) {
-      if(error.response.status === 400){
-        return error.response.data
+      if (error.response.status === 400) {
+        return error.response.data;
       }
     }
   };
@@ -39,12 +40,20 @@ export function signUp(username, email, password) {
 
 export function logIn(name, password) {
   return async function (dispatch) {
-    const response = await axios.post("http://localhost:3001/users/login", {
-      name,
-      password,
-    });
-    //console.log(response.data)
-    dispatch({ type: LOGIN, payload: response.data });
+    try {
+      const response = await axios.post("http://localhost:3001/users/login", {
+        name,
+        password,
+      });
+      if (response.data.token) {
+        await dispatch({ type: LOGIN, payload: response.data.token });
+        return "Logged in succesfully";
+      } else {
+        return response.data.message;
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 }
 
@@ -53,6 +62,5 @@ export async function isAdmin() {
     "http://localhost:3001/users/verifyadmin",
     config
   );
-  console.log(result.data.isAdmin);
   return result.data.isAdmin;
 }

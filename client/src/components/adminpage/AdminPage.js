@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getMovieList, updateMovie } from "../../actions/movies";
-import { getUsers, isAdmin, logIn } from "../../actions/users";
+import { getMovieList, postMovie, updateMovie } from "../../actions/movies";
+import { getUsers, isAdmin } from "../../actions/users";
 import AdminContainer from "./AdminStyles";
 
 function AdminPage() {
@@ -10,6 +10,20 @@ function AdminPage() {
   const movies = useSelector((state) => state.movieList);
   const users = useSelector((state) => state.users);
   const [movieToSwap, setMovieToSwap] = useState(null);
+
+  const [movie, setMovie] = useState({
+    title: "",
+    date: "",
+    poster: "",
+    description: "",
+    genre: "",
+    shows: "",
+    cast: "",
+    trailer: "",
+    rated: "",
+    runtime: "",
+    director: "",
+  })
 
   useEffect(() => {
     let verifyAdmin = async () => {
@@ -21,9 +35,94 @@ function AdminPage() {
     dispatch(getUsers());
   }, [dispatch]);
 
+  const ChangeInput = (e) => {
+    setMovie({
+      ...movie,
+      [e.target.name]: e.target.value,
+    });
+  };
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const obj = {
+      title: movie.title,
+      date: movie.date,
+      poster: movie.poster,
+      description: movie.description,
+      genre: movie.genre,
+      shows: movie.show,
+      cast: movie.cast,
+      trailer: movie.trailer,
+      rated: movie.rated,
+      runtime: movie.runtime,
+      director: movie.director,
+    };
+  
+    // Validaciones
+    if(!obj.title) {
+      alert("Hey! Don't forget the title.")
+      return
+    }
+    if(!obj.poster) {
+      alert("Hey! Don't forget the poster.")
+      return
+    }
+    if(!obj.date) {
+      alert("Hey! Don't forget the date.")
+      return
+    }
+    if(!obj.trailer) {
+      alert("Hey! Don't forget the trailer")
+      return
+    }
+    if(!obj.cast) {
+      alert("Hey! Don't forget the cast")
+      return
+    }
+    if(!obj.runtime) {
+      alert("Hey! Don't forget the runtime")
+      return
+    }
+    if(!obj.director) {
+      alert("Hey! Don't forget the director")
+      return
+    }
+    if(!obj.genre) {
+      alert("Hey! Don't forget the genre.")
+      return
+    }
+    if(!obj.rated) {
+      alert("Hey! Don't forget the rated")
+      return
+    }
+    // if(!obj.show) {
+    //   alert("Hey! Don't forget the show")
+    //   return
+    // }
+    if(!obj.description) {
+      alert("Hey! Don't forget the description.")
+      return
+    }        
+    dispatch(postMovie(movie));
+    alert("Movie update successfully!");
+    setMovie({
+      title: "",
+      date: "",
+      poster: "",
+      description: "",
+      genre: "",
+      shows: "",
+      cast: "",
+      trailer: "",
+      rated: "",
+      runtime: "",
+      director: "",
+    });    
+  }
   useEffect(() => {
     dispatch(getMovieList());
-  }, [movies]);
+  }, [movies, dispatch]);
 
   function handleRadioChange(e) {
     let radio = document.getElementById(e.target.id);
@@ -46,6 +145,9 @@ function AdminPage() {
     setMovieToSwap(null);
   }
 
+    
+  
+    
   return (
     <AdminContainer>
       {admin ? (
@@ -80,6 +182,7 @@ function AdminPage() {
                             <img
                               className="edit"
                               onClick={() => alert("Edit")}
+                              alt=""
                               src="https://res.cloudinary.com/juancereceda/image/upload/v1625795867/edit_3_qmb0hj.png"
                             />
                           </div>
@@ -123,6 +226,7 @@ function AdminPage() {
                             <img
                               className="edit"
                               onClick={() => alert("Edit")}
+                              alt=""
                               src="https://res.cloudinary.com/juancereceda/image/upload/v1625795867/edit_3_qmb0hj.png"
                             />
                           </div>
@@ -144,56 +248,111 @@ function AdminPage() {
             </div>
             <form
               className="postMovieForm"
-              onSubmit={(e) => e.preventDefault()}
+              onChange={(e) => ChangeInput(e)}
+              onSubmit={(e) => handleSubmit(e)} 
             >
               <div className="formInputContainer">
                 <div>
                   <h4>Movie Title</h4>
-                  <input placeholder="Movie title" />
+                  <input placeholder="Movie title" 
+                    type="text"
+                    name="title"
+                    value={movie.title}
+                  />
                 </div>
                 <div>
-                  <h4>Trailer URL</h4>
-                  <input placeholder="Trailer URL" />
+                  <h4>Poster URL</h4>
+                  <input placeholder="Poster URL"
+                  type="text"
+                  name="poster"
+                  value={movie.poster}
+                  />
                 </div>
               </div>
               <div className="formInputContainer">
                 <div>
                   <h4>Release date</h4>
-                  <input placeholder="Release date" />
+                  <input placeholder="Release date" 
+                    type="date"
+                    name="date"
+                    value={movie.date}
+                  />
                 </div>
                 <div>
-                  <h4>IMDb Rating</h4>
-                  <input placeholder="IMDb Rating" />
+                <h4>Trailer URL</h4>
+                  <input placeholder="Trailer URL" 
+                  type="text"
+                  name="trailer"
+                  value={movie.trailer}
+                  />
+                </div>
+              </div>
+              <div className="formInputContainer">
+                <div>
+                  <h4>Cast</h4>
+                  <input placeholder="Cast" 
+                    type="text"
+                    name="cast"
+                    value={ movie.cast}
+                  />
+                </div>
+                <div>
+                  <h4>Runtime</h4>
+                  <input placeholder="Runtime" 
+                    type="text"
+                    name="runtime"
+                    value={movie.runtime}
+                  />
                 </div>
               </div>
               <div className="formInputContainer">
                 <div>
                   <h4>Director</h4>
-                  <input placeholder="Director" />
+                  <input placeholder="Director" 
+                  type="text"
+                  name="director"
+                  value={movie.director}
+                  />
                 </div>
                 <div>
-                  <h4>Shows</h4>
-                  <input placeholder="Shows" />
+                  <h4>Genre</h4>
+                  <input placeholder="Genre" 
+                  type="text"
+                  name="genre"
+                  value={movie.genre}
+                  />
                 </div>
               </div>
               <div className="formInputContainer">
                 <div>
-                  <h4>Poster URL</h4>
-                  <input placeholder="Poster URL" />
+                <h4>Rated</h4>
+                  <input placeholder="Rated" 
+                    type="text"
+                    name="rated"
+                    value={movie.rated}
+                  />
                 </div>
                 <div>
-                  <h4>Genre</h4>
-                  <input placeholder="Genre" />
+                  <h4>Shows</h4>
+                  <input placeholder="Shows" 
+                  type="text"
+                  name="show"
+                  value={movie.show}
+                  />
                 </div>
               </div>
               <div className="formInputContainer">
                 <div>
                   <h4>Description</h4>
-                  <input placeholder="Description" />
+                  <input placeholder="Description"
+                   type="text"
+                   name="description"
+                   value={movie.description}
+                  />
                 </div>
                 <button
                   className="postMovieButton"
-                  onClick={() => alert("Movie posted succesfully")}
+                  type="submit"
                 >
                   Post movie
                 </button>
