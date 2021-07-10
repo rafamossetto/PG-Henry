@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import {  useSelector } from 'react-redux';
+import {  useDispatch, useSelector } from 'react-redux';
+import { getTokenLocalStorage } from "../../reducer/reducer";
 import { NavBarAlpha, SignButton, Cart, Linked } from './Styles';
 import SignForm from './SignForm';
 import { isAdmin} from '../../actions/users';
+import { useHistory } from 'react-router-dom';
 
 
 export default function NavBar() {
-    const token = useSelector(state => state.token)
+    const history = useHistory()
+    const dispatch = useDispatch()
+    const token = getTokenLocalStorage();
     let [viewForm, setViewForm] = useState(false);
     let [admin, setAdmin] = useState(null);
     
@@ -18,10 +22,10 @@ export default function NavBar() {
         verifyAdmin();
     },[])
 
-    function handleClick (e) {
+  /*   function handleClick (e) {
         e.preventDefault();
         setViewForm(viewForm = true);
-    }
+    } */
 
     // Hasta añadir funcionalidad on close al reducer
     // function onClose(e) {
@@ -43,7 +47,7 @@ export default function NavBar() {
                 <Linked to='/administration'>Admin</Linked> 
                 : token && admin === false
                 ? <Linked to='/profile'>Account</Linked> 
-                : <Linked><SignButton onClick={(e) => handleClick(e)}>Sign In / Sign Up</SignButton></Linked>
+                : <Linked><SignButton onClick={() => history.push('/login')}>Sign In / Sign Up</SignButton></Linked>
           }
             {!viewForm ? true : <SignForm />}
         </NavBarAlpha>
