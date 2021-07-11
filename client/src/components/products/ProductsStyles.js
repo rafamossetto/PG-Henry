@@ -16,12 +16,13 @@ export const MovieData = styled.div`
 export const MovieDetails = styled.div`
     position:static;
     font-size: 24px;
-    margin-left:30px;
-    min-width: 500px;
+    margin-left:10%;
+    min-width: 40%;
     color:rgba(255, 255, 255, 1);
     font-family: Questrial;
     display:flex;
     flex-direction: column;
+
 `;
 export const ParkingLot = styled.div`
     margin-top: 20px;
