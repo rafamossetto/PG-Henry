@@ -88,7 +88,8 @@ export const NavBarAlpha = styled.div`
   align-items: center;
   border-radius: 0.7em;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.7),
-    inset 2px 3px 5px rgba(0, 0, 0, 0.3), inset -2px -3px 5px rgba(0, 0, 0, 0.5);
+              inset 2px 3px 5px rgba(0, 0, 0, 0.3),
+              inset -2px -3px 5px rgba(0, 0, 0, 0.5);
 
   .accountLogout {
     display: flex;
@@ -113,15 +114,29 @@ export const SignButton = styled.button`
   box-shadow:
                 inset 2px 3px 5px rgba(0,0,0,0.3),
                 inset -2px -3px 5px rgba(0,0,0,0.5);
+  &:focus{
+    box-shadow:
+      inset -2px -3px 5px rgba(0,0,0,0.3),
+      inset 2px 3px 5px rgba(0,0,0,0.5);
+  }
 `;
 
 export const Cart = styled(ShoppingCart)`
   color: #e8e8e8;
+  &:hover{
+    color: #F05454;
+    transition: 300ms;
+    }
 `;
 
 export const Linked = styled(Link)`
   color: #e8e8e8;
   text-decoration: none;
+  &:hover{
+    color: #F05454;
+    font-size:20px;
+    transition: 300ms;
+    }
 `;
 
 // ESTILOS SIGNFORM
