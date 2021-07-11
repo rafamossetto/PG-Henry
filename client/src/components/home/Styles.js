@@ -42,7 +42,10 @@ export const Billboard = styled.div`
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    overflow-x: auto;
+    overflow-x: scroll;
+    &::-webkit-scrollbar {
+        display: block;
+     };
 `;
 
 export const ComingSoon = styled.div`
@@ -52,7 +55,10 @@ export const ComingSoon = styled.div`
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    overflow-x: auto;
+    overflow-x: scroll;
+    &::-webkit-scrollbar {
+        display: block;
+     };
 `;
 
 export const Labels = styled.label`
@@ -60,6 +66,7 @@ export const Labels = styled.label`
     margin-top: 5px;
     color: #e8e8e8;
     font-size: 15px;
+    letter-spacing: 5px;
 `;
 
 export const Stores = styled.div`
