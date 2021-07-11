@@ -33,9 +33,10 @@ const Products = (props) => {
         }
         document.getElementById("purchase").innerHTML = mensaje;
     }
-
+    
     return (
-        <Container>
+        <div>
+        {purchaseStore ? <Container>
 
             <MovieData>
                 <MovieDetails>
@@ -110,8 +111,9 @@ const Products = (props) => {
                     <BuyButton onClick={event => handleBuy(event)}>Buy</BuyButton>
                 </BuyBox>
             </div>
-            <Footer marginTop='30px' />
-        </Container>
+        </Container> : <h1>There is nothing in your cart!</h1>}
+        <Footer marginTop='30px' />
+        </div>
     )
 }
 

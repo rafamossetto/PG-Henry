@@ -18,11 +18,11 @@ export default function Home() {
         <HomeCont>
             <ContMovies>
                 <Movies>
-                    <Labels>Billboard:</Labels>
+                    <Labels>Billboard</Labels>
                     <Billboard>
                         {movieList.length > 0 ? movieList.map(movie => <MovieCard props={movie} id={movie._id} />) : <h2>Error 404!</h2>}
                     </Billboard>
-                    <Labels>Coming Soon:</Labels>
+                    <Labels>Coming Soon</Labels>
                     <ComingSoon>
                         {releaseList.length > 0 ? movieList.map(movie => <MovieCard props={movie} id={movie._id} />) : <h2>Error 404!</h2>}
                     </ComingSoon>
