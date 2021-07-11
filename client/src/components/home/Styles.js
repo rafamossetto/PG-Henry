@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 export const HomeCont = styled.div`
     position: absolute;
     margin-top: 0%;
-    top: 25%;
+    top: 30%;
     height: 75%;
     width: 100%;
     display: flex;
