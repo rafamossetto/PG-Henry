@@ -159,7 +159,7 @@ function AdminPage() {
                     .map((movie) => {
                       return (
                         <div className="movieCnt">
-                          <div className="checkMovie">
+                          <label className="checkMovie">
                             <input
                               type="radio"
                               id={movie._id}
@@ -168,7 +168,8 @@ function AdminPage() {
                               onChange={(e) => handleRadioChange(e)}
                             ></input>
                             <h4>{movie.title}</h4>
-                          </div>
+                          </label>
+
                           <div className="removeEdit">
                             <button
                               className="remove"
@@ -203,7 +204,7 @@ function AdminPage() {
                     .map((movie) => {
                       return (
                         <div className="movieCnt">
-                          <div className="checkMovie">
+                          <label className="checkMovie">
                             <input
                               type="radio"
                               id={movie._id}
@@ -212,7 +213,7 @@ function AdminPage() {
                               onChange={(e) => handleRadioChange(e)}
                             ></input>
                             <h4>{movie.title}</h4>
-                          </div>
+                          </label>
                           <div className="removeEdit">
                             <button
                               className="remove"

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import swal from "sweetalert";
-// import { useHistory } from "react-router-dom";
 import StyledContainer from "./LogInStyles";
 import { logIn } from "../../actions/users";
 import { useDispatch } from "react-redux";
