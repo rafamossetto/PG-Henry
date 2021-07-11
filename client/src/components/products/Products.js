@@ -11,14 +11,15 @@ import { getPurchaseLocalStorage } from '../../reducer/reducer'
 import Footer from '../footer/Footer';
 
 const Products = (props) => {
-    const purchaseStore = getPurchaseLocalStorage()
+    const { getProducts } = props;
+    const purchaseStore = getPurchaseLocalStorage();
     useEffect(() => {
-        props.getProducts()
-    }, [])
+        getProducts();
+    }, [getProducts])
 
     const handleBuy = (e) => {
         e.preventDefault()
-        props.getProducts()
+        getProducts()
         var mensaje;
         var opcion = window.confirm(`
         You are about to purchase: 
@@ -112,7 +113,7 @@ const Products = (props) => {
                 </BuyBox>
             </div>
         </Container> : <h1>There is nothing in your cart!</h1>}
-        <Footer marginTop='30px' />
+        <Footer marginTop='5px' />
         </div>
     )
 }
