@@ -5,6 +5,7 @@ import { StyledTitle, StyledBillboard, StyledAside } from './Billboard-styles';
 import { StyledFirstAside, StyledSecondAside, StyledAsidePublicity } from './Aside-styles';
 import BillboardCard from './BillboardCard';
 import { Link } from 'react-router-dom';
+import Footer from "../footer/Footer";
 
 export default function Billboard () {
     const dispatch = useDispatch();
@@ -31,6 +32,7 @@ export default function Billboard () {
                 <StyledAsidePublicity>Publicidad</StyledAsidePublicity>
             </StyledAside>
             {movieList.length > 0 ? movieList.map(movie => <BillboardCard props={movie} key={movie._id}/>) : <h2>Error 404!</h2>}
+            <Footer marginTop='6000px'/>
         </StyledBillboard>
     )
 }
