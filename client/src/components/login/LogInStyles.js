@@ -14,7 +14,7 @@ const form = styled.div`
     align-items: center;
     background-color: #2d4059;
     margin-top: .5em;
-    border: .1em solid #ea5455;
+    // border: .1em solid #ea5455;
     border-radius: .8em;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.7),
                 inset 2px 3px 5px rgba(0,0,0,0.3),
@@ -38,9 +38,17 @@ const form = styled.div`
         width: 135px;
         border: none;
         border-radius: 10px;
-        &:hover {
-          opacity: 0.5;
-          transition: 0.2s;
+        box-shadow:
+              inset 2px 3px 5px rgba(0, 0, 0, 0.3),
+              inset -2px -3px 5px rgba(0, 0, 0, 0.5);
+        // &:hover {
+        //   opacity: 0.5;
+        //   transition: 0.2s;
+        // }
+        &:focus {
+          box-shadow:
+              inset -2px -3px 5px rgba(0, 0, 0, 0.3),
+              inset 2px 3px 5px rgba(0, 0, 0, 0.5);
         }
       }
       .logIn {
