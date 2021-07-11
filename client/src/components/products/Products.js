@@ -48,30 +48,30 @@ const Products = (props) => {
                 </MovieDetails>
                 <div>
                     <RedText>Select your parking lot</RedText>
-                    {purchaseStore.parking ?
-                        <ParkingLot>
-                            <ParkingLine>
-                                {purchaseStore.parking.slice(20, 30).map(e => <Car key={e.slot} slot={e.slot} ocuppied={e.ocuppied} />)}
-                            </ParkingLine>
-                            <ParkingLine>
-                                {purchaseStore.parking.slice(10, 20).map(e => <Car key={e.slot} slot={e.slot} ocuppied={e.ocuppied} />)}
-                            </ParkingLine>
-                            <ParkingLine>
-                                {purchaseStore.parking.slice(0, 10).map(e => <Car key={e.slot} slot={e.slot} ocuppied={e.ocuppied} />)}
-                            </ParkingLine>
-                            <Screen><div>Screen</div></Screen>
-                            <Reference>
-                                <img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,h_40/v1625694896/redCar_bydkdo.png" alt='' />
-                                <div>Ocuppied</div>
-                                <img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,h_40/v1625694896/whiteCar_cafb44.png" alt='' />
-                                <div>Available</div>
-                                <img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,h_40/v1625694896/blueCar_anvl0c.png" alt='' />
-                                <div>Selected</div>
-                                &nbsp;&nbsp;{purchaseStore.slot !== '' ? <div>Parking Lot:&nbsp;{purchaseStore.slot}</div> : null}
-                            </Reference>
-                        </ParkingLot>
-                        :
-                        <h1>ParkingLot</h1>
+                    {purchaseStore.parking ? 
+                    <ParkingLot className="parkingLot">  
+                    <ParkingLine> 
+                            {purchaseStore.parking.slice(20,30).map(e => <Car key={e.slot} slot={e.slot} ocuppied={e.ocuppied}/>)}
+                        </ParkingLine>
+                        <ParkingLine> 
+                            {purchaseStore.parking.slice(10,20).map(e => <Car key={e.slot} slot={e.slot} ocuppied={e.ocuppied}/>)}
+                        </ParkingLine>                         
+                        <ParkingLine>                 
+                            {purchaseStore.parking.slice(0,10).map(e => <Car key={e.slot} slot={e.slot} ocuppied={e.ocuppied}/>)}
+                        </ParkingLine> 
+                        <Screen><div>Screen</div></Screen>
+                        <Reference>                            
+                            <img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,h_40/v1625694896/redCar_bydkdo.png" alt=''/>
+                            <div>Ocuppied</div>
+                            <img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,h_40/v1625694896/whiteCar_cafb44.png" alt=''/>
+                            <div>Available</div>
+                            <img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,h_40/v1625694896/blueCar_anvl0c.png" alt=''/>
+                            <div>Selected</div>
+                            &nbsp;&nbsp;{purchaseStore.slot !== '' ? <div>Parking Lot:&nbsp;{purchaseStore.slot}</div> :null}
+                        </Reference>
+                    </ParkingLot> 
+                    :
+                    <h1>ParkingLot</h1>
                     }
                 </div>
             </MovieData>
