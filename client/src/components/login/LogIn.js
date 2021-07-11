@@ -83,7 +83,6 @@ function LogIn() {
         />
         <img
           className="google"
-          alt=""
           src="https://res.cloudinary.com/juancereceda/image/upload/v1625856246/Screen_Shot_2021-07-09_at_15.43.47_jwdloi.png"
           alt="Not found img"
         />

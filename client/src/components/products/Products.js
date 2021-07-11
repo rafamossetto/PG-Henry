@@ -3,9 +3,12 @@ import { connect } from "react-redux";
 import { getProducts } from '../../actions/products'
 import Product from './Product'
 import Car from './Car'
-import {ProductsBox, Container, MovieData, MovieDetails, ParkingLot, RedText,
-BuyBox, BuyButton, Total, ParkingLine, StoredProducts, Screen, Reference} from './ProductsStyles'
-import {getPurchaseLocalStorage} from '../../reducer/reducer'
+import {
+    ProductsBox, Container, MovieData, MovieDetails, ParkingLot, RedText,
+    BuyBox, BuyButton, Total, ParkingLine, StoredProducts, Screen, Reference
+} from './ProductsStyles'
+import { getPurchaseLocalStorage } from '../../reducer/reducer'
+import Footer from '../footer/Footer';
 
 const Products = (props) => {
     const purchaseStore = getPurchaseLocalStorage()
@@ -13,7 +16,7 @@ const Products = (props) => {
         props.getProducts()
     }, [])
 
-    const handleBuy =(e) => {
+    const handleBuy = (e) => {
         e.preventDefault()
         props.getProducts()
         var mensaje;
@@ -25,49 +28,49 @@ const Products = (props) => {
         `);
         if (opcion === true) {
             mensaje = "Purchase confirmed";
-	    } else {
-	        mensaje = "Purchase canceled";
-	    }
-	    document.getElementById("purchase").innerHTML = mensaje;
+        } else {
+            mensaje = "Purchase canceled";
+        }
+        document.getElementById("purchase").innerHTML = mensaje;
     }
-    
-    return(
+
+    return (
         <Container>
 
-            <MovieData> 
+            <MovieData>
                 <MovieDetails>
                     <h3>{purchaseStore.title || 'Title'}</h3>
-{/*                     <p>field</p> */}
+                    {/*                     <p>field</p> */}
                     <p>Schedule: {purchaseStore.day.concat(', ').concat(purchaseStore.time) || 'Day and time'}</p>
 
                     <p>Price:${purchaseStore.price || 'Price'}</p>
                 </MovieDetails>
                 <div>
                     <RedText>Select your parking lot</RedText>
-                    {purchaseStore.parking ? 
-                    <ParkingLot>  
-                    <ParkingLine> 
-                            {purchaseStore.parking.slice(20,30).map(e => <Car key={e.slot} slot={e.slot} ocuppied={e.ocuppied}/>)}
-                        </ParkingLine>
-                        <ParkingLine> 
-                            {purchaseStore.parking.slice(10,20).map(e => <Car key={e.slot} slot={e.slot} ocuppied={e.ocuppied}/>)}
-                        </ParkingLine>                         
-                        <ParkingLine>                 
-                            {purchaseStore.parking.slice(0,10).map(e => <Car key={e.slot} slot={e.slot} ocuppied={e.ocuppied}/>)}
-                        </ParkingLine> 
-                        <Screen><div>Screen</div></Screen>
-                        <Reference>                            
-                            <img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,h_40/v1625694896/redCar_bydkdo.png" alt=''/>
-                            <div>Ocuppied</div>
-                            <img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,h_40/v1625694896/whiteCar_cafb44.png" alt=''/>
-                            <div>Available</div>
-                            <img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,h_40/v1625694896/blueCar_anvl0c.png" alt=''/>
-                            <div>Selected</div>
-                            &nbsp;&nbsp;{purchaseStore.slot !== '' ? <div>Parking Lot:&nbsp;{purchaseStore.slot}</div> :null}
-                        </Reference>
-                    </ParkingLot> 
-                    :
-                    <h1>ParkingLot</h1>
+                    {purchaseStore.parking ?
+                        <ParkingLot>
+                            <ParkingLine>
+                                {purchaseStore.parking.slice(20, 30).map(e => <Car key={e.slot} slot={e.slot} ocuppied={e.ocuppied} />)}
+                            </ParkingLine>
+                            <ParkingLine>
+                                {purchaseStore.parking.slice(10, 20).map(e => <Car key={e.slot} slot={e.slot} ocuppied={e.ocuppied} />)}
+                            </ParkingLine>
+                            <ParkingLine>
+                                {purchaseStore.parking.slice(0, 10).map(e => <Car key={e.slot} slot={e.slot} ocuppied={e.ocuppied} />)}
+                            </ParkingLine>
+                            <Screen><div>Screen</div></Screen>
+                            <Reference>
+                                <img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,h_40/v1625694896/redCar_bydkdo.png" alt='' />
+                                <div>Ocuppied</div>
+                                <img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,h_40/v1625694896/whiteCar_cafb44.png" alt='' />
+                                <div>Available</div>
+                                <img src="https://res.cloudinary.com/djunuon2e/image/upload/c_scale,h_40/v1625694896/blueCar_anvl0c.png" alt='' />
+                                <div>Selected</div>
+                                &nbsp;&nbsp;{purchaseStore.slot !== '' ? <div>Parking Lot:&nbsp;{purchaseStore.slot}</div> : null}
+                            </Reference>
+                        </ParkingLot>
+                        :
+                        <h1>ParkingLot</h1>
                     }
                 </div>
             </MovieData>
@@ -77,10 +80,10 @@ const Products = (props) => {
                     <RedText>Extras</RedText>
                 </div>
                 <ProductsBox>
-                    {props.products && props.products.filter(e => e.combo === false).map(e => 
-                    <Product key={e.name} name={e.name} price={e.price} imgUrl={e.imgUrl}/>
+                    {props.products && props.products.filter(e => e.combo === false).map(e =>
+                        <Product key={e.name} name={e.name} price={e.price} imgUrl={e.imgUrl} />
                     )}
-                </ProductsBox>                
+                </ProductsBox>
             </div>
 
             <div>
@@ -88,25 +91,26 @@ const Products = (props) => {
                     <RedText>Combos</RedText>
                 </div>
                 <div>
-                <ProductsBox>
-                    {props.products && props.products.filter(e => e.combo === true).map(e => 
-                    <Product key={e.name} name={e.name} price={e.price} imgUrl={e.imgUrl}/>
-                    )}
-                </ProductsBox>                    
-                </div>                
+                    <ProductsBox>
+                        {props.products && props.products.filter(e => e.combo === true).map(e =>
+                            <Product key={e.name} name={e.name} price={e.price} imgUrl={e.imgUrl} />
+                        )}
+                    </ProductsBox>
+                </div>
             </div>
-            
+
             <div>
                 <RedText>* You can choose sweet or salty popcorn once you get there!</RedText>
                 <p id="purchase"></p>
-                <BuyBox>                    
+                <BuyBox>
                     {purchaseStore.extras && Object.keys(purchaseStore.extras).length > 0 && <StoredProducts>Extras:</StoredProducts>}
-                    {purchaseStore.extras && Object.keys(purchaseStore.extras).map(e =><StoredProducts>{e}&nbsp;x&nbsp;{purchaseStore.extras[e]}&nbsp;-</StoredProducts>)}
-                    
+                    {purchaseStore.extras && Object.keys(purchaseStore.extras).map(e => <StoredProducts>{e}&nbsp;x&nbsp;{purchaseStore.extras[e]}&nbsp;-</StoredProducts>)}
+
                     <Total>Total: ${purchaseStore.total}</Total>
                     <BuyButton onClick={event => handleBuy(event)}>Buy</BuyButton>
                 </BuyBox>
             </div>
+            <Footer marginTop='30px' />
         </Container>
     )
 }
@@ -115,15 +119,15 @@ function mapStateToProps(state) {
     return {
         products: state.products,
     };
-  }
-  
+}
+
 function mapDispatchToProps(dispatch) {
     return {
         getProducts: () => dispatch(getProducts()),
     };
 }
 
-  export default connect(
+export default connect(
     mapStateToProps,
     mapDispatchToProps
-  )(Products);
+)(Products);
