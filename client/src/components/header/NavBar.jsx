@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getTokenLocalStorage } from "../../reducer/reducer";
 import { NavBarAlpha, SignButton, Cart, Linked } from './Styles';
-import SignForm from './SignForm';
 import { isAdmin, logOut} from '../../actions/users';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -65,14 +64,14 @@ async function handleLogOut() {
                 admin ? 
                 <div className='accountLogout'>
                     <Linked to='/administration'>Admin</Linked> 
-                     <img className='logout' src='https://res.cloudinary.com/juancereceda/image/upload/v1625936866/logout_nt6exa.png'onClick={() => handleLogOut()}/>
+                     <img className='logout' alt="" src='https://res.cloudinary.com/juancereceda/image/upload/v1625936866/logout_nt6exa.png'onClick={() => handleLogOut()}/>
                 </div>
                 
                 : token && admin === false
                 ? 
                 <div className='accountLogout'>
                     <Linked to='/profile'>Account</Linked>
-                    <img className='logout' src='https://res.cloudinary.com/juancereceda/image/upload/v1625936866/logout_nt6exa.png'onClick={() => handleLogOut()}/>
+                    <img className='logout' alt="" src='https://res.cloudinary.com/juancereceda/image/upload/v1625936866/logout_nt6exa.png'onClick={() => handleLogOut()}/>
                 </div> 
                 : <Linked><SignButton onClick={() => history.push('/login')}>Sign In / Sign Up</SignButton></Linked>
           }

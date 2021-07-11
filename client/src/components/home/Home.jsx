@@ -3,6 +3,7 @@ import { HomeCont, ContMovies, Movies, Billboard, ComingSoon, Stores, Labels, Me
 import MovieCard from './MovieCard';
 import { useSelector, useDispatch } from 'react-redux';
 import { getMovieList } from "../../actions/movies";
+import Footer from '../footer/Footer'
 
 export default function Home() {
     const dispatch = useDispatch();
@@ -17,11 +18,11 @@ export default function Home() {
         <HomeCont>
             <ContMovies>
                 <Movies>
-                    <Labels>Billboard:</Labels>
+                    <Labels>Billboard</Labels>
                     <Billboard>
                         {movieList.length > 0 ? movieList.map(movie => <MovieCard props={movie} id={movie._id} />) : <h2>Error 404!</h2>}
                     </Billboard>
-                    <Labels>Coming Soon:</Labels>
+                    <Labels>Coming Soon</Labels>
                     <ComingSoon>
                         {releaseList.length > 0 ? movieList.map(movie => <MovieCard props={movie} id={movie._id} />) : <h2>Error 404!</h2>}
                     </ComingSoon>
@@ -34,7 +35,7 @@ export default function Home() {
                     </PubliCard>
                 </Stores>
             </ContMovies>
-            <div className="Footer"></div>
+            <Footer marginTop='85%'/>  
         </HomeCont>
     )
 }

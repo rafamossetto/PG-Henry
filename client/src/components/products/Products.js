@@ -3,9 +3,12 @@ import { connect } from "react-redux";
 import { getProducts } from '../../actions/products'
 import Product from './Product'
 import Car from './Car'
-import {ProductsBox, Container, MovieData, MovieDetails, ParkingLot, RedText,
-BuyBox, BuyButton, Total, ParkingLine, StoredProducts, Screen, Reference} from './ProductsStyles'
-import {getPurchaseLocalStorage} from '../../reducer/reducer'
+import {
+    ProductsBox, Container, MovieData, MovieDetails, ParkingLot, RedText,
+    BuyBox, BuyButton, Total, ParkingLine, StoredProducts, Screen, Reference
+} from './ProductsStyles'
+import { getPurchaseLocalStorage } from '../../reducer/reducer'
+import Footer from '../footer/Footer';
 
 const Products = (props) => {
     const purchaseStore = getPurchaseLocalStorage()
@@ -13,7 +16,7 @@ const Products = (props) => {
         props.getProducts()
     }, [])
 
-    const handleBuy =(e) => {
+    const handleBuy = (e) => {
         e.preventDefault()
         props.getProducts()
         var mensaje;
@@ -25,20 +28,20 @@ const Products = (props) => {
         `);
         if (opcion === true) {
             mensaje = "Purchase confirmed";
-	    } else {
-	        mensaje = "Purchase canceled";
-	    }
-	    document.getElementById("purchase").innerHTML = mensaje;
+        } else {
+            mensaje = "Purchase canceled";
+        }
+        document.getElementById("purchase").innerHTML = mensaje;
     }
     
-    return(
+    return (
         <div>
         {purchaseStore ? <Container>
 
-            <MovieData> 
+            <MovieData>
                 <MovieDetails>
                     <h3>{purchaseStore.title || 'Title'}</h3>
-{/*                     <p>field</p> */}
+                    {/*                     <p>field</p> */}
                     <p>Schedule: {purchaseStore.day.concat(', ').concat(purchaseStore.time) || 'Day and time'}</p>
 
                     <p>Price:${purchaseStore.price || 'Price'}</p>
@@ -78,10 +81,10 @@ const Products = (props) => {
                     <RedText>Extras</RedText>
                 </div>
                 <ProductsBox>
-                    {props.products && props.products.filter(e => e.combo === false).map(e => 
-                    <Product key={e.name} name={e.name} price={e.price} imgUrl={e.imgUrl}/>
+                    {props.products && props.products.filter(e => e.combo === false).map(e =>
+                        <Product key={e.name} name={e.name} price={e.price} imgUrl={e.imgUrl} />
                     )}
-                </ProductsBox>                
+                </ProductsBox>
             </div>
 
             <div>
@@ -89,26 +92,27 @@ const Products = (props) => {
                     <RedText>Combos</RedText>
                 </div>
                 <div>
-                <ProductsBox>
-                    {props.products && props.products.filter(e => e.combo === true).map(e => 
-                    <Product key={e.name} name={e.name} price={e.price} imgUrl={e.imgUrl}/>
-                    )}
-                </ProductsBox>                    
-                </div>                
+                    <ProductsBox>
+                        {props.products && props.products.filter(e => e.combo === true).map(e =>
+                            <Product key={e.name} name={e.name} price={e.price} imgUrl={e.imgUrl} />
+                        )}
+                    </ProductsBox>
+                </div>
             </div>
-            
+
             <div>
                 <RedText>* You can choose sweet or salty popcorn once you get there!</RedText>
                 <p id="purchase"></p>
-                <BuyBox>                    
+                <BuyBox>
                     {purchaseStore.extras && Object.keys(purchaseStore.extras).length > 0 && <StoredProducts>Extras:</StoredProducts>}
-                    {purchaseStore.extras && Object.keys(purchaseStore.extras).map(e =><StoredProducts>{e}&nbsp;x&nbsp;{purchaseStore.extras[e]}&nbsp;-</StoredProducts>)}
-                    
+                    {purchaseStore.extras && Object.keys(purchaseStore.extras).map(e => <StoredProducts>{e}&nbsp;x&nbsp;{purchaseStore.extras[e]}&nbsp;-</StoredProducts>)}
+
                     <Total>Total: ${purchaseStore.total}</Total>
                     <BuyButton onClick={event => handleBuy(event)}>Buy</BuyButton>
                 </BuyBox>
             </div>
         </Container> : <h1>There is nothing in your cart!</h1>}
+        <Footer marginTop='30px' />
         </div>
     )
 }
@@ -117,15 +121,15 @@ function mapStateToProps(state) {
     return {
         products: state.products,
     };
-  }
-  
+}
+
 function mapDispatchToProps(dispatch) {
     return {
         getProducts: () => dispatch(getProducts()),
     };
 }
 
-  export default connect(
+export default connect(
     mapStateToProps,
     mapDispatchToProps
-  )(Products);
+)(Products);
