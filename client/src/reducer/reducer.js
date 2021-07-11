@@ -24,7 +24,7 @@ const initialState = {
     total:0
   }, */
   slot:'',
-  purchase: getPurchaseLocalStorage() ? getPurchaseLocalStorage() : {},
+  purchase: getPurchaseLocalStorage() ? getPurchaseLocalStorage() : null,
   movieDetail: {},
   users: [],
   movieList: [],
