@@ -4,13 +4,13 @@ const AdminContainer = styled.div`
   font-family: Questrial;
   display: flex;
   justify-content: center;
-  padding-top: 5%;
 
   .errorCnt {
     display: flex;
     flex-direction: column;
     align-items: center;
     color: #e8e8e8;
+    margin-top: 5%;
     .sadFace {
       width: 150px;
     }
@@ -47,6 +47,7 @@ const AdminContainer = styled.div`
   .swapButton {
     height: 75px;
     width: 75px;
+    cursor: pointer;
     &:hover {
       opacity: 0.5;
       transition: 0.2s;
@@ -79,6 +80,7 @@ const AdminContainer = styled.div`
         align-items: center;
         justify-content: center;
         border: none;
+        cursor: pointer;
         &:hover {
           opacity: 0.5;
           transition: 0.2s;
@@ -88,6 +90,7 @@ const AdminContainer = styled.div`
         height: 18px;
         width: 18px;
         margin-left: 5px;
+        cursor: pointer;
         &:hover {
           opacity: 0.5;
           transition: 0.2s;
@@ -147,6 +150,7 @@ const AdminContainer = styled.div`
     font-size: 18px;
     border-radius: 12px;
     border: none;
+    cursor: pointer;
     &:hover {
       background-color: #d93c3c;
       transition: 0.3s;

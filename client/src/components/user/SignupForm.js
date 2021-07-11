@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { StyledForm, StyledInput, StyledButton } from "./SignupFormStyle.js";
 import { signUp } from "../../actions/users";
+import swal from "sweetalert";
 
 export default function SignupForm() {
   const dispatch = useDispatch();
@@ -15,8 +16,6 @@ export default function SignupForm() {
     email: undefined,
     password: undefined,
     passMatch: false,
-    isAdmin: false,
-    bookings: [],
   });
 
   // const selector = useSelector(state => state)
@@ -50,12 +49,24 @@ export default function SignupForm() {
       const response = await dispatch(
         signUp(info.username, info.email, info.password)
       );
-      alert(response);
+
       if (response === "Account created") {
-        history.push("/");
+        await swal(response, "Success", "success", {
+          buttons: false,
+          timer: 2000,
+        });
+        window.location.assign("http://localhost:3000/");
+      } else {
+        swal(response, "Error", "error", {
+          buttons: false,
+          timer: 3000,
+        });
       }
     } else {
-      return alert("Passwords does'nt match");
+      return swal("Passwords dont match", "Error", "error", {
+        buttons: false,
+        timer: 3000,
+      });
     }
   }
 
