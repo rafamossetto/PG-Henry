@@ -35,7 +35,7 @@ export default function Home() {
                     </PubliCard>
                 </Stores>
             </ContMovies>
-            <Footer marginTop='85%'/>  
+            <Footer marginTop='65%'/>  
         </HomeCont>
     )
 }

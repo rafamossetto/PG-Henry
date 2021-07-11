@@ -26,6 +26,7 @@ export const Head = styled.div`
   background-color: #f05454;
   width: 98%;
   height: 67.5%;
+  margin-top: 0.3em;
   margin-bottom: 0.3em;
   display: flex;
   flex-direction: row;
@@ -44,12 +45,10 @@ export const HeadInsider = styled.div`
 `;
 
 export const HeaderIcon = styled(Camera)`
-  height: 3em;
-  width: 3em;
   padding: 1em;
   background-color: #222831;
   border-radius: 50%;
-  margin: 0.8em 0.8em 0.8em 0.5em;
+  margin: 0.8em 0.8em 0.8em 2em;
   color: #e8e8e8;
 `;
 
@@ -111,6 +110,9 @@ export const SignButton = styled.button`
   background-color: #f05454;
   color: #e8e8e8;
   border: none;
+  box-shadow:
+                inset 2px 3px 5px rgba(0,0,0,0.3),
+                inset -2px -3px 5px rgba(0,0,0,0.5);
 `;
 
 export const Cart = styled(ShoppingCart)`

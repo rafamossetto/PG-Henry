@@ -69,7 +69,7 @@ export const SubH2 = styled.h2`
 `;
 
 export const Title = styled.h1`
-  margin-top: 200px;
+  margin-top: 0px;
   padding-left: 0.2rem;
   padding-bottom: 0rem;
   font-size: 25px;
@@ -95,7 +95,7 @@ export const H4 = styled.h4`
 `;
 
 export const Label = styled.label`
-  padding:20px
+  padding:20px;
 `;
 
 export const ArrowDown = styled(Arrow)`

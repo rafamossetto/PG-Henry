@@ -57,5 +57,9 @@ export const StyledCard = styled.div`
     margin-bottom: 1%;
     background-color: #30475E88;
     box-sizing: border-box;
-    border: 3px solid #000000;
+    // border: 3px solid #30475E;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.7),
+                inset 2px 3px 5px rgba(0,0,0,0.3),
+                inset -2px -3px 5px rgba(0,0,0,0.5);
 `;
