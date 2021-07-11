@@ -11,13 +11,15 @@ export const Container = styled.div`
 export const MovieData = styled.div`
     display:flex;
     flex-direction: row;
-    justify-content:flex-start;
+    .parkingLot{
+        margin-right:2%
+    }
 `;
 export const MovieDetails = styled.div`
     position:static;
     font-size: 24px;
     margin-left:10%;
-    min-width: 40%;
+    margin-right: 10%;
     color:rgba(255, 255, 255, 1);
     font-family: Questrial;
     display:flex;

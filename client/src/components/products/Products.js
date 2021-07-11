@@ -46,7 +46,7 @@ const Products = (props) => {
                 <div>
                     <RedText>Select your parking lot</RedText>
                     {purchaseStore.parking ? 
-                    <ParkingLot>  
+                    <ParkingLot className="parkingLot">  
                     <ParkingLine> 
                             {purchaseStore.parking.slice(20,30).map(e => <Car key={e.slot} slot={e.slot} ocuppied={e.ocuppied}/>)}
                         </ParkingLine>
