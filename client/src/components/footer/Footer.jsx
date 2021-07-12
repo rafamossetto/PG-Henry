@@ -21,6 +21,7 @@ function Footer({ marginTop }) {
     const StyledDiv = styled.div`
     margin-top: ${marginTop};
     position: absolute;
+    width:100%;
     .footer {
     display: flex;
     flex-flow: row wrap;

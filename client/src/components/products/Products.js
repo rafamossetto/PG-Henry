@@ -24,7 +24,7 @@ const Products = (props) => {
         var opcion = window.confirm(`
         You are about to purchase: 
         ${Object.keys(purchaseStore.extras).map(e => e.concat(' x').concat(purchaseStore.extras[e]))},
-        Ticket for Movie Title on the ${purchaseStore.slot} parking lot, 
+        Ticket for ${purchaseStore.title} on the ${purchaseStore.slot} parking lot, 
         for a total of $${purchaseStore.total}.
         `);
         if (opcion === true) {

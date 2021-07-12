@@ -24,8 +24,8 @@ export const StyledBillboard = styled.div`
 `;
 
 export const StyledAside = styled.aside`
-    position: fixed;
-    top: 28%;
+    position: absolute;
+    top: 1%;
     right: 1%;
     height: 73%;
     width: 18%;
