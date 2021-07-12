@@ -48,7 +48,7 @@ export default function Billboard() {
       ) : (
         <h2>Error 404!</h2>
       )}
-      <Footer marginTop="6000px" />
+      <Footer marginTop="120%" />
     </StyledBillboard>
   );
 }
