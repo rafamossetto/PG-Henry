@@ -4,9 +4,8 @@
   "description": "e-commerce Henry Bootcamp",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node src/index.js",
-    "build": "babel src --out-dir build",
-    "dev": "nodemon src/index.js --exec babel-node"
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
   },
   "keywords": [],
   "author": "juancereceda",
