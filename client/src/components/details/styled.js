@@ -77,7 +77,7 @@ export const Title = styled.h1`
 `;
 
 export const Trailer = styled.div`
-   margin: 245px 1px 18px -110px;
+   margin: 80px 1px 18px -210px;
 `;
 
 export const Rated = styled.div`
@@ -106,13 +106,13 @@ export const Show = styled.div`
    width: 60%;
    display:grid;
    grid-template-columns:30% 30% 30%;
-   margin: 1px;
-   padding-left: 200px;
+   margin-left: 170px;
+   padding-left: 20px;
    `;
 
 export const Inp = styled.input`
     background-color: #E8E8E8;
-    margin-inline: inherit;
+    
     box-sizing: border-box;
     border-radius: 8px;
     &:focus{
