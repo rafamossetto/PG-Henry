@@ -20,11 +20,11 @@ export default function Home() {
                 <Movies>
                     <Labels>Billboard</Labels>
                     <Billboard>
-                        {movieList.length > 0 ? movieList.map(movie => <MovieCard props={movie} id={movie._id} />) : <h2>Error 404!</h2>}
+                        {movieList.length > 0 ? movieList.filter(movie => movie.onBillboard).map(movie => <MovieCard props={movie} id={movie._id} />) : <h2>Error 404!</h2>}
                     </Billboard>
                     <Labels>Coming Soon</Labels>
                     <ComingSoon>
-                        {releaseList.length > 0 ? movieList.map(movie => <MovieCard props={movie} id={movie._id} />) : <h2>Error 404!</h2>}
+                        {releaseList.length > 0 ? movieList.filter(movie => !movie.onBillboard).map(movie => <MovieCard props={movie} id={movie._id} />) : <h2>Error 404!</h2>}
                     </ComingSoon>
                 </Movies>
                 <Stores>
