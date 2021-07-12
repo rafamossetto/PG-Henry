@@ -10,16 +10,18 @@ const MoviesColors = {
 export const StyledForm = styled.form`
     background-color: ${MoviesColors.grey};
     color: ${MoviesColors.black};
+    position: absolute;
     padding: .5% 2%;
-    top: 29%;
+    top: 25%;
+    margin-top: 3%;
     left: 50%;
     transform: translateX(-50%);
-    position: absolute;
     display: grid;
     width: 35%;
     grid-template-columns: 25% 5% 70%;
     grid-template-rows: repeat(4, 1fr);
-    border: 1px solid ${MoviesColors.white};
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.7),
+    inset 2px 3px 5px rgba(0, 0, 0, 0.3), inset -2px -3px 5px rgba(0, 0, 0, 0.5);
     border-radius: 1rem;
     box-sizing: border-box;
 `;
@@ -35,7 +37,7 @@ export const StyledInput = styled.input`
 export const StyledButton = styled.input`
     font-size: 150%;
     &.up{
-        height: 7rem;
+        height: 5rem;
         grid-column-start: 1;
         grid-column-end: 4;
         margin: 15px 0;
@@ -51,6 +53,7 @@ export const StyledButton = styled.input`
         grid-column-end: 2;
         margin: 5px 0;
         background-color: ${MoviesColors.red};
+        color: ${MoviesColors.white};
     }
     &.right{
         height: 5rem;

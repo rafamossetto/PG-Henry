@@ -61,11 +61,23 @@ const form = styled.div`
       }
     }
     .google {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-items: center;
       height: 55px;
       width: 300px;
-      &:hover {
-        opacity: 0.5;
-        transition: 0.2s;
+      border: none;
+      font-family: Questrial;
+      font-size: 20px;
+      border-radius: 10px;
+      box-shadow:
+              inset 2px 3px 5px rgba(0, 0, 0, 0.3),
+              inset -2px -3px 5px rgba(0, 0, 0, 0.5);
+      &:focus {
+        box-shadow:
+            inset -2px -3px 5px rgba(0, 0, 0, 0.3),
+            inset 2px 3px 5px rgba(0, 0, 0, 0.5);
       }
     }
   }
