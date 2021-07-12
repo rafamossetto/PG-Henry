@@ -97,7 +97,7 @@ export default function SignupForm() {
         type="password"
         onChange={PasswordCorroboration}
         id="password-confirm"
-        placeholder="Confirm password"
+        placeholder="Confirm Password"
         required
       />
       <StyledButton type="button" value="" className="up" />
