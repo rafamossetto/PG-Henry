@@ -83,8 +83,6 @@ function LogIn() {
         />
         <button
           className="google"
-          src="https://res.cloudinary.com/juancereceda/image/upload/v1625856246/Screen_Shot_2021-07-09_at_15.43.47_jwdloi.png"
-          alt="Not found img"
         ><FcGoogle size="35"/>Login with Google</button>
         <div className="btnContainer">
           <button type="submit" className="logIn">

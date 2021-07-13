@@ -5,7 +5,9 @@ const div = styled.div`
   color: #e8e8e8;
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   padding-top: 5%;
 
   .errorCnt {
