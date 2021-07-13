@@ -16,6 +16,7 @@ const UserSchema = new Schema(
     },
     isAdmin: Boolean,
     bookings: Array,
+    banned: Boolean,
   },
   {
     timestamps: true,

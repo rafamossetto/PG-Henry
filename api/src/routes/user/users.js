@@ -17,10 +17,12 @@ const authentication = require("../../middlewares/authentication");
 router.post("/signup", [verifySignup.checkEmail], UserCtrl.signUp);
 router.post("/login", [verifyLogin.checkUser], UserCtrl.logIn);
 router.get("/verifyadmin", [authentication.verifyToken], UserCtrl.verifyAdmin);
-router.get(
-  "/",
+router.get("/",
   [authentication.verifyToken, authentication.isAdmin],
   UserCtrl.getUsers
 );
+router.put("/:id", 
+  [authentication.verifyToken, authentication.isAdmin], 
+  UserCtrl.putUser);
 
 module.exports = router;

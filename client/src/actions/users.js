@@ -71,3 +71,14 @@ export async function isAdmin() {
   );
   return result.data.isAdmin;
 }
+
+export function updateUser(user, id) {
+  return(dispatch) =>
+  axios.put(`http://localhost:3001/users/${id}`, user, config)
+  .then((res) => {
+    dispatch({type: UPDATE_USER, payload: res.data});
+  });
+}
+
+    
+    
