@@ -12,8 +12,8 @@ const Users = () => {
     flex-direction: column;
     
     h4 {
-    font-weight: 600;
-    font-size: 1.5em;
+        font-weight: 600;
+        font-size: 1.5em;
     }
 
     .userDiv {
@@ -21,6 +21,7 @@ const Users = () => {
         justify-content: space-between;
         width: 50%;
         align-items: center;
+        color: #ffffff;        
     }
     .userButton {
         border-radius: 15%;
@@ -36,11 +37,11 @@ const Users = () => {
                 <StyledDiv>
                     <h1>Users registrates</h1>
                     {users &&
-                        users.map((user) => {
+                        users.map(user => {
                             return <div className='userDiv'>
-                                    <h4>{user.username} 💨</h4>
-                                    <button className='userButton'>{user.isAdmin ? 'ChangeToUser' : 'ChangeToAdmin'}</button>
-                                    </div>
+                                <h4>{user.username} 💨</h4>
+                                <button className='userButton'>{user.isAdmin ? 'ChangeToUser' : 'ChangeToAdmin'}</button>
+                            </div>
                         })}
                 </StyledDiv>
             :
