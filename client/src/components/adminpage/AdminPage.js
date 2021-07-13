@@ -17,7 +17,7 @@ function AdminPage() {
     poster: "",
     description: "",
     genre: "",
-    shows: "",
+    shows: [],
     cast: "",
     trailer: "",
     rated: "",
@@ -96,14 +96,11 @@ function AdminPage() {
       alert("Hey! Don't forget the rated");
       return;
     }
-    // if(!obj.show) {
-    //   alert("Hey! Don't forget the show")
-    //   return
-    // }
     if (!obj.description) {
       alert("Hey! Don't forget the description.");
       return;
     }
+
     dispatch(postMovie(movie));
     alert("Movie update successfully!");
     setMovie({
@@ -112,7 +109,7 @@ function AdminPage() {
       poster: "",
       description: "",
       genre: "",
-      shows: "",
+      shows: [],
       cast: "",
       trailer: "",
       rated: "",
@@ -234,10 +231,14 @@ function AdminPage() {
               </div>
             </div>
           </div>
+
           <div className="boxContainer">
             <div className="userBox">
               <Link to='/users' className='link'>Users Administration</Link>
             </div>
+          </div>
+
+          <div className="boxContainer">
             <form
               className="postMovieForm"
               onChange={(e) => ChangeInput(e)}
@@ -334,17 +335,6 @@ function AdminPage() {
                   />
                 </div>
                 <div>
-                  <h4>Shows</h4>
-                  <input
-                    placeholder="Shows"
-                    type="text"
-                    name="show"
-                    value={movie.show}
-                  />
-                </div>
-              </div>
-              <div className="formInputContainer">
-                <div>
                   <h4>Description</h4>
                   <input
                     placeholder="Description"
@@ -353,6 +343,8 @@ function AdminPage() {
                     value={movie.description}
                   />
                 </div>
+              </div>
+              <div className="formInputContainer">
                 <button className="postMovieButton" type="submit">
                   Post movie
                 </button>

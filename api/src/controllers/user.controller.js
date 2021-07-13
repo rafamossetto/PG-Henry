@@ -10,6 +10,7 @@ const signUp = async (req, res) => {
       password: await User.hashPassword(password),
       isAdmin: false,
       bookings: [],
+      banned: false,
     });
     let userSaved = await newUser.save();
     const token = await jwt.sign({ id: userSaved._id }, "group8", {
@@ -60,9 +61,29 @@ const verifyAdmin = async (req, res) => {
   }
 };
 
+const putUser = async (req, res) => {
+  try {
+    const { username, email, password } = req.body;
+    let newUser = {
+      username,
+      email,
+      password: await User.hashPassword(password),
+      isAdmin: false,
+      bookings: [],
+      banned: false,
+    };
+    await User.findByIdAndUpdate(req.params.id, newUser);
+    //console.log(newUser);
+    res.json({status: 'User Updated'})
+  } catch (error) {
+    res.status(400).send(error)
+  }
+};
+
 module.exports = {
   signUp,
   logIn,
   getUsers,
   verifyAdmin,
+  putUser,
 };
