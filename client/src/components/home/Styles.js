@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export const HomeCont = styled.div`
   position: absolute;
   top: 30%;
-  height: 75%;
+  height: auto;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -20,12 +20,12 @@ export const ContMovies = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
 `;
 
 export const Movies = styled.div`
   margin: 1.25%;
-  // height: auto;
+  height: auto;
   width: 85%;
   display: flex;
   flex-direction: column;
@@ -70,7 +70,7 @@ export const Labels = styled.label`
 export const Stores = styled.div`
   margin: 1.25%;
   background-color: #30475e;
-  height: fill-available;
+  height: 500px;
   width: 15%;
   border-radius: 10px;
   display: flex;
