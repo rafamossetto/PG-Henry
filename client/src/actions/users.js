@@ -5,6 +5,7 @@ export const GET_LOCATION = "GET_LOCATION";
 export const SIGNUP = "SIGNUP";
 export const LOGIN = "LOGIN";
 export const LOG_OUT = "LOG_OUT";
+export const UPDATE_USER = "UPDATE_USER";
 
 const config = {
   headers: {
