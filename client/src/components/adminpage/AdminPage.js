@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { getMovieList, postMovie, updateMovie } from "../../actions/movies";
 import { getUsers, isAdmin } from "../../actions/users";
 import AdminContainer from "./AdminStyles";
@@ -7,8 +8,7 @@ import AdminContainer from "./AdminStyles";
 function AdminPage() {
   const dispatch = useDispatch();
   const [admin, setAdmin] = useState(null);
-  const movies = useSelector((state) => state.movieList);
-  const users = useSelector((state) => state.users);
+  const movies = useSelector((state) => state.movieList);  
   const [movieToSwap, setMovieToSwap] = useState(null);
 
   const [movie, setMovie] = useState({
@@ -117,9 +117,9 @@ function AdminPage() {
       director: "",
     });
   };
-  useEffect(() => {
-    dispatch(getMovieList());
-  }, [movies, dispatch]);
+  // useEffect(() => {
+  //   dispatch(getMovieList());
+  // }, [movies, dispatch]);
 
   function handleRadioChange(e) {
     let radio = document.getElementById(e.target.id);
@@ -232,27 +232,9 @@ function AdminPage() {
             </div>
           </div>
 
-          <div className="userBox">
-            <h2 className="boxTitle">Users</h2>
-            <div className="userList">
-              {users &&
-                users.map((user) => {
-                  return (
-                    <div className="movieCnt">
-                    <label className="checkMovie">
-                      <h4>{user.username}</h4>
-                    </label>
-                    <div className="removeEdit">
-                      <button
-                        className="remove"
-                        onClick={() => alert("user blocked")}
-                      >
-                      X
-                      </button>
-                    </div>
-                  </div>
-                  );
-              })}
+          <div className="boxContainer">
+            <div className="userBox">
+              <Link to='/users' className='link'>Users Administration</Link>
             </div>
           </div>
 
