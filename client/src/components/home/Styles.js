@@ -25,7 +25,7 @@ export const ContMovies = styled.div`
 
 export const Movies = styled.div`
   margin: 1.25%;
-  height: fill-available;
+  // height: auto;
   width: 85%;
   display: flex;
   flex-direction: column;
@@ -34,7 +34,7 @@ export const Movies = styled.div`
 `;
 
 export const Billboard = styled.div`
-  height: 50%;
+  height: 250px;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -47,7 +47,7 @@ export const Billboard = styled.div`
 `;
 
 export const ComingSoon = styled.div`
-  height: 50%;
+  height: 250px;
   width: 100%;
   display: flex;
   flex-direction: row;
