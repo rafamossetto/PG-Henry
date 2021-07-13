@@ -8,6 +8,7 @@ import AdminPage from "./components/adminpage/AdminPage";
 import UserProfile from "./components/userprofile/UserProfile";
 import Home from "./components/home/Home";
 import LogInForm from "./components/login/LogIn";
+import Users from "./components/users";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Route path="/billboard" component={Billboard} />
       <Route path="/administration" component={AdminPage} />
       <Route path="/profile" component={UserProfile} />
+      <Route path='/users' component={Users} />
     </div>
   );
 }
