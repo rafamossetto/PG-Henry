@@ -119,9 +119,9 @@ function AdminPage({props}) {
       director: "",
     });
   };
-  // useEffect(() => {
-  //   dispatch(getMovieList());
-  // }, [movies, dispatch]);
+  useEffect(() => {
+    dispatch(getMovieList());
+  }, [movies, dispatch]);
 
   function handleRadioChange(e) {
     let radio = document.getElementById(e.target.id);
@@ -148,7 +148,7 @@ function AdminPage({props}) {
 
   return (
     <AdminContainer>
-      {admin ? (
+      {admin? (
         <div className="isAdmin">
           <div className="boxContainer">
             <div className="movieBox">
