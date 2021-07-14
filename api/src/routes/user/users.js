@@ -9,6 +9,7 @@ const authentication = require("../../middlewares/authentication");
 router.post("/signup", [verifySignup.checkEmail], UserCtrl.signUp);
 router.post("/login", [verifyLogin.checkUser], UserCtrl.logIn);
 router.get("/verifyadmin", [authentication.verifyToken], UserCtrl.verifyAdmin);
+router.get("/bookings", [authentication.verifyToken], UserCtrl.getBookings);
 router.get(
   "/",
   [authentication.verifyToken, authentication.isAdmin],
