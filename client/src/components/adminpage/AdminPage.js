@@ -6,9 +6,10 @@ import { getUsers, isAdmin } from "../../actions/users";
 import AdminContainer from "./AdminStyles";
 import { BiCameraMovie, BiUserCheck, BiStore } from "react-icons/bi";
 
-function AdminPage() {
+function AdminPage({props}) {
   const dispatch = useDispatch();
   const [admin, setAdmin] = useState(null);
+
 
   useEffect(() => {
     let verifyAdmin = async () => {
@@ -18,6 +19,7 @@ function AdminPage() {
     verifyAdmin();
     dispatch(getMovieList());
     dispatch(getUsers());
+   
   }, [dispatch]);
   
   return (
