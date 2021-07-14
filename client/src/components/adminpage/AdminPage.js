@@ -27,7 +27,7 @@ function AdminPage({props}) {
 
  return (
     <AdminContainer>
-      {admin ? (
+      {admin ?  (
         <div className="boxContainer">
           <div className="userBox">
             <BiCameraMovie size="100" />
