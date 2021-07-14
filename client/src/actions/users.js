@@ -67,9 +67,7 @@ export function logOut() {
 
 export async function isAdmin() {
   const result = await axios.get(
-    "http://localhost:3001/users/verifyadmin",
-    config
-  );
+    "http://localhost:3001/users/verifyadmin", config);
   return result.data.isAdmin;
 }
 
