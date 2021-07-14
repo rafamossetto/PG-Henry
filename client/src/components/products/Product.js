@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from "react-redux";
 import {addToTotal, substractToTotal, saveProduct, deleteProduct, getProducts } from '../../actions/products'
 import {ProductBox, ButtonBox, Button, CounterBox, Counter, TextBox, InfoBox, ImgBox, Price, Text, Center, AdminButton } from './ProductStyles'
-import {getPurchaseLocalStorage} from '../../reducer/reducer'
+import {getPurchaseLocalStorage, getTokenLocalStorage} from '../../reducer/reducer'
 import { isAdmin } from '../../actions/users';
 import axios from 'axios';
 
@@ -13,7 +13,7 @@ const Product = (props) => {
 
     const [admin, setAdmin] = useState(null);
     const [pricing, setPricing] = useState({name: props.name, show: false,
-    newPrice: ""});
+    price: props.price});
     
     useEffect(() => {
         async function verify () {
@@ -55,16 +55,25 @@ const Product = (props) => {
         setPricing({...pricing, show: true});
     }
 
+    const config = {
+        headers: {
+          "Access-Control-Allow-Headers": "x-access-token",
+          "x-access-token": getTokenLocalStorage(),
+        },
+      };
+
     async function handleClick (e) {
         e.preventDefault();
-        await axios.put('http://localhost:3001/products', pricing);
+        let prod = {name: pricing.name, price: pricing.price}
+
+        await axios.put('http://localhost:3001/products', prod, config);
 
         setPricing({...pricing, show: false});
     }
 
     function handleChange (e) {
         e.preventDefault();
-        setPricing({...pricing, newPrice: e.target.value});
+        setPricing({...pricing, price: e.target.value});
     }
 
     return(
