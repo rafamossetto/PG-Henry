@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux";
+import {Link} from 'react-router-dom';
 import { getProducts } from '../../actions/products'
 import Product from './Product'
 import Car from './Car'
@@ -7,12 +8,13 @@ import {
     ProductsBox, Container, MovieData, MovieDetails, ParkingLot, RedText,
     BuyBox, BuyButton, Total, ParkingLine, StoredProducts, Screen, Reference
 } from './ProductsStyles'
-import { getPurchaseLocalStorage } from '../../reducer/reducer'
+import { getPurchaseLocalStorage, getTokenLocalStorage } from '../../reducer/reducer'
 import Footer from '../footer/Footer';
 
 const Products = (props) => {
     const { getProducts } = props;
     const purchaseStore = getPurchaseLocalStorage();
+    const token = getTokenLocalStorage();
     useEffect(() => {
         getProducts();
     }, [getProducts])
@@ -115,7 +117,7 @@ const Products = (props) => {
                     {purchaseStore.extras && Object.keys(purchaseStore.extras).map(e => <StoredProducts>{e}&nbsp;x&nbsp;{purchaseStore.extras[e]}&nbsp;-</StoredProducts>)}
 
                     <Total>Total: ${purchaseStore.total}</Total>
-                    <BuyButton onClick={event => handleBuy(event)}>Buy</BuyButton>
+                    {token ?<BuyButton onClick={event => handleBuy(event)}>Buy</BuyButton>:<Link to='/login'><BuyButton>Buy</BuyButton></Link>}
                 </BuyBox>
             </div>
         </Container> : <h1>There is nothing in your cart!</h1>}

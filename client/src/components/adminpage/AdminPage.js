@@ -227,7 +227,6 @@ function AdminPage({props}) {
                             </button>
                             <Link to={`movies/${movie._id}`}><img
                               className="edit"
-                              onClick={() => alert("Edit")}
                               alt=""
                               src="https://res.cloudinary.com/juancereceda/image/upload/v1625795867/edit_3_qmb0hj.png"
                             /></Link>

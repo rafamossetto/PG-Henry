@@ -14,8 +14,9 @@ function MovieDetail(){
  const movieDetail = useSelector(state => state.movieDetail);
 //  const usersList = useSelector(state=>state.users);
 
- const buy =  useSelector(state => state.purchase)
- const[state, setState]=React.useState({
+const buy =  useSelector(state => state.purchase)
+const[admin, setAdmin] = React.useState(null);
+const[state, setState]=React.useState({
    render:false,
    confirm:false,
  })
@@ -30,7 +31,14 @@ function MovieDetail(){
       }
     },[dispatch, id])
   
- 
+    
+    useEffect(() => {
+        let verifyAdmin = async () => {
+            const authorized = await isAdmin();
+            setAdmin(authorized)
+        }
+        verifyAdmin();
+    },[])
 
   function handleShow1(e){    
     e.preventDefault()
@@ -135,7 +143,7 @@ function MovieDetail(){
            </Rated>  
          </div>
          <div>                   
-          {movieDetail.onBillboard? (<Btn onClick={handleRender}>Get Tickets<ArrowDown size='35'/></Btn>):null} {/* el tema con admin. complicado */}
+          {(!admin && movieDetail.onBillboard? (<Btn onClick={handleRender}>Get Tickets<ArrowDown size='35'/></Btn>):null) || (admin? (<Btn onClick={handleRender}>set shows<ArrowDown size='35'/></Btn>):null)}
           {state.render? <TH3>{movieDetail.shows && movieDetail.shows[0]}</TH3>: null}
           {state.render?(<label>{movieDetail.shows? (movieDetail.shows[1].map(el=>
               <div>
