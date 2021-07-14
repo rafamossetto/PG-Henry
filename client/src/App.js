@@ -8,8 +8,10 @@ import AdminPage from "./components/adminpage/AdminPage";
 import UserProfile from "./components/userprofile/UserProfile";
 import Home from "./components/home/Home";
 import LogInForm from "./components/login/LogIn";
-import Users from "./components/users";
+import Users from "./components/adminpage/users/index";
+import AdminMovies from "./components/adminpage/AdminMovies";
 import Success from './components/success/Success'
+
 
 function App() {
   return (
@@ -23,7 +25,8 @@ function App() {
       <Route path="/billboard" component={Billboard} />
       <Route path="/administration" component={AdminPage} />
       <Route path="/profile" component={UserProfile} />
-      <Route path='/users' component={Users} />
+      <Route path="/users" component={Users} />
+      <Route path="/AdminMovies" component={AdminMovies} />
       <Route path='/success/:id' component={Success} />
     </div>
   );
