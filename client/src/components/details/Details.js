@@ -1,15 +1,19 @@
 import {useParams} from 'react-router-dom';
 import React, { useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { getMovieById, clearMovie } from '../../actions/movies';
+import { getMovieById, clearMovie} from '../../actions/movies';
+import{ isAdmin } from '../../actions/users';
 import {sendToProducts} from'../../actions/products';
 import {Box, Container, Btn, Grid, Poster, SubH2, Title, Trailer, Rated, H4, ArrowDown, Show,Inp, Confirm, TH3,Label} from './styled';
 import ReactPlayer from 'react-player';
 import { Link } from "react-router-dom";
 
+
 function MovieDetail(){
  const dispatch = useDispatch();
  const movieDetail = useSelector(state => state.movieDetail);
+//  const usersList = useSelector(state=>state.users);
+
  const buy =  useSelector(state => state.purchase)
  const[state, setState]=React.useState({
    render:false,
@@ -19,14 +23,16 @@ function MovieDetail(){
 
  const {id}= useParams();
     useEffect(()=>{
-      dispatch(getMovieById(id))
-      
+     dispatch(getMovieById(id))
+
       return()=>{
         dispatch(clearMovie())
       }
     },[dispatch, id])
+  
+ 
 
-  function handleShow1(e){
+  function handleShow1(e){    
     e.preventDefault()
     console.log(buy)
     const day= e.target.value.split(',')
@@ -49,9 +55,7 @@ function MovieDetail(){
     
    }    
     
-  
-
-  function handleShow2(e){
+    function handleShow2(e){
     e.preventDefault()
     
     const day= e.target.value.split(',')
@@ -100,7 +104,7 @@ function MovieDetail(){
     })
   }
 
-//  [[{{},{},{}}]]
+
 
  return(
      <Container>
@@ -131,7 +135,7 @@ function MovieDetail(){
            </Rated>  
          </div>
          <div>                   
-           <Btn onClick={handleRender}>Get Tickets<ArrowDown size='35'/></Btn><br></br>
+          {movieDetail.onBillboard? (<Btn onClick={handleRender}>Get Tickets<ArrowDown size='35'/></Btn>):null} {/* el tema con admin. complicado */}
           {state.render? <TH3>{movieDetail.shows && movieDetail.shows[0]}</TH3>: null}
           {state.render?(<label>{movieDetail.shows? (movieDetail.shows[1].map(el=>
               <div>
@@ -151,7 +155,7 @@ function MovieDetail(){
          <Box>{movieDetail.cast}</Box><br></br>
          <SubH2>Genre</SubH2><br></br> 
          <Box>{movieDetail.genre}</Box><br></br>
-         
+        
      </Grid>)}
      <br/>
      <br/>
@@ -160,5 +164,13 @@ function MovieDetail(){
      </Container> 
   )
 }
+
+// function mapDispatchToProps(dispatch) {
+//   return {
+//       isAdmin: ()=>{dispatch(isAdmin())}
+//   };
+// }
+
+
 
 export default MovieDetail

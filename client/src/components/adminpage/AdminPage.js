@@ -5,7 +5,7 @@ import { getMovieList, postMovie, updateMovie } from "../../actions/movies";
 import { getUsers, isAdmin } from "../../actions/users";
 import AdminContainer from "./AdminStyles";
 
-function AdminPage() {
+function AdminPage({props}) {
   const dispatch = useDispatch();
   const [admin, setAdmin] = useState(null);
   const movies = useSelector((state) => state.movieList);  
@@ -25,6 +25,7 @@ function AdminPage() {
     director: "",
   });
 
+
   useEffect(() => {
     let verifyAdmin = async () => {
       const authorized = await isAdmin();
@@ -33,6 +34,7 @@ function AdminPage() {
     verifyAdmin();
     dispatch(getMovieList());
     dispatch(getUsers());
+   
   }, [dispatch]);
 
   const ChangeInput = (e) => {
@@ -145,6 +147,8 @@ function AdminPage() {
     setMovieToSwap(null);
   }
 
+
+
   return (
     <AdminContainer>
       {admin ? (
@@ -177,12 +181,12 @@ function AdminPage() {
                             >
                               X
                             </button>
-                            <img
+                            <Link to={`movies/${movie._id}`}><img
                               className="edit"
                               onClick={() => alert("Edit")}
                               alt=""
                               src="https://res.cloudinary.com/juancereceda/image/upload/v1625795867/edit_3_qmb0hj.png"
-                            />
+                            /></Link>
                           </div>
                         </div>
                       );
@@ -221,12 +225,12 @@ function AdminPage() {
                             >
                               X
                             </button>
-                            <img
+                            <Link to={`movies/${movie._id}`}><img
                               className="edit"
                               onClick={() => alert("Edit")}
                               alt=""
                               src="https://res.cloudinary.com/juancereceda/image/upload/v1625795867/edit_3_qmb0hj.png"
-                            />
+                            /></Link>
                           </div>
                         </div>
                       );
