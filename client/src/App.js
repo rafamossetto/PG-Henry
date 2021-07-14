@@ -9,6 +9,7 @@ import UserProfile from "./components/userprofile/UserProfile";
 import Home from "./components/home/Home";
 import LogInForm from "./components/login/LogIn";
 import Users from "./components/users";
+import EditMovie from "./components/editmovie/EditMovie";
 
 function App() {
   return (
@@ -20,7 +21,8 @@ function App() {
       <Route path="/login" component={LogInForm} />
       <Route path="/movies/:id" component={MovieDetail} />
       <Route path="/billboard" component={Billboard} />
-      <Route path="/administration" component={AdminPage} />
+      <Route exact path="/administration/:id" component={EditMovie} />
+      <Route exact path="/administration" component={AdminPage} />
       <Route path="/profile" component={UserProfile} />
       <Route path='/users' component={Users} />
     </div>
