@@ -1,13 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from "react-redux";
 import {addToTotal, substractToTotal, saveProduct, deleteProduct, getProducts } from '../../actions/products'
-import {ProductBox, ButtonBox, Button, CounterBox, Counter, TextBox, InfoBox, ImgBox, Price, Text, Center } from './ProductStyles'
+import {ProductBox, ButtonBox, Button, CounterBox, Counter, TextBox, InfoBox, ImgBox, Price, Text, Center, AdminButton } from './ProductStyles'
 import {getPurchaseLocalStorage} from '../../reducer/reducer'
+import { isAdmin } from '../../actions/users';
+import axios from 'axios';
 
 const Product = (props) => {
     const[state, setState] = useState({
         counter: getPurchaseLocalStorage().extras.hasOwnProperty(props.name) ? getPurchaseLocalStorage().extras[props.name] : 0,
     })
+
+    const [admin, setAdmin] = useState(null);
+    const [pricing, setPricing] = useState({name: props.name, show: false,
+    newPrice: ""});
+    
+    useEffect(() => {
+        async function verify () {
+            const autho = await isAdmin();
+            setAdmin(autho);
+        };
+
+        verify();
+    }, [admin]);
 
     const handleSubtract = function(e){
         e.preventDefault()
@@ -34,6 +49,24 @@ const Product = (props) => {
             props.saveProduct(props.name)
         }
     }
+
+    function handleEdit (e) {
+        e.preventDefault();
+        setPricing({...pricing, show: true});
+    }
+
+    async function handleClick (e) {
+        e.preventDefault();
+        await axios.put('http://localhost:3001/products', pricing);
+
+        setPricing({...pricing, show: false});
+    }
+
+    function handleChange (e) {
+        e.preventDefault();
+        setPricing({...pricing, newPrice: e.target.value});
+    }
+
     return(
         <ProductBox>
             <div>
@@ -44,7 +77,8 @@ const Product = (props) => {
                 </ImgBox>
                 <TextBox>
                     <Text><p>{props.name}</p></Text>
-                    <Text><Price>${props.price}</Price></Text>
+                    <Text><Price>${props.price}</Price>{admin ? <AdminButton onClick={(e) => handleEdit(e)}>Edit</AdminButton> : null}</Text>
+                    {pricing.show ? <div id="cnt"><input id="inp" type="number" value={pricing.newPricing} onChange={(e) => handleChange(e)} placeholder="New price..." /><AdminButton id="btn" onClick={(e) => handleClick(e)}>Confirm</AdminButton></div> : null}
                 </TextBox>
                 </div>
             </InfoBox>
