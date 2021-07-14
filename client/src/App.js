@@ -8,6 +8,7 @@ import AdminPage from "./components/adminpage/AdminPage";
 import UserProfile from "./components/userprofile/UserProfile";
 import Home from "./components/home/Home";
 import LogInForm from "./components/login/LogIn";
+import EditMovie from "./components/editmovie/EditMovie";
 import Users from "./components/adminpage/users/index";
 import AdminMovies from "./components/adminpage/AdminMovies";
 import Success from './components/success/Success'
@@ -23,7 +24,8 @@ function App() {
       <Route path="/login" component={LogInForm} />
       <Route path="/movies/:id" component={MovieDetail} />
       <Route path="/billboard" component={Billboard} />
-      <Route path="/administration" component={AdminPage} />
+      <Route exact path="/administration/:id" component={EditMovie} />
+      <Route exact path="/administration" component={AdminPage} />
       <Route path="/profile" component={UserProfile} />
       <Route path="/users" component={Users} />
       <Route path="/AdminMovies" component={AdminMovies} />

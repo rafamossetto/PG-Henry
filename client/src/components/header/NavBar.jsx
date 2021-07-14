@@ -11,7 +11,6 @@ export default function NavBar() {
     const dispatch = useDispatch()
     const history = useHistory()
     const token = getTokenLocalStorage();
-  /*   let [viewForm] = useState(false); */
     let [admin, setAdmin] = useState(null);
     
     useEffect(() => {
