@@ -9,6 +9,7 @@ import {
 } from './ProductsStyles'
 import { getPurchaseLocalStorage } from '../../reducer/reducer'
 import Footer from '../footer/Footer';
+import axios from 'axios';
 
 const Products = (props) => {
     const { getProducts } = props;
@@ -17,23 +18,20 @@ const Products = (props) => {
         getProducts();
     }, [getProducts])
 
-    const handleBuy = (e) => {
+    const handleBuy = async (e) => {
         e.preventDefault()
         getProducts()
-        var mensaje;
         if(purchaseStore.slot !== ''){
             var opcion = window.confirm(`
             You are about to purchase: 
-            ${Object.keys(purchaseStore.extras).map(e => e.concat(' x').concat(purchaseStore.extras[e]))},
+            ${Object.keys(purchaseStore.extras).map(e => e.concat(' x').concat(purchaseStore.extras[e]))}, 
             Ticket for ${purchaseStore.title} on the ${purchaseStore.slot} parking lot, 
             for a total of $${purchaseStore.total}.
             `);
             if (opcion === true) {
-                mensaje = "Purchase confirmed";
-            } else {
-                mensaje = "Purchase canceled";
+                let response = await axios.post('http://localhost:3001/payment', {total:purchaseStore.total, title:`${Object.keys(purchaseStore.extras).map(e => e.concat(' x').concat(purchaseStore.extras[e]))}, Ticket for ${purchaseStore.title} on the ${purchaseStore.slot} parking lot.` })
+                window.location.assign(response.data)
             }
-            document.getElementById("purchase").innerHTML = mensaje;
         }
         else{
             alert('You must select a parking slot')
