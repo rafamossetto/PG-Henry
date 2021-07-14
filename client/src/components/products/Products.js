@@ -28,8 +28,15 @@ const Products = (props) => {
             Ticket for ${purchaseStore.title} on the ${purchaseStore.slot} parking lot, 
             for a total of $${purchaseStore.total}.
             `);
+            const data = {
+                description:`${Object.keys(purchaseStore.extras).map(e => e.concat(' x').concat(purchaseStore.extras[e]))}, Ticket for ${purchaseStore.title} on the ${purchaseStore.slot} parking lot.`,
+                total:purchaseStore.total,
+                parking_lot:purchaseStore.slot,
+                extras: Object.keys(purchaseStore.extras).map(e => e.concat(' x').concat(purchaseStore.extras[e])),
+                movie_title:purchaseStore.title
+            }
             if (opcion === true) {
-                let response = await axios.post('http://localhost:3001/payment', {total:purchaseStore.total, title:`${Object.keys(purchaseStore.extras).map(e => e.concat(' x').concat(purchaseStore.extras[e]))}, Ticket for ${purchaseStore.title} on the ${purchaseStore.slot} parking lot.` })
+                let response = await axios.post('http://localhost:3001/payment', data)
                 window.location.assign(response.data)
             }
         }
