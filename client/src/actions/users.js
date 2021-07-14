@@ -5,6 +5,7 @@ export const GET_LOCATION = "GET_LOCATION";
 export const SIGNUP = "SIGNUP";
 export const LOGIN = "LOGIN";
 export const LOG_OUT = "LOG_OUT";
+export const UPDATE_USER = "UPDATE_USER";
 
 const config = {
   headers: {
@@ -66,8 +67,17 @@ export function logOut() {
 
 export async function isAdmin() {
   const result = await axios.get(
-    "http://localhost:3001/users/verifyadmin",
-    config
-  );
+    "http://localhost:3001/users/verifyadmin", config);
   return result.data.isAdmin;
 }
+
+export function updateUser(user, id) {
+  return(dispatch) =>
+  axios.put(`http://localhost:3001/users/${id}`, user, config)
+  .then((res) => {
+    dispatch({type: UPDATE_USER, payload: res.data});
+  });
+}
+
+    
+    

@@ -10,7 +10,6 @@ const verifyToken = async (req, res, next) => {
 
     const decoded = await jwt.verify(token, "group8");
     req.userId = decoded.id;
-    console.log(decoded);
     // lo guardo en req para poder cargarlo en el req y poder usarlo en los middlewares siguientes
 
     const user = await User.findById(req.userId);

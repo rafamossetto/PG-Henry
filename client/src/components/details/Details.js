@@ -143,7 +143,8 @@ const[state, setState]=React.useState({
            </Rated>  
          </div>
          <div>                   
-          {(!admin && movieDetail.onBillboard? (<Btn onClick={handleRender}>Get Tickets<ArrowDown size='35'/></Btn>):null) || (admin? (<Btn onClick={handleRender}>set shows<ArrowDown size='35'/></Btn>):null)}
+          {(!admin && movieDetail.onBillboard? (<Btn onClick={handleRender}>Get Tickets<ArrowDown size='35'/></Btn>):null) || 
+          (admin? (<Btn onClick={handleRender}>set shows<ArrowDown size='35'/></Btn>):null)}
           {state.render? <TH3>{movieDetail.shows && movieDetail.shows[0]}</TH3>: null}
           {state.render?(<label>{movieDetail.shows? (movieDetail.shows[1].map(el=>
               <div>
