@@ -11,5 +11,4 @@ app.use(cors());
 
 app.use("/", routes);
 
-
 module.exports = app;
