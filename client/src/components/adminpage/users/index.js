@@ -1,10 +1,22 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, {useEffect, useState} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getUsers, isAdmin } from "../../../actions/users";
+
 import styled from 'styled-components';
 
 const Users = () => {
- 
+    const dispatch = useDispatch();
     const users = useSelector(state => state.users);
+
+    useEffect(() => {
+        let verifyAdmin = async () => {
+            const authorized = await isAdmin();
+            setAdmin(authorized);
+        };
+        verifyAdmin();
+        dispatch(getUsers());
+       
+      }, [dispatch]);
 
     const StyledDiv = styled.div`
     margin-left: .8em;
