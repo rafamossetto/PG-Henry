@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { getMovieList, postMovie, updateMovie } from "../../actions/movies";
 import { getUsers, isAdmin } from "../../actions/users";
 import AdminContainer from "./AdminStyles";
 
-function AdminPage() {
+function AdminPage({props}) {
   const dispatch = useDispatch();
   const [admin, setAdmin] = useState(null);
-  const movies = useSelector((state) => state.movieList);
-  const users = useSelector((state) => state.users);
+  const movies = useSelector((state) => state.movieList);  
   const [movieToSwap, setMovieToSwap] = useState(null);
 
   const [movie, setMovie] = useState({
@@ -25,6 +25,7 @@ function AdminPage() {
     director: "",
   });
 
+
   useEffect(() => {
     let verifyAdmin = async () => {
       const authorized = await isAdmin();
@@ -33,6 +34,7 @@ function AdminPage() {
     verifyAdmin();
     dispatch(getMovieList());
     dispatch(getUsers());
+   
   }, [dispatch]);
 
   const ChangeInput = (e) => {
@@ -120,9 +122,9 @@ function AdminPage() {
       director: "",
     });
   };
-  useEffect(() => {
-    dispatch(getMovieList());
-  }, [movies, dispatch]);
+  // useEffect(() => {
+  //   dispatch(getMovieList());
+  // }, [movies, dispatch]);
 
   function handleRadioChange(e) {
     let radio = document.getElementById(e.target.id);
@@ -144,6 +146,8 @@ function AdminPage() {
     }
     setMovieToSwap(null);
   }
+
+
 
   return (
     <AdminContainer>
@@ -177,12 +181,12 @@ function AdminPage() {
                             >
                               X
                             </button>
-                            <img
+                            <Link to={`movies/${movie._id}`}><img
                               className="edit"
                               onClick={() => alert("Edit")}
                               alt=""
                               src="https://res.cloudinary.com/juancereceda/image/upload/v1625795867/edit_3_qmb0hj.png"
-                            />
+                            /></Link>
                           </div>
                         </div>
                       );
@@ -221,12 +225,11 @@ function AdminPage() {
                             >
                               X
                             </button>
-                            <img
+                            <Link to={`movies/${movie._id}`}><img
                               className="edit"
-                              onClick={() => alert("Edit")}
                               alt=""
                               src="https://res.cloudinary.com/juancereceda/image/upload/v1625795867/edit_3_qmb0hj.png"
-                            />
+                            /></Link>
                           </div>
                         </div>
                       );
@@ -236,13 +239,7 @@ function AdminPage() {
           </div>
           <div className="boxContainer">
             <div className="userBox">
-              <h2 className="boxTitle">Users</h2>
-              <div className="userList">
-                {users &&
-                  users.map((user) => {
-                    return <h4>{user.username}</h4>;
-                  })}
-              </div>
+              <Link to='/users' className='link'>Users Administration</Link>
             </div>
             <form
               className="postMovieForm"

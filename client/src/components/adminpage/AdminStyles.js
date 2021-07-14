@@ -23,6 +23,8 @@ const AdminContainer = styled.div`
   }
   .boxTitle {
     color: #f05454;
+    text-decoration: none;
+    font-size: 1.5em;
   }
   .movieBox {
     margin: 10px;
@@ -108,14 +110,17 @@ const AdminContainer = styled.div`
       padding-left: 10px;
     }
   }
-  .userList {
-    overflow-y: scroll;
-    color: #ffffff;
-    height: 280px;
-    background-color: #222831;
-    padding: 0px 0px 0px 15px;
+  .link {
+  color: #f05454;
+  text-decoration: none;
+  font-size: 1.5em;
+  text-align: center;
+    &:hover{
+      color: #e8e8e8;
+      font-size: 1.52em;
+      transition: 300ms;
+    };
   }
-
   .postMovieForm {
     background-color: #2d4059;
     height: 600px;

@@ -7,6 +7,7 @@ export const ProductsBox = styled.div`
 `;
 export const Container = styled.div`
     background-color: rgba(34, 40, 49, 1);
+    width:auto;
 `;
 export const MovieData = styled.div`
     display:flex;
@@ -20,6 +21,7 @@ export const MovieDetails = styled.div`
     font-size: 24px;
     margin-left:10%;
     margin-right: 10%;
+    margin-top: 2%;
     color:rgba(255, 255, 255, 1);
     font-family: Questrial;
     display:flex;
