@@ -6,4 +6,6 @@ router.get("/", productCtrl.getProducts);
 
 router.post("/", productCtrl.addProduct);
 
+router.put("/", productCtrl.modProduct);
+
 module.exports = router;

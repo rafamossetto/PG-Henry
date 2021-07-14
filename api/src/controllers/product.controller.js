@@ -27,7 +27,28 @@ const addProduct = async (req, res) => {
   }
 };
 
+const modProduct = async (req, res) => {
+  try {
+    const { name, price } = req.body;
+    Product.updateOne({name: name}, {
+      $set: price
+    },
+    function(err, inf) {
+      if (err) {
+        res.status(404).json({
+          msg: "The update didn't succeed", err
+        });
+      } else {
+        res.status(200).json({inf});
+      }
+    })
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 module.exports = {
   getProducts,
   addProduct,
+  modProduct,
 };
