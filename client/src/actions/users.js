@@ -83,7 +83,7 @@ export function updateUser(user, id) {
 export function userBookings() {
   return async function (dispatch) {
     const bookings = await axios.get('http://localhost:3001/users/bookings', config);
-    await dispatch({type: GET_BOOKINGS, payload: bookings});
+    await dispatch({type: GET_BOOKINGS, payload: bookings.data});
     return "Bookings loaded";
   };
 };
