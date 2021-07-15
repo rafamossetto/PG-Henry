@@ -67,7 +67,6 @@ const handleBuy = (e) => {
                     <h3>{purchaseStore.title || 'Title'}</h3>
                     {/*                     <p>field</p> */}
                     <p>Schedule: {purchaseStore.day.concat(', ').concat(purchaseStore.time) || 'Day and time'}</p>
-              </p>
 
               <p>Price:${purchaseStore.price || "Price"}</p>
             </MovieDetails>
@@ -189,7 +188,7 @@ const handleBuy = (e) => {
             </BuyBox>
           </div>
         </Container>
-      ) : (
+       : (
         <h1>There is nothing in your cart!</h1>
       )}
       <Footer marginTop="5px" />
