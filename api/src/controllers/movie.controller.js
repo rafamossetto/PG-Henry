@@ -21,12 +21,14 @@ const getMovies = async (req, res) => {
 
 const postMovie = async (req, res) => {
   try {
-    const { dates, functionDays, times, date, price, title, poster, description, genre, onBillboard, cast, trailer, rated, runtime, director } = req.body;
-    
+    const { start, finish, functionDays, times, price, date, title, poster, description, genre, onBillboard, cast, trailer, rated, runtime, director } = req.body;
+    console.log('ruta back')
     const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     const shows = [];
-    const startDate = new Date (dates[0].year, dates[0].month-1, dates[0].day);
-    const finishDate = new Date (dates[1].year, dates[1].month-1, dates[1].day);
+    const startArr = start.split('-')
+    const finishArr = finish.split('-')
+    const startDate = new Date (startArr[0], startArr[1], startArr[2]);
+    const finishDate = new Date (finishArr[0], finishArr[1], finishArr[2]);
     for ( i = startDate; i <= finishDate; i.setDate(i.getDate() + 1)){
         let day = days[i.getDay()];
         if(functionDays.includes(day)){
