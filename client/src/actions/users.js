@@ -6,6 +6,7 @@ export const SIGNUP = "SIGNUP";
 export const LOGIN = "LOGIN";
 export const LOG_OUT = "LOG_OUT";
 export const UPDATE_USER = "UPDATE_USER";
+export const GET_BOOKINGS = "GET_BOOKINGS";
 
 const config = {
   headers: {
@@ -79,5 +80,9 @@ export function updateUser(user, id) {
   });
 }
 
-    
-    
+export async function userBookings() {
+  return function (dispatch) {
+    return axios.get('http://localhost:3001/users/bookings', config)
+    .then(res => dispatch({type: GET_BOOKINGS, payload: res.data}));
+  };
+};

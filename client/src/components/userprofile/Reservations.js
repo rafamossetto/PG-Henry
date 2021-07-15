@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { UserRes } from './ReservationsStyles';
+import { userBookings } from '../../actions/users';
 
 export default function Reservations () {
+    const dispatch = useDispatch();
+
+    let bookings = useSelector(state => state.bookings);
+
+    useEffect(() => {
+        dispatch(userBookings());
+    }, [bookings]);
+
     return (
         <UserRes>
             <h3 className="tit">Your Reservations</h3>
