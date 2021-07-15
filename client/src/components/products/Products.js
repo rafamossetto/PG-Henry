@@ -1,30 +1,15 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { getProducts } from "../../actions/products";
-import Product from "./Product";
-import Car from "./Car";
+import {Link} from 'react-router-dom';
+import { getProducts, postPayment } from '../../actions/products'
+import Product from './Product'
+import Car from './Car'
 import {
-  ProductsBox,
-  Container,
-  MovieData,
-  MovieDetails,
-  ParkingLot,
-  RedText,
-  BuyBox,
-  BuyButton,
-  Total,
-  ParkingLine,
-  StoredProducts,
-  Screen,
-  Reference,
-} from "./ProductsStyles";
-import {
-  getPurchaseLocalStorage,
-  getTokenLocalStorage,
-} from "../../reducer/reducer";
-import Footer from "../footer/Footer";
-import axios from "axios";
+    ProductsBox, Container, MovieData, MovieDetails, ParkingLot, RedText,
+    BuyBox, BuyButton, Total, ParkingLine, StoredProducts, Screen, Reference
+} from './ProductsStyles'
+import { getPurchaseLocalStorage, getTokenLocalStorage } from '../../reducer/reducer'
+import Footer from '../footer/Footer';
 
 const Products = (props) => {
   const { getProducts } = props;
@@ -41,58 +26,47 @@ const Products = (props) => {
     },
   };
 
-  const handleBuy = async (e) => {
-    e.preventDefault();
-    getProducts();
-    if (purchaseStore.slot !== "") {
-      var opcion = window.confirm(`
-            You are about to purchase: 
-            ${Object.keys(purchaseStore.extras).map((e) =>
-              e.concat(" x").concat(purchaseStore.extras[e])
-            )}, 
-            Ticket for ${purchaseStore.title} on the ${
-        purchaseStore.slot
-      } parking lot, 
-            for a total of $${purchaseStore.total}.
-            `);
-      const data = {
-        description: `${Object.keys(purchaseStore.extras).map((e) =>
-          e.concat(" x").concat(purchaseStore.extras[e])
-        )}, Ticket for ${purchaseStore.title} on the ${
-          purchaseStore.slot
-        } parking lot.`,
-        total: purchaseStore.total,
-        parking_lot: purchaseStore.slot,
-        extras: Object.keys(purchaseStore.extras).map((e) =>
-          e.concat(" x").concat(purchaseStore.extras[e])
-        ),
-        movie_title: purchaseStore.title,
-      };
-      if (opcion === true) {
-        let response = await axios.post(
-          "http://localhost:3001/payment",
-          data,
-          config
-        );
-        window.location.assign(response.data);
-      }
-    } else {
-      alert("You must select a parking slot");
-    }
-  };
 
-  return (
-    <div>
-      {purchaseStore ? (
-        <Container>
-          <MovieData>
-            <MovieDetails>
-              <h3>{purchaseStore.title || "Title"}</h3>
-              {/*                     <p>field</p> */}
-              <p>
-                Schedule:{" "}
-                {purchaseStore.day.concat(", ").concat(purchaseStore.time) ||
-                  "Day and time"}
+const handleBuy = (e) => {
+    e.preventDefault()
+    getProducts()
+    if(purchaseStore.slot !== ''){
+        var opcion = window.confirm(`
+        You are about to purchase: 
+        ${Object.keys(purchaseStore.extras).map((e) =>
+          e.concat(" x").concat(purchaseStore.extras[e])
+        )}, 
+        Ticket for ${purchaseStore.title} on the ${
+    purchaseStore.slot
+  } parking lot, 
+        for a total of $${purchaseStore.total}.
+        `);
+        const data = {
+            description:`${Object.keys(purchaseStore.extras).map(e => e.concat(' x').concat(purchaseStore.extras[e]))}, Ticket for ${purchaseStore.title} on the ${purchaseStore.slot} parking lot.`,
+            total:purchaseStore.total,
+            parking_lot:purchaseStore.slot,
+            extras: Object.keys(purchaseStore.extras).map(e => e.concat(' x').concat(purchaseStore.extras[e])),
+            movie_title:purchaseStore.title,
+            date:"2000, 0, 1",
+            time: "19hs"
+        }
+        if (opcion === true) {
+            postPayment(data)
+        }
+    }
+    else{
+        alert('You must select a parking slot')
+    }
+}
+    
+    return (
+        <div>
+        {purchaseStore ? <Container>
+            <MovieData>
+                <MovieDetails>
+                    <h3>{purchaseStore.title || 'Title'}</h3>
+                    {/*                     <p>field</p> */}
+                    <p>Schedule: {purchaseStore.day.concat(', ').concat(purchaseStore.time) || 'Day and time'}</p>
               </p>
 
               <p>Price:${purchaseStore.price || "Price"}</p>
