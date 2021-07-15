@@ -1,78 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import StyledDiv from './userStyles';
-import { getUsers, updateUser } from '../../../actions/users';
+
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateUser, getUsers } from '../../../actions/users';
 import swal from "sweetalert";
+import StyledDiv from './userStyles';
 
-const Users = () => {
-    const dispatch = useDispatch();
-    const users = useSelector(state => state.users);
-    // const [user, setUser] = useState({
-    //     username: "",
-    //     email: "",
-    //     password: "",
-    //     isAdmin: false,
-    //     bookings: [],
-    //     banned: false,
-    // })
+const Users = () => { 
+    
+    const users = useSelector(state => state.users)
+    const dispatch = useDispatch()
 
-    useEffect(() => {
+    const handleClick = (user, e) => {
+        e.preventDefault()
         dispatch(getUsers());
-    }, []);
-   
-    const handleSubmit = (user, e) => {
-        e.preventDefault();
-
-        const obj = {
-            username: user.username,
-            email: user.email,
-            password: user.password,
-            isAdmin: user.isAdmin,
-            bookings: user.bookings,
-            banned: user.banned,
-        }
-
-        if(obj.banned === 'UserBlock') {
-            swal({
-                title: "Are you sure?",
-                text: `The Blocked to ${user.username}`,
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-            .then((willBlocked) => {
-                if (willBlocked) {
-                  swal("Blocked User!", {
-                    icon: "success",
-                  });
-                } else {
-                  swal("Your user is safe!");
-                }
-            });
-        }
-
-        dispatch(updateUser)
-        ({
-            ...user,
-            banned: !user.banned,
-        },
-        user._id
-        )
+        console.log('Admin: ', user.isAdmin)
+        dispatch(updateUser(
+            {
+                ...user, 
+                isAdmin: !user.isAdmin
+            },
+            user._id
+        ))
+        dispatch(getUsers());
     }
-
-
-  const handleClick = (user, e) => {
-      e.preventDefault()
-      console.log('Admin: ', user.isAdmin)
-      dispatch(updateUser(
-          {
-            ...user, 
-            isAdmin: !user.isAdmin
-          },
-          user._id
-      ))
-    dispatch(getUsers)
-  }
     return (
         <>
         {
