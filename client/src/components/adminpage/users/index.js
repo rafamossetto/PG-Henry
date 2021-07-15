@@ -1,64 +1,78 @@
-import React, {useEffect, useState} from 'react';
+
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getUsers, isAdmin } from "../../../actions/users";
+import { updateUser, getUsers } from '../../../actions/users';
+import swal from "sweetalert";
+import StyledDiv from './userStyles';
 
-import styled from 'styled-components';
+const Users = () => { 
 
-const Users = () => {
-    const dispatch = useDispatch();
-    const users = useSelector(state => state.users);
-
-    // useEffect(() => {
-    //     let verifyAdmin = async () => {
-    //         const authorized = await isAdmin();
-    //     };
-    //     verifyAdmin();
-    //     dispatch(getUsers());
-       
-    //   }, [dispatch]);
-
-    const StyledDiv = styled.div`
-    margin-left: .8em;
-    display: flex;
-    flex-direction: column;
     
-    h4 {
-        font-weight: 600;
-        font-size: 1.5em;
-    }
+    const users = useSelector(state => state.users)
+    const dispatch = useDispatch()
 
-    .userDiv {
-        display: flex;
-        justify-content: space-between;
-        width: 50%;
-        align-items: center;
-        color: #ffffff;        
+    const handleClick = (user, e) => {
+        e.preventDefault()
+        dispatch(getUsers());
+        console.log('Admin: ', user.isAdmin)
+        dispatch(updateUser(
+            {
+                ...user, 
+                isAdmin: !user.isAdmin
+            },
+            user._id
+        ))
+        dispatch(getUsers());
     }
-    .userButton {
-        border-radius: 15%;
-        height: 3em;
-        
-    }
-    `;
-
     return (
         <>
         {
             window.localStorage.token && users.length ?
                 <StyledDiv>
-                    <h1>Users registrates</h1>
-                    {users &&
-                        users.map(user => {
-                            return <div className='userDiv'>
-                                <h4>{user.username} 💨</h4>
-                                <button className='userButton'>{user.isAdmin ? 'ChangeToUser' : 'ChangeToAdmin'}</button>
-                            </div>
-                        })}
+                    <h1>Users registrates</h1>     
+                    <table>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <h2>Username</h2>
+                                <h2>Email</h2>
+                                <h2>Block User</h2>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {users &&
+                            users.map(user => (
+                                <tr key={user._id}>
+                                    <td>
+                                    </td>
+                                    <td>{user.username}</td>
+                                    <td>{user.email}</td>
+                                    <button
+                                    className='userButton'
+                                    onClick={(e) => handleClick(user, e)}
+                                    >{user.isAdmin ? 'ChangeToUser' : 'ChangeToAdmin'}
+                                    </button>
+                                    <button
+                                    className='userButton'
+                                    onClick={(e) => handleSubmit(user,e)}
+                                    >{user.banned ? 'UserBlock' : 'Disable'}
+                                    </button>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </StyledDiv>
             :
-                <StyledDiv>
-                    <h1>Sólo personal autorizado...</h1>
-                </StyledDiv>
+            <StyledDiv>
+                <div className="errorCnt">
+                    <img
+                        className="sadFace"
+                        src="https://res.cloudinary.com/juancereceda/image/upload/v1625945361/sad-face-in-rounded-square_q7qmr7.png"
+                        alt="404"
+                    />
+                    <h1 className="errorMsg">Sorry! We've nothing for you here</h1>
+                </div>
+            </StyledDiv>
         }
         </>
     )

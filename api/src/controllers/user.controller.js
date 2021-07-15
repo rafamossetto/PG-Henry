@@ -65,14 +65,15 @@ const verifyAdmin = async (req, res) => {
 
 const putUser = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { username, email, password, isAdmin, banned } = req.body;
+
     let newUser = {
       username,
       email,
       password: await User.hashPassword(password),
-      isAdmin: false,
+      isAdmin,
       bookings: [],
-      banned: false,
+      banned,
     };
     await User.findByIdAndUpdate(req.params.id, newUser);
     //console.log(newUser);

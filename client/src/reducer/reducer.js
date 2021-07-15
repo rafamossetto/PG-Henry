@@ -9,7 +9,7 @@ import {
   DELETE_PRODUCT,
   SEND_TO_PRODUCTS,
 } from "../actions/products";
-import { GET_USERS, SIGNUP, LOGIN, LOG_OUT } from "../actions/users";
+import { GET_USERS, SIGNUP, LOGIN, LOG_OUT, GET_BOOKINGS } from "../actions/users";
 
 const initialState = {
   products: [],
@@ -31,6 +31,7 @@ const initialState = {
   users: [],
   movieList: [],
   token: getTokenLocalStorage(),
+  bookings: [],
 };
 
 export function getTokenLocalStorage() {
@@ -187,6 +188,12 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         token: "",
+      };
+    }
+    case GET_BOOKINGS: {
+      return {
+        ...state,
+        bookings: action.payload,
       };
     }
     default: {
