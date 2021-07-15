@@ -14,6 +14,14 @@ export const ProductBox = styled.div`
 export const InfoBox = styled.div`
     display:flex;   
     justify-content: center;
+    align-items: center;
+
+    #ctn {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 `;
 export const TextBox = styled.div`
     display:flex;
@@ -35,7 +43,7 @@ export const TextBox = styled.div`
         border-radius: 5px;
     };
 
-    #btn {
+    .btn {
         margin-bottom: 5.5px;
     }
 `;
