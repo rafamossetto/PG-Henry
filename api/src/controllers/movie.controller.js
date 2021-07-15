@@ -11,9 +11,18 @@ const getMovieById = async (req, res) => {
 };
 
 const getMovies = async (req, res) => {
+  let movies;
+  let {genre} =req.query
+  console.log(genre)
   try {
-    const movies = await Movie.find();
-    return res.json(movies);
+    if(genre){
+    movies = await Movie.find({genre:genre}) // tratar de encontrar la búsqueda tipo like de SQL en mongoDB.
+    return res.status(200).json(movies); 
+    }
+    else {
+      movies = await Movie.find();
+      return res.json(movies);
+    }
   } catch (error) {
     res.status(400).send(error)
   }
