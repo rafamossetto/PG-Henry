@@ -80,9 +80,10 @@ export function updateUser(user, id) {
   });
 }
 
-export async function userBookings() {
-  return function (dispatch) {
-    return axios.get('http://localhost:3001/users/bookings', config)
-    .then(res => dispatch({type: GET_BOOKINGS, payload: res.data}));
+export function userBookings() {
+  return async function (dispatch) {
+    const bookings = await axios.get('http://localhost:3001/users/bookings', config);
+    await dispatch({type: GET_BOOKINGS, payload: bookings});
+    return "Bookings loaded";
   };
 };

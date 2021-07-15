@@ -87,7 +87,7 @@ const Product = (props) => {
                 <TextBox>
                     <Text><p>{props.name}</p></Text>
                     <Text><Price>${props.price}</Price>{admin ? <AdminButton onClick={(e) => handleEdit(e)}>Edit</AdminButton> : null}</Text>
-                    {pricing.show ? <div id="cnt"><input id="inp" type="number" value={pricing.newPricing} onChange={(e) => handleChange(e)} placeholder="New price..." /><AdminButton id="btn" onClick={(e) => handleClick(e)}>Confirm</AdminButton></div> : null}
+                    {pricing.show ? <div id="cnt"><input id="inp" type="number" value={pricing.newPricing} onChange={(e) => handleChange(e)} placeholder="New price..." min="1" /><AdminButton id="btn" onClick={(e) => handleClick(e)}>Confirm</AdminButton></div> : null}
                 </TextBox>
                 </div>
             </InfoBox>
