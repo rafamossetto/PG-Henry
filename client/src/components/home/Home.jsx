@@ -3,8 +3,9 @@ import { HomeCont, ContMovies, Movies, Billboard, ComingSoon, Stores, Labels, Me
 import MovieCard from './MovieCard';
 import { useSelector, useDispatch } from 'react-redux';
 import { getMovieList } from "../../actions/movies";
+import Footer from '../footer/Footer'
+import Slider from '../comboSlider/slider';
 import { isAdmin } from '../../actions/users';
-import Footer from '../footer/Footer';
 
 export default function Home() {
     const dispatch = useDispatch();
@@ -39,7 +40,7 @@ export default function Home() {
                     </ComingSoon>
                 </Movies>
                 <Stores>
-                    <MerchCard><Linked to='/products'><Icon src="https://image.flaticon.com/icons/png/512/864/864818.png" /></Linked></MerchCard>
+                    <MerchCard><Slider /></MerchCard>
                     <MerchCard><Linked to='/products'><Icon src="https://image.flaticon.com/icons/png/512/86/86511.png" /></Linked></MerchCard>
                     <PubliCard>
                         Publicity
