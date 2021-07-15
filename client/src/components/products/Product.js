@@ -76,18 +76,23 @@ const Product = (props) => {
         setPricing({...pricing, price: e.target.value});
     }
 
+    function handleCancel (e) {
+        e.preventDefault();
+        setPricing({...pricing, show: false});
+    }
+
     return(
         <ProductBox>
             <div>
             <InfoBox>
-                <div>
+                <div id="ctn">
                 <ImgBox>
                     <img src={props.imgUrl} height='150px' width='160px' alt=''/>
                 </ImgBox>
                 <TextBox>
                     <Text><p>{props.name}</p></Text>
                     <Text><Price>${props.price}</Price>{admin ? <AdminButton onClick={(e) => handleEdit(e)}>Edit</AdminButton> : null}</Text>
-                    {pricing.show ? <div id="cnt"><input id="inp" type="number" value={pricing.newPricing} onChange={(e) => handleChange(e)} placeholder="New price..." min="1" /><AdminButton id="btn" onClick={(e) => handleClick(e)}>Confirm</AdminButton></div> : null}
+                    {pricing.show ? <div id="cnt"><input id="inp" type="number" value={pricing.newPricing} onChange={(e) => handleChange(e)} placeholder="New price..." min="1" /><AdminButton className="btn" onClick={(e) => handleClick(e)}>Confirm</AdminButton><AdminButton className="btn" onClick={(e) => handleCancel(e)}>Cancel</AdminButton></div> : null}
                 </TextBox>
                 </div>
             </InfoBox>
