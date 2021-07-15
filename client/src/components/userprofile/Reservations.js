@@ -10,7 +10,7 @@ export default function Reservations () {
 
     useEffect(() => {
         dispatch(userBookings());
-    }, [bookings]);
+    });
 
     return (
         <UserRes>
