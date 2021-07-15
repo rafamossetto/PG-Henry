@@ -130,7 +130,7 @@ function AdminMovies() {
 
         dispatch(postMovie(obj));
         alert("Movie update successfully!");
-        /* setMovie({
+        setMovie({
             title: "",
             date: "",
             poster: "",
@@ -146,7 +146,7 @@ function AdminMovies() {
             days:[],
             times:[],
             price:0
-        }); */
+        });
     };
 
     useEffect(() => {
