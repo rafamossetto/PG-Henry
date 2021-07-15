@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getMovieList } from "../../actions/movies";
 import { StyledTitle, StyledBillboard, StyledAside } from "./Billboard-styles";
@@ -16,12 +16,27 @@ import  GenreFilter from "../GenreFilter/GenreFilter";
 export default function Billboard() {
   const dispatch = useDispatch();
   const movieList = useSelector((state) => state.movieList);
-  const moviesGenre = useSelector(state => state.moviesGenre);
+  const [genre, setGenre] = useState({
+     genreFilter: false
+  });
+
+  function handleGenre(e){
+    e.preventDefault()
+    setGenre({genreFilter:true})
+  }
+
+  function handleBack(e){
+    e.preventDefault()
+    setGenre({genreFilter:false})
+  }
+
   useEffect(() => {
     dispatch(getMovieList());
   }, [dispatch]);
   return (
     <StyledBillboard>
+      <button onClick={handleGenre}>which Film Genre are you today?</button>
+      {genre.genreFilter?<button onClick={handleBack}>Back to see all on Billboard movies</button>: null}
       <StyledTitle>Billboard Movies</StyledTitle>
       <StyledAside>
         <StyledFirstAside>
@@ -30,7 +45,7 @@ export default function Billboard() {
             <img
               src="https://image.flaticon.com/icons/png/512/864/864818.png"
               alt=""
-            />
+              />
           </Link>
         </StyledFirstAside>
         <StyledSecondAside>
@@ -39,18 +54,18 @@ export default function Billboard() {
             <img
               src="https://image.flaticon.com/icons/png/512/86/86511.png"
               alt=""
-            />
+              />
           </Link>
         </StyledSecondAside>
         <StyledAsidePublicity>Publicidad</StyledAsidePublicity>
       </StyledAside>
-      {movieList.length > 0 ? (
+      {!genre.genreFilter ? (movieList.length > 0 ? (
         movieList
-          .filter((movie) => movie.onBillboard)
-          .map((movie) => <BillboardCard props={movie} key={movie._id} />)
-      ) : (
-        <h2>Error 404!</h2>
-      )}
+        .filter((movie) => movie.onBillboard)
+        .map((movie) => <BillboardCard props={movie} key={movie._id} />)
+        ) : (
+          <h2>Error 404!</h2>
+          )): <GenreFilter/>}
       <Footer marginTop="120%" />
     </StyledBillboard>
   );

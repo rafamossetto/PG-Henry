@@ -11,7 +11,7 @@ import LogInForm from "./components/login/LogIn";
 import Users from "./components/adminpage/users/index";
 import AdminMovies from "./components/adminpage/AdminMovies";
 import Success from './components/success/Success'
-import GenreFilter from "./components/GenreFilter/GenreFilter";
+// import GenreFilter from "./components/GenreFilter/GenreFilter";
 
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
       <Route path="/signup" component={SignupForm} />
       <Route path="/login" component={LogInForm} />
       <Route path="/movies/:id" component={MovieDetail} />
-      <Route path='/billboard' component ={GenreFilter}/>
+      {/* <Route path='/billboard' component ={GenreFilter}/> */}
       <Route path="/billboard" component={Billboard} />
       <Route path="/administration" component={AdminPage} />
       <Route path="/profile" component={UserProfile} />

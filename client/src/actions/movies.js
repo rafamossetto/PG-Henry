@@ -5,6 +5,7 @@ export const GET_MOVIE_LIST = 'GET_MOVIE_LIST';
 export const POST_MOVIE = 'POST_MOVIE';
 export const UPDATE_MOVIE = 'UPDATE_MOVIE';
 export const GET_MOVIES_BY_GENRE = 'GET_MOVIES_BY_GENRE';
+export const GET_GENRES = 'GET_GENRES';
 
 const config = {
   headers: {
@@ -75,4 +76,10 @@ export function getMoviesByGenre(genre){
         dispatch({ type: GET_MOVIES_BY_GENRE, payload: null });
       });
   };
+}
+
+export function getGenres() { 
+  return  { 
+   type: GET_GENRES, 
+ };  
 }

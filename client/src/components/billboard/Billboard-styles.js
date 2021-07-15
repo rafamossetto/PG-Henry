@@ -5,7 +5,7 @@ export const StyledTitle = styled.h1`
     color: #E8E8E8;
     font-size: 5rem;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-120%);
     line-height: 0;
 `;
 
