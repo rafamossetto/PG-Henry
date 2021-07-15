@@ -1,53 +1,55 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import styled from 'styled-components';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateUser/*, getUsers*/ } from '../../../actions/users';
+import UsersCont from './Styles'
 
-const Users = () => {
- 
-    const users = useSelector(state => state.users);
-
-    const StyledDiv = styled.div`
-    margin-left: .8em;
-    display: flex;
-    flex-direction: column;
+const Users = () => { 
     
-    h4 {
-        font-weight: 600;
-        font-size: 1.5em;
-    }
+    const users = useSelector(state => state.users)
+    const dispatch = useDispatch()
+    
+    // React.useEffect(() => {
+    //     dispatch(getUsers());       
+    // }, [dispatch]);
 
-    .userDiv {
-        display: flex;
-        justify-content: space-between;
-        width: 50%;
-        align-items: center;
-        color: #ffffff;        
-    }
-    .userButton {
-        border-radius: 15%;
-        height: 3em;
-        
-    }
-    `;
-
+  const handleClick = (user, e) => {
+      e.preventDefault()
+      console.log('Admin: ', user.isAdmin)
+      dispatch(updateUser(
+          {
+            ...user, 
+            isAdmin: !user.isAdmin
+          },
+          user._id
+      ))
+  }
     return (
         <>
         {
-            window.localStorage.token && users.length ?
-                <StyledDiv>
+            window.localStorage.token && users?.length ?
+                <UsersCont>
                     <h1>Users registrates</h1>
                     {users &&
                         users.map(user => {
-                            return <div className='userDiv'>
+                            return <div className='userDiv' key={user._id}>
                                 <h4>{user.username} 💨</h4>
-                                <button className='userButton'>{user.isAdmin ? 'ChangeToUser' : 'ChangeToAdmin'}</button>
+                                <button onClick={(e) => handleClick(user, e)} className='userButton'>
+                                    {user.isAdmin ? 'ChangeToUser' : 'ChangeToAdmin'}
+                                </button>
                             </div>
                         })}
-                </StyledDiv>
+                </UsersCont>
             :
-                <StyledDiv>
-                    <h1>Sólo personal autorizado...</h1>
-                </StyledDiv>
+            <UsersCont>
+                <div className="errorCnt">
+                    <img
+                        className="sadFace"
+                        src="https://res.cloudinary.com/juancereceda/image/upload/v1625945361/sad-face-in-rounded-square_q7qmr7.png"
+                        alt="404"
+                    />
+                    <h1 className="errorMsg">Sorry! We've nothing for you here</h1>
+                </div>
+            </UsersCont>
         }
         </>
     )
