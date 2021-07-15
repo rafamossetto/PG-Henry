@@ -115,10 +115,6 @@ function AdminMovies() {
         });
     };
 
-    useEffect(() => {
-        dispatch(getMovieList());
-    }, [movies, dispatch]);
-
     function handleRadioChange(e) {
         let radio = document.getElementById(e.target.id);
         if (radio.checked) {
@@ -128,6 +124,7 @@ function AdminMovies() {
     }
 
     function handleSwap() {
+        dispatch(getMovieList());
         if (movieToSwap) {
             updateMovie(
                 {
@@ -137,6 +134,7 @@ function AdminMovies() {
                 movieToSwap._id
             );
         }
+        dispatch(getMovieList());
         setMovieToSwap(null);
     }
 
