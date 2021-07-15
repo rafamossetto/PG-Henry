@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import {addToTotal, substractToTotal, saveProduct, deleteProduct, getProducts } from '../../actions/products'
 import {ProductBox, ButtonBox, Button, CounterBox, Counter, TextBox, InfoBox, ImgBox, Price, Text, Center, AdminButton } from './ProductStyles'
 import {getPurchaseLocalStorage, getTokenLocalStorage} from '../../reducer/reducer'
@@ -7,6 +7,7 @@ import { isAdmin } from '../../actions/users';
 import axios from 'axios';
 
 const Product = (props) => {
+    const dispatch = useDispatch();
     const[state, setState] = useState({
         counter: getPurchaseLocalStorage().extras.hasOwnProperty(props.name) ? getPurchaseLocalStorage().extras[props.name] : 0,
     })
@@ -69,6 +70,8 @@ const Product = (props) => {
         await axios.put('http://localhost:3001/products', prod, config);
 
         setPricing({...pricing, show: false});
+
+        dispatch(getProducts());
     }
 
     function handleChange (e) {
