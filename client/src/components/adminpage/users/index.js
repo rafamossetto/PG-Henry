@@ -1,7 +1,9 @@
+
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateUser, getUsers } from '../../../actions/users';
-import UsersCont from './Styles'
+import swal from "sweetalert";
+import StyledDiv from './userStyles';
 
 const Users = () => { 
     
@@ -24,21 +26,43 @@ const Users = () => {
     return (
         <>
         {
-            window.localStorage.token && users?.length ?
-                <UsersCont>
-                    <h1>Users registrates</h1>
-                    {users &&
-                        users.map(user => {
-                            return <div className='userDiv' key={user._id}>
-                                <h4>{user.username} 💨</h4>
-                                <button onClick={(e) => handleClick(user, e)} className='userButton'>
-                                    {user.isAdmin ? 'ChangeToUser' : 'ChangeToAdmin'}
-                                </button>
-                            </div>
-                        })}
-                </UsersCont>
+            window.localStorage.token && users.length ?
+                <StyledDiv>
+                    <h1>Users registrates</h1>     
+                    <table>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <h2>Username</h2>
+                                <h2>Email</h2>
+                                <h2>Block User</h2>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {users &&
+                            users.map(user => (
+                                <tr key={user._id}>
+                                    <td>
+                                    </td>
+                                    <td>{user.username}</td>
+                                    <td>{user.email}</td>
+                                    <button
+                                    className='userButton'
+                                    onClick={(e) => handleClick(user, e)}
+                                    >{user.isAdmin ? 'ChangeToUser' : 'ChangeToAdmin'}
+                                    </button>
+                                    <button
+                                    className='userButton'
+                                    onClick={(e) => handleSubmit(user,e)}
+                                    >{user.banned ? 'UserBlock' : 'Disable'}
+                                    </button>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </StyledDiv>
             :
-            <UsersCont>
+            <StyledDiv>
                 <div className="errorCnt">
                     <img
                         className="sadFace"
@@ -47,7 +71,7 @@ const Users = () => {
                     />
                     <h1 className="errorMsg">Sorry! We've nothing for you here</h1>
                 </div>
-            </UsersCont>
+            </StyledDiv>
         }
         </>
     )
