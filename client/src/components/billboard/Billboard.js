@@ -10,10 +10,13 @@ import {
 import BillboardCard from "./BillboardCard";
 import { Link } from "react-router-dom";
 import Footer from "../footer/Footer";
+import  GenreFilter from "../GenreFilter/GenreFilter";
+
 
 export default function Billboard() {
   const dispatch = useDispatch();
   const movieList = useSelector((state) => state.movieList);
+  const moviesGenre = useSelector(state => state.moviesGenre);
   useEffect(() => {
     dispatch(getMovieList());
   }, [dispatch]);

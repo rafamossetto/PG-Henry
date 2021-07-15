@@ -8,15 +8,14 @@ const Users = () => {
     const dispatch = useDispatch();
     const users = useSelector(state => state.users);
 
-    useEffect(() => {
-        let verifyAdmin = async () => {
-            const authorized = await isAdmin();
-            setAdmin(authorized);
-        };
-        verifyAdmin();
-        dispatch(getUsers());
+    // useEffect(() => {
+    //     let verifyAdmin = async () => {
+    //         const authorized = await isAdmin();
+    //     };
+    //     verifyAdmin();
+    //     dispatch(getUsers());
        
-      }, [dispatch]);
+    //   }, [dispatch]);
 
     const StyledDiv = styled.div`
     margin-left: .8em;

@@ -1,4 +1,4 @@
-import { GET_MOVIES_DETAIL, GET_MOVIE_LIST } from "../actions/movies";
+import { GET_MOVIES_BY_GENRE, GET_MOVIES_DETAIL, GET_MOVIE_LIST } from "../actions/movies";
 import { ORDER_USERS_BY_POINTS } from "../actions/points";
 import {
   GET_PRODUCTS,
@@ -26,6 +26,7 @@ const initialState = {
   slot:'',
   purchase: getPurchaseLocalStorage() ? getPurchaseLocalStorage() : {},
   movieDetail: {},
+  moviesGenre:[],
   users: [],
   movieList: [],
   token: getTokenLocalStorage(),
@@ -63,6 +64,13 @@ export default function reducer(state = initialState, action) {
         movieDetail: action.payload,
       };
     }
+    case GET_MOVIES_BY_GENRE:{
+      return {
+      ...state,
+      moviesGenre: action.payload
+      }   
+    };
+    
     //Products
     case SEND_TO_PRODUCTS: {
       let purchase = action.payload;
