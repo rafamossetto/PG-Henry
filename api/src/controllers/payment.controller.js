@@ -8,7 +8,9 @@ mercadopago.configure({
 
 const processPayment = async (req, res) => {
   try {
-    const { total, description, parking_lot, extras, movie_title } = req.body;
+    const { total, description, parking_lot, extras, movie_title, date, time } =
+      req.body;
+
     const preference = {
       items: [
         {
@@ -36,6 +38,8 @@ const processPayment = async (req, res) => {
       parking_lot,
       extras,
       movie_title,
+      date,
+      time,
     };
 
     const user = await User.findById(req.userId);

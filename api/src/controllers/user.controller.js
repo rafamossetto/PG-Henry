@@ -26,7 +26,9 @@ const signUp = async (req, res) => {
 const logIn = async (req, res) => {
   try {
     const { name } = req.body;
-    let user = await User.findOne({ email: name }) || await User.findOne({ username: name });
+    let user =
+      (await User.findOne({ email: name })) ||
+      (await User.findOne({ username: name }));
     const token = jwt.sign({ id: user._id }, "group8", {
       expiresIn: 86400,
     });
@@ -63,20 +65,29 @@ const verifyAdmin = async (req, res) => {
 
 const putUser = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { username, email, password, isAdmin } = req.body;
     let newUser = {
       username,
       email,
       password: await User.hashPassword(password),
-      isAdmin: false,
+      isAdmin,
       bookings: [],
       banned: false,
     };
     await User.findByIdAndUpdate(req.params.id, newUser);
     //console.log(newUser);
-    res.json({status: 'User Updated'})
+    res.json({ status: "User Updated" });
   } catch (error) {
-    res.status(400).send(error)
+    res.status(400).send(error);
+  }
+};
+
+const getBookings = async (req, res) => {
+  try {
+    const user = await User.findById(req.userId);
+    res.send(user.bookings);
+  } catch (error) {
+    console.log(error);
   }
 };
 
@@ -86,4 +97,5 @@ module.exports = {
   getUsers,
   verifyAdmin,
   putUser,
+  getBookings,
 };
