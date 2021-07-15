@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import axios from 'axios';
+import {updateStatus} from '../../actions/products'
 
 const Success = (props) => {
 
@@ -14,7 +14,7 @@ const Success = (props) => {
     /* const UserId = props.match.params.id */
 
     useEffect(() => {
-        axios.put("http://localhost:3001/bookings", {status, preference_id})
+        updateStatus({status, preference_id})
     }, [status, preference_id])
     return (
         <div>
@@ -22,4 +22,6 @@ const Success = (props) => {
         </div>
     )
 }
-export default Success
+
+
+export default Success;

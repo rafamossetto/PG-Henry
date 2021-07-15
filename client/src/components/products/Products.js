@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import {Link} from 'react-router-dom';
-import { getProducts } from '../../actions/products'
+import { getProducts, postPayment } from '../../actions/products'
 import Product from './Product'
 import Car from './Car'
 import {
@@ -10,7 +10,6 @@ import {
 } from './ProductsStyles'
 import { getPurchaseLocalStorage, getTokenLocalStorage } from '../../reducer/reducer'
 import Footer from '../footer/Footer';
-import axios from 'axios';
 
 const Products = (props) => {
     const { getProducts } = props;
@@ -20,7 +19,7 @@ const Products = (props) => {
         getProducts();
     }, [getProducts])
 
-    const handleBuy = async (e) => {
+    const handleBuy = (e) => {
         e.preventDefault()
         getProducts()
         if(purchaseStore.slot !== ''){
@@ -35,11 +34,12 @@ const Products = (props) => {
                 total:purchaseStore.total,
                 parking_lot:purchaseStore.slot,
                 extras: Object.keys(purchaseStore.extras).map(e => e.concat(' x').concat(purchaseStore.extras[e])),
-                movie_title:purchaseStore.title
+                movie_title:purchaseStore.title,
+                date:"2000, 0, 1",
+                time: "19hs"
             }
             if (opcion === true) {
-                let response = await axios.post('http://localhost:3001/payment', data)
-                window.location.assign(response.data)
+                postPayment(data)
             }
         }
         else{
@@ -51,7 +51,6 @@ const Products = (props) => {
     return (
         <div>
         {purchaseStore ? <Container>
-
             <MovieData>
                 <MovieDetails>
                     <h3>{purchaseStore.title || 'Title'}</h3>
