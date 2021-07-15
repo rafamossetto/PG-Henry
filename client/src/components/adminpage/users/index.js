@@ -1,28 +1,26 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateUser/*, getUsers*/ } from '../../../actions/users';
+import { updateUser, getUsers } from '../../../actions/users';
 import UsersCont from './Styles'
 
 const Users = () => { 
     
     const users = useSelector(state => state.users)
     const dispatch = useDispatch()
-    
-    // React.useEffect(() => {
-    //     dispatch(getUsers());       
-    // }, [dispatch]);
 
-  const handleClick = (user, e) => {
-      e.preventDefault()
-      console.log('Admin: ', user.isAdmin)
-      dispatch(updateUser(
-          {
-            ...user, 
-            isAdmin: !user.isAdmin
-          },
-          user._id
-      ))
-  }
+    const handleClick = (user, e) => {
+        e.preventDefault()
+        dispatch(getUsers());
+        console.log('Admin: ', user.isAdmin)
+        dispatch(updateUser(
+            {
+                ...user, 
+                isAdmin: !user.isAdmin
+            },
+            user._id
+        ))
+        dispatch(getUsers());
+    }
     return (
         <>
         {
