@@ -21,14 +21,18 @@ function AdminPage({props}) {
     dispatch(getUsers());
    
   }, [dispatch]);
-  
-  return (
+
+
+
+
+ return (
     <AdminContainer>
-      {admin ? (
+      {admin ?  (
         <div className="boxContainer">
           <div className="userBox">
             <BiCameraMovie size="100" />
             <Link to='/AdminMovies' className='link'>Movies</Link>
+
           </div>
           <div className="userBox">
             <BiUserCheck size="100" />

@@ -60,6 +60,19 @@ const Users = () => {
         )
     }
 
+
+  const handleClick = (user, e) => {
+      e.preventDefault()
+      console.log('Admin: ', user.isAdmin)
+      dispatch(updateUser(
+          {
+            ...user, 
+            isAdmin: !user.isAdmin
+          },
+          user._id
+      ))
+    dispatch(getUsers)
+  }
     return (
         <>
         {
@@ -78,17 +91,17 @@ const Users = () => {
                         <tbody>
                         {users &&
                             users.map(user => (
-                                <tr>
+                                <tr key={user._id}>
                                     <td>
                                     </td>
                                     <td>{user.username}</td>
                                     <td>{user.email}</td>
                                     <button
                                     className='userButton'
+                                    onClick={(e) => handleClick(user, e)}
                                     >{user.isAdmin ? 'ChangeToUser' : 'ChangeToAdmin'}
                                     </button>
                                     <button
-                                    key={user._id}
                                     className='userButton'
                                     onClick={(e) => handleSubmit(user,e)}
                                     >{user.banned ? 'UserBlock' : 'Disable'}
