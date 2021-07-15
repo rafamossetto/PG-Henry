@@ -27,8 +27,8 @@ const postMovie = async (req, res) => {
     const shows = [];
     const startArr = start.split('-')
     const finishArr = finish.split('-')
-    const startDate = new Date (startArr[0], startArr[1], startArr[2]);
-    const finishDate = new Date (finishArr[0], finishArr[1], finishArr[2]);
+    const startDate = new Date (startArr[0], startArr[1] - 1, startArr[2]);
+    const finishDate = new Date (finishArr[0], finishArr[1] - 1, finishArr[2]);
     for ( i = startDate; i <= finishDate; i.setDate(i.getDate() + 1)){
         let day = days[i.getDay()];
         if(functionDays.includes(day)){
