@@ -18,6 +18,7 @@ const[state, setState]=React.useState({
    render:false,
    confirm:false,
  })
+ let counter = 0;
  let today = new Date();
  const dd = String(today.getDate()).padStart(2, '0');
  const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -109,9 +110,9 @@ const[state, setState]=React.useState({
           {state.render ? (<label>{movieDetail.shows ? (movieDetail.shows.map(el=> 
             
             { 
-              if(el.date.slice(0, 4) >= currentDate.slice(0, 4) && el.date.slice(5, 7) === currentDate.slice(5, 7) && el.date.slice(8, 10) >= currentDate.slice(8, 10) || 
-                 el.date.slice(0, 4) >= currentDate.slice(0, 4) && el.date.slice(5, 7) > currentDate.slice(5, 7)
-              ){
+              if(counter < 8 && el.date.slice(0, 4) >= currentDate.slice(0, 4) && el.date.slice(5, 7) === currentDate.slice(5, 7) && el.date.slice(8, 10) >= currentDate.slice(8, 10) || 
+                 counter < 8 && el.date.slice(0, 4) >= currentDate.slice(0, 4) && el.date.slice(5, 7) > currentDate.slice(5, 7)){
+                   counter++
               return (
                 <div>
                   <Show>
