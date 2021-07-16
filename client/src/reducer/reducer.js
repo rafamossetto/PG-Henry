@@ -76,7 +76,7 @@ export default function reducer(state = initialState, action) {
       return{
         ...state,
         genre: state.movieList.map((el)=>{
-          var word = el.split(',') 
+          var word = el.genre.split(',') 
           var filtred = []
           for(var i=0; i<word.length ; i++){
             if(filtred.includes(word[i])) continue
