@@ -60,13 +60,13 @@ export default function SignupForm() {
       } else {
         swal(response, "Error", "error", {
           buttons: false,
-          timer: 3000,
+          timer: 2000,
         });
       }
     } else {
       return swal("Passwords dont match", "Error", "error", {
         buttons: false,
-        timer: 3000,
+        timer: 2000,
       });
     }
   }
