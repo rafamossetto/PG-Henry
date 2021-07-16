@@ -90,9 +90,7 @@ export default function Billboard() {
         .filter((movie) => movie.onBillboard)
         .slice(index * 3, index * 3 + 3)
         .map((movie) => <BillboardCard props={movie} key={movie._id} />)
-        ).filter((movie) => movie.onBillboard)
-          .slice(index * 3, index * 3 + 3)
-          .map((movie) => <BillboardCard props={movie} key={movie._id} />) : (
+        ): (
           <h2>Error 404!</h2>
           )): <GenreFilter/>}
       <Footer marginTop="120%" />
