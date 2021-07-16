@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import { getProducts, postPayment } from "../../actions/products";
 import Product from "./Product";
 import Car from "./Car";
@@ -39,7 +38,6 @@ const Products = (props) => {
       "x-access-token": getTokenLocalStorage(),
     },
   };
-
   const handleBuy = (e) => {
     e.preventDefault();
     getProducts();
@@ -66,8 +64,8 @@ const Products = (props) => {
           e.concat(" x").concat(purchaseStore.extras[e])
         ),
         movie_title: purchaseStore.title,
-        date: "2000, 0, 1",
-        time: "19hs",
+        date: purchaseStore.date.slice(0, 10),
+        time: purchaseStore.time,
       };
       if (opcion === true) {
         postPayment(data);
@@ -87,7 +85,7 @@ const Products = (props) => {
               {/*                     <p>field</p> */}
               <p>
                 Schedule:{" "}
-                {purchaseStore.day.concat(", ").concat(purchaseStore.time) ||
+                {purchaseStore.day.concat(", ").concat(purchaseStore.date.slice(5, 10)).concat(", ").concat(purchaseStore.time) ||
                   "Day and time"}
               </p>
 
