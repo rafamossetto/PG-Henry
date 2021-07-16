@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import StyledDiv from './userStyles';
 import { getUsers, updateUser } from '../../../actions/users';
@@ -7,105 +7,88 @@ import swal from "sweetalert";
 const Users = () => {
     const dispatch = useDispatch();
     const users = useSelector(state => state.users);
-    // const [user, setUser] = useState({
-    //     username: "",
-    //     email: "",
-    //     password: "",
-    //     isAdmin: false,
-    //     bookings: [],
-    //     banned: false,
-    // })
-
-    useEffect(() => {
-        dispatch(getUsers());
-    }, []);
-   
-    const handleSubmit = (user, e) => {
+    
+    const ChangeClick = async (user, e) => {
+        console.log('banned: ', user.banned)
         e.preventDefault();
 
-        const obj = {
-            username: user.username,
-            email: user.email,
-            password: user.password,
-            isAdmin: user.isAdmin,
-            bookings: user.bookings,
-            banned: user.banned,
-        }
-
-        if(obj.banned === 'UserBlock') {
-            swal({
+        if(!user.banned) {
+            let result = await swal({
                 title: "Are you sure?",
                 text: `The Blocked to ${user.username}`,
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
             })
-            .then((willBlocked) => {
-                if (willBlocked) {
-                  swal("Blocked User!", {
+            if (result) {
+                await swal("Blocked User!", 
+                {
                     icon: "success",
-                  });
-                } else {
-                  swal("Your user is safe!");
-                }
-            });
+                })
+                dispatch(getUsers())
+                dispatch(updateUser(
+                    {
+                        ...user,
+                        banned: !user.banned,
+                    },
+                    user._id
+                ))
+                dispatch(getUsers())
+            } else {
+                swal("Your user is safe!");
+            }
         }
-
-        dispatch(updateUser)
-        ({
-            ...user,
-            banned: !user.banned,
-        },
-        user._id
-        )
     }
 
+    const handleClick = (user, e) => {
+        e.preventDefault()
+        dispatch(getUsers())
+        console.log('Admin: ', user.isAdmin)
+        dispatch(updateUser(
+            {
+                ...user, 
+                isAdmin: !user.isAdmin
+            },
+            user._id
+        ))
+        dispatch(getUsers())
+    }
 
-  const handleClick = (user, e) => {
-      e.preventDefault()
-      console.log('Admin: ', user.isAdmin)
-      dispatch(updateUser(
-          {
-            ...user, 
-            isAdmin: !user.isAdmin
-          },
-          user._id
-      ))
-    dispatch(getUsers)
-  }
     return (
         <>
         {
             window.localStorage.token && users.length ?
                 <StyledDiv>
-                    <h1>Users registrates</h1>     
-                    <table>
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <h2>Username</h2>
-                                <h2>Email</h2>
-                                <h2>Block User</h2>
+                    <table className="container" >
+                        <thead className="title">
+                            <h1>Users registrates</h1>     
+                            <tr className="header">
+                                <td>Username</td>
+                                <td>Email</td>
+                                <td>Adm/User</td>
+                                <td>Dis/Block</td>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody className="item">
                         {users &&
                             users.map(user => (
                                 <tr key={user._id}>
-                                    <td>
-                                    </td>
                                     <td>{user.username}</td>
                                     <td>{user.email}</td>
+                                    <td>
                                     <button
                                     className='userButton'
                                     onClick={(e) => handleClick(user, e)}
-                                    >{user.isAdmin ? 'ChangeToUser' : 'ChangeToAdmin'}
+                                    >{user.isAdmin ? 'Admin' : 'User'}
                                     </button>
+                                    </td>
+                                    <td>
                                     <button
                                     className='userButton'
-                                    onClick={(e) => handleSubmit(user,e)}
+                                    onClick={(e) => ChangeClick(user, e)}
                                     >{user.banned ? 'UserBlock' : 'Disable'}
                                     </button>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>

@@ -72,8 +72,8 @@ const putUser = async (req, res) => {
       email,
       password: await User.hashPassword(password),
       isAdmin,
-      bookings: [],
       banned,
+      bookings: [],
     };
     await User.findByIdAndUpdate(req.params.id, newUser);
     //console.log(newUser);
