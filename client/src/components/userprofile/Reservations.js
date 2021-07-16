@@ -27,7 +27,7 @@ export default function Reservations () {
                         <th>Extras</th>
                         <th>Status</th>
                     </tr>
-                    {bookings.map(buy => <ResRow title={buy.movie_title} date={buy.date} time={buy.time} lot={buy.parking_lot} extras={buy.extras} status={buy.status} key={buy.id} />)}
+                    {bookings.map(buy => <ResRow title={buy.movie_title} date={buy.date} time={buy.time} lot={buy.parking_lot} extras={buy.extras} status={buy.status} url={buy.payment_url} key={buy.id} />)}
                 </table>
             : <h4>Sorry, no bookings found!</h4>}
         </UserRes>
