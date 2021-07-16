@@ -19,6 +19,15 @@ export default function ResRow ({title, date, time, lot, extras, status, url}) {
         }
     `;
 
+
+    const colours = {processing: "#F4D03F", approved: "#58D68D", cancelled: "#F05454"};
+
+    let col = colours[status]
+
+    const Stat = styled.td`
+        color: ${col};
+    `;
+
     return (
         <tr>
             <td>{title}</td>
@@ -27,7 +36,7 @@ export default function ResRow ({title, date, time, lot, extras, status, url}) {
             <td>Field Here</td>
             <td>{lot}</td>
             <td>{extras.join(", ")}</td>
-            <td>{status}</td>
+            <Stat>{status}</Stat>
             {status === "processing" ? <But onClick={(e) => handleClick(e)} >Pay</But> : null}
         </tr>
     )

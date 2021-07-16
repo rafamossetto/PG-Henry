@@ -1,19 +1,50 @@
-
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { updateUser, getUsers } from '../../../actions/users';
-import swal from "sweetalert";
+import { useDispatch, useSelector } from 'react-redux';
 import StyledDiv from './userStyles';
+import { getUsers, updateUser } from '../../../actions/users';
+import swal from "sweetalert";
 
-const Users = () => { 
 
+const Users = () => {
+
+    const dispatch = useDispatch();
+    const users = useSelector(state => state.users);
     
-    const users = useSelector(state => state.users)
-    const dispatch = useDispatch()
+    const ChangeClick = async (user, e) => {
+        console.log('banned: ', user.banned)
+        e.preventDefault();
+
+        if(!user.banned) {
+            let result = await swal({
+                title: "Are you sure?",
+                text: `The Blocked to ${user.username}`,
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            if (result) {
+                await swal("Blocked User!", 
+                {
+                    icon: "success",
+                })
+                dispatch(getUsers())
+                dispatch(updateUser(
+                    {
+                        ...user,
+                        banned: !user.banned,
+                    },
+                    user._id
+                ))
+                dispatch(getUsers())
+            } else {
+                swal("Your user is safe!");
+            }
+        }
+    }
 
     const handleClick = (user, e) => {
         e.preventDefault()
-        dispatch(getUsers());
+        dispatch(getUsers())
         console.log('Admin: ', user.isAdmin)
         dispatch(updateUser(
             {
@@ -22,41 +53,44 @@ const Users = () => {
             },
             user._id
         ))
-        dispatch(getUsers());
+        dispatch(getUsers())
     }
+
     return (
         <>
         {
             window.localStorage.token && users.length ?
                 <StyledDiv>
-                    <h1>Users registrates</h1>     
-                    <table>
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <h2>Username</h2>
-                                <h2>Email</h2>
-                                <h2>Block User</h2>
+                    <table className="container" >
+                        <thead className="title">
+                            <h1>Users registrates</h1>     
+                            <tr className="header">
+                                <td>Username</td>
+                                <td>Email</td>
+                                <td>Adm/User</td>
+                                <td>Dis/Block</td>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody className="item">
                         {users &&
                             users.map(user => (
                                 <tr key={user._id}>
-                                    <td>
-                                    </td>
                                     <td>{user.username}</td>
                                     <td>{user.email}</td>
+                                    <td>
                                     <button
                                     className='userButton'
                                     onClick={(e) => handleClick(user, e)}
-                                    >{user.isAdmin ? 'ChangeToUser' : 'ChangeToAdmin'}
+                                    >{user.isAdmin ? 'Admin' : 'User'}
                                     </button>
+                                    </td>
+                                    <td>
                                     <button
                                     className='userButton'
-                                    
+                                    onClick={(e) => ChangeClick(user, e)}
                                     >{user.banned ? 'UserBlock' : 'Disable'}
                                     </button>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>
