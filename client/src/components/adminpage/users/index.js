@@ -4,7 +4,9 @@ import StyledDiv from './userStyles';
 import { getUsers, updateUser } from '../../../actions/users';
 import swal from "sweetalert";
 
+
 const Users = () => {
+
     const dispatch = useDispatch();
     const users = useSelector(state => state.users);
     
