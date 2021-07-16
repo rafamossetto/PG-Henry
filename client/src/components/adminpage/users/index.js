@@ -54,7 +54,7 @@ const Users = () => {
                                     </button>
                                     <button
                                     className='userButton'
-                                    onClick={(e) => handleSubmit(user,e)}
+                                    
                                     >{user.banned ? 'UserBlock' : 'Disable'}
                                     </button>
                                 </tr>
