@@ -7,7 +7,7 @@ import { StyledCard, StyleFilter } from "./styles";
 function GenreFilter() {
   const dispatch = useDispatch();
   const moviesGenre = useSelector((state) => state.moviesGenre);
-  const allmovies = useSelector((state) => state.gene);
+  const allmovies = useSelector((state) => state.movieList);
 
   const [input, setInput] = useState({
     inputGenre: "",

@@ -89,7 +89,7 @@ export default function reducer(state = initialState, action) {
       // pendiente de revisión
       return {
         ...state,
-        genre: state.movieList
+        genre: state.genre.concat(state.movieList
           .map((el) => {
             var word = el.split(",");
             var filtred = [];
@@ -98,8 +98,8 @@ export default function reducer(state = initialState, action) {
               filtred.push(word[i]);
             }
             return filtred;
-          })
-          .concat(state.genre),
+          }))
+          ,
       };
     }
 

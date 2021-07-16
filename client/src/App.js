@@ -13,7 +13,7 @@ import Users from "./components/adminpage/users/index";
 import AdminMovies from "./components/adminpage/AdminMovies";
 import AdminOrders from "./components/adminpage/orders/AdminOrders";
 import Success from "./components/success/Success";
-// import GenreFilter from "./components/GenreFilter/GenreFilter";
+
 
 function App() {
   return (
@@ -24,7 +24,6 @@ function App() {
       <Route path="/signup" component={SignupForm} />
       <Route path="/login" component={LogInForm} />
       <Route path="/movies/:id" component={MovieDetail} />
-      {/* <Route path='/billboard' component ={GenreFilter}/> */}
       <Route path="/billboard" component={Billboard} />
       <Route exact path="/administration/:id" component={EditMovie} />
       <Route exact path="/administration" component={AdminPage} />
