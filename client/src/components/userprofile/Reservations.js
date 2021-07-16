@@ -17,24 +17,18 @@ export default function Reservations () {
         <UserRes>
             <h3 className="tit">Your Reservations</h3>
             {bookings.length > 0 ?
-            <table>
-                <tr>
-                    <th>Movie</th>
-                    <th>Date</th>
-                    <th>Schedule</th>
-                    <th>Field</th>
-                    <th>Slot</th>
-                    <th>Status</th>
-                </tr>
-                {bookings.map( buy => <ResRow title={buy.movie_title} date={buy.date} time={buy.time} lot={buy.parking_lot} status={buy.status} />)}
-                {/* <tr>
-                    <td>{bookings[0].movie_title}</td>
-                    <td>Pending</td>
-                    <td>Pending</td>
-                    <td>{bookings[0].parking_lot}</td>
-                    <td>{bookings[0].status}</td>
-                </tr> */}
-            </table>
+                <table>
+                    <tr>
+                        <th>Movie</th>
+                        <th>Date</th>
+                        <th>Schedule</th>
+                        <th>Field</th>
+                        <th>Slot</th>
+                        <th>Extras</th>
+                        <th>Status</th>
+                    </tr>
+                    {bookings.map(buy => <ResRow title={buy.movie_title} date={buy.date} time={buy.time} lot={buy.parking_lot} extras={buy.extras} status={buy.status} key={buy.id} />)}
+                </table>
             : <h4>Sorry, no bookings found!</h4>}
         </UserRes>
     )
