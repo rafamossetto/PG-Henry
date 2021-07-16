@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function ResRow ({title, date, time, lot, status}) {
+export default function ResRow ({title, date, time, lot, extras, status}) {
     return (
         <tr>
             <td>{title}</td>
@@ -8,6 +8,7 @@ export default function ResRow ({title, date, time, lot, status}) {
             <td>{time}</td>
             <td>Field Here</td>
             <td>{lot}</td>
+            <td>{extras.join(", ")}</td>
             <td>{status}</td>
         </tr>
     )
