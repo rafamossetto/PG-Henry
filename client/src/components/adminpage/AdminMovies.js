@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMovieList, postMovie, updateMovie } from "../../actions/movies";
 import { getUsers, isAdmin } from "../../actions/users";
+import swal from "sweetalert";
 import AdminContainer from "./AdminStyles";
 
 function AdminMovies() {
@@ -45,7 +46,7 @@ function AdminMovies() {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const obj = {
@@ -67,69 +68,31 @@ function AdminMovies() {
         };
 
         // Validaciones
-        if (!obj.title) {
-            alert("Hey! Don't forget the title.");
-            return;
+
+        if (!obj.functionDays.length) {
+            return await swal("Hey! Don't forget to select the days.", "Select the days", "warning", {
+                buttons: false,
+                timer: 2500,
+            });
         }
-        if (!obj.poster) {
-            alert("Hey! Don't forget the poster.");
-            return;
+        if (!obj.times.length) {
+            return await swal("Hey! Don't forget to select the times.", "Select the times", "warning", {
+                buttons: false,
+                timer: 2500,
+            });
         }
-        if (!obj.date) {
-            alert("Hey! Don't forget the date.");
-            return;
-        }
-        if (!obj.trailer) {
-            alert("Hey! Don't forget the trailer");
-            return;
-        }
-        if (!obj.cast) {
-            alert("Hey! Don't forget the cast");
-            return;
-        }
-        if (!obj.runtime) {
-            alert("Hey! Don't forget the runtime");
-            return;
-        }
-        if (!obj.director) {
-            alert("Hey! Don't forget the director");
-            return;
-        }
-        if (!obj.genre) {
-            alert("Hey! Don't forget the genre.");
-            return;
-        }
-        if (!obj.rated) {
-            alert("Hey! Don't forget the rated");
-            return;
-        }
-        if (!obj.description) {
-            alert("Hey! Don't forget the description.");
-            return;
-        }
-        if (!obj.start) {
-            alert("Hey! Don't forget the start date.");
-            return;
-        }
-        if (!obj.finish) {
-            alert("Hey! Don't forget the finish date.");
-            return;
-        }
-        if (!obj.functionDays) {
-            alert("Hey! Don't forget to select the days.");
-            return;
-        }
-        if (!obj.times) {
-            alert("Hey! Don't forget to select the times.");
-            return;
-        }
-        if (!obj.price) {
-            alert("Hey! Don't forget the price.");
-            return;
+        if (!obj.price || obj.price <= 0) {
+            return await swal("Hey! Don't forget the price.", "Put the price", "warning", {
+                buttons: false,
+                timer: 2500,
+            });
         }
 
         dispatch(postMovie(obj));
-        alert("Movie update successfully!");
+        await swal('Movie update successfully!', "Movie updated", "success", {
+            buttons: false,
+            timer: 3000,
+          });
         setMovie({
             title: "",
             date: "",
@@ -172,7 +135,7 @@ function AdminMovies() {
         setMovieToSwap(null);
     }
     function addDay(e){
-        console.log(movie.start)
+        //console.log(movie.start)
         if(!movie.days.includes(e.target.value)){
             movie.days.push(e.target.value)
             /* setMovie({
@@ -181,7 +144,7 @@ function AdminMovies() {
             }) */ 
         }
         else {
-            console.log('else')
+           // console.log('else')
             movie.days = movie.days.filter(el => el !== e.target.value)
             /* setMovie({
                 ...movie,
@@ -201,7 +164,7 @@ function AdminMovies() {
             }) */ 
         }
         else {
-            console.log('else')
+            //console.log('else')
             movie.times = movie.times.filter(el => el !== e.target.value)
             /* setMovie({
                 ...movie,
@@ -211,6 +174,40 @@ function AdminMovies() {
                 })
             }) */
         }
+    }
+    async function handleDelete(movie) {  
+        const willDelete =  await swal({
+      title: "Are you sure you want to remove movie?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+      if (willDelete) {
+        await swal("Movie've been removed!", {
+          icon: "success",
+          buttons: false,
+          timer: 1500
+        });
+      } else {
+        swal({title: "Welcome back!", buttons: false, timer: 1000});
+      }  
+    }
+    async function handleEdit(movie) {  
+        const willEdit =  await swal({
+      title: "Are you sure you want to edit movie?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+      if (willEdit) {
+        await swal("Go to edit movie!", {
+            icon: "success",
+            buttons: false,
+            timer: 1000
+          });
+      } else {
+        swal({title: "Welcome back!", buttons: false, timer: 1000});
+      }  
     }
     return (
         <AdminContainer>
@@ -239,13 +236,13 @@ function AdminMovies() {
                                             <div className="removeEdit">
                                                 <button
                                                     className="remove"
-                                                    onClick={() => alert("Delete")}
+                                                    onClick={() => handleDelete(movie)}
                                                     >
                                                     X
                                                 </button>
                                                 <img
                                                     className="edit"
-                                                    onClick={() => alert("Edit")}
+                                                    onClick={() => handleEdit(movie)}
                                                     alt=""
                                                     src="https://res.cloudinary.com/juancereceda/image/upload/v1625795867/edit_3_qmb0hj.png"
                                                 />
@@ -283,13 +280,13 @@ function AdminMovies() {
                                             <div className="removeEdit">
                                                 <button
                                                     className="remove"
-                                                    onClick={() => alert("Delete")}
+                                                    onClick={() => handleDelete(movie)}
                                                     >
                                                     X
                                                 </button>
                                                 <img
                                                     className="edit"
-                                                    onClick={() => alert("Edit")}
+                                                    onClick={() => handleEdit(movie)}
                                                     alt=""
                                                     src="https://res.cloudinary.com/juancereceda/image/upload/v1625795867/edit_3_qmb0hj.png"
                                                 />
@@ -315,6 +312,7 @@ function AdminMovies() {
                                 type="text"
                                 name="title"
                                 value={movie.title}
+                                required
                             />
                         </div>
                         <div>
@@ -324,6 +322,7 @@ function AdminMovies() {
                                 type="text"
                                 name="poster"
                                 value={movie.poster}
+                                required
                             />
                         </div>
                     </div>
@@ -335,6 +334,7 @@ function AdminMovies() {
                                 type="date"
                                 name="date"
                                 value={movie.date}
+                                required
                             />
                         </div>
                         <div>
@@ -344,6 +344,7 @@ function AdminMovies() {
                                 type="text"
                                 name="trailer"
                                 value={movie.trailer}
+                                required
                             />
                         </div>
                     </div>
@@ -355,6 +356,7 @@ function AdminMovies() {
                                 type="text"
                                 name="cast"
                                 value={movie.cast}
+                                required
                             />
                         </div>
                         <div>
@@ -364,6 +366,7 @@ function AdminMovies() {
                                 type="text"
                                 name="runtime"
                                 value={movie.runtime}
+                                required
                             />
                         </div>
                     </div>
@@ -375,6 +378,7 @@ function AdminMovies() {
                                 type="text"
                                 name="director"
                                 value={movie.director}
+                                required
                             />
                         </div>
                         <div>
@@ -384,6 +388,7 @@ function AdminMovies() {
                                 type="text"
                                 name="genre"
                                 value={movie.genre}
+                                required
                             />
                         </div>
                     </div>
@@ -395,6 +400,7 @@ function AdminMovies() {
                                 type="text"
                                 name="rated"
                                 value={movie.rated}
+                                required
                             />
                         </div>
                         <div>
@@ -404,6 +410,7 @@ function AdminMovies() {
                                 type="text"
                                 name="description"
                                 value={movie.description}
+                                required
                             />
                         </div>
                     </div>
@@ -414,6 +421,7 @@ function AdminMovies() {
                                 type="date"
                                 name="start"
                                 value={movie.start}
+                                required
                             />
                         </div>
                         <div>
@@ -422,6 +430,7 @@ function AdminMovies() {
                                 type="date"
                                 name="finish"
                                 value={movie.finish}
+                                required
                             />
                         </div>
                     </div>
