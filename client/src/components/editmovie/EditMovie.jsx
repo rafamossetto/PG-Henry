@@ -29,11 +29,11 @@ function EditMovie() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        updateMovie(movieDetail, params.id)
         await swal(`${movieDetail.title}`, `Edited succesfully`, "success", {
             buttons: false,
-            timer: 3000,
+            timer: 2000,
         });
-        updateMovie(movieDetail, params.id)
     }
     //Efecto para traer el detalle de la pelicula
     useEffect(() => {

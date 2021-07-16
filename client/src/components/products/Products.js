@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getProducts, postPayment } from "../../actions/products";
 import Product from "./Product";
+import swal from "sweetalert";
 import Car from "./Car";
 import {
   ProductsBox,
@@ -71,7 +72,12 @@ const Products = (props) => {
         postPayment(data);
       }
     } else {
-      alert("You must select a parking slot");
+      swal({
+        title: "You must select a parking slot",
+        icon: "warning",
+        timer: 1500,
+        dangerMode: true,
+      })      
     }
   };
 

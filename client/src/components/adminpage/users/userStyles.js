@@ -24,7 +24,6 @@ const StyledDiv = styled.div`
     }
     .userButton {
         background-color: #f05454;
-        width: 80px;
         height: 25px;
         margin: 10px;
         color: #ffffff;
