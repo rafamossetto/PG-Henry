@@ -14,7 +14,7 @@ const checkEmailAndPassword= async (req, res, next)=>{
   }
   
   if(!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/.test(req.body.password)){
-    return res.status(400).json({message:'the password must has at least 10 caracters, one Uppercase Letter, one Lowercase letter and one @$!%*?&'});
+    return res.status(400).send('the password must has at least 10 caracters, one Uppercase Letter, one Lowercase letter and one @$!%*?&');
   }
   
 else{
