@@ -23,7 +23,7 @@ const[state, setState]=React.useState({
  const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
  const yyyy = today.getFullYear();
  
- const currentDate = yyyy + '-' + dd + '-' + mm + 'T00:00:00.000Z'
+ const currentDate = yyyy + '-' + mm + '-' + dd + 'T00:00:00.000Z'
 
  const {id}= useParams();
     useEffect(()=>{
@@ -107,7 +107,11 @@ const[state, setState]=React.useState({
           {(!admin && movieDetail.onBillboard? (<Btn onClick={handleRender}>Get Tickets<ArrowDown size='35'/></Btn>):null) || 
           (admin? (<Btn onClick={handleRender}>set shows<ArrowDown size='35'/></Btn>):null)}
           {state.render ? (<label>{movieDetail.shows ? (movieDetail.shows.map(el=> 
-            {if(el.date >= currentDate){
+            
+            { 
+              if(el.date.slice(0, 4) >= currentDate.slice(0, 4) && el.date.slice(5, 7) === currentDate.slice(5, 7) && el.date.slice(8, 10) >= currentDate.slice(8, 10) || 
+                 el.date.slice(0, 4) >= currentDate.slice(0, 4) && el.date.slice(5, 7) > currentDate.slice(5, 7)
+              ){
               return (
                 <div>
                   <Show>
