@@ -63,19 +63,11 @@ export function updateMovie(movie, id) {
 
 export function getMoviesByGenre(genre){
   return function (dispatch) {
-    return axios
-      .get(`http://localhost:3001/movies?genre=${genre}`)
-      .then((result) => {
-        dispatch({
-          type: GET_MOVIES_BY_GENRE,
-          payload: result.data,
-        });
-      })
-      .catch((error) => {
-        if (error.response?.status !== 404) alert("something went wrong");
-        dispatch({ type: GET_MOVIES_BY_GENRE, payload: null });
-      });
-  };
+    dispatch({
+      type: GET_MOVIES_BY_GENRE,
+      payload: genre
+    })
+  }
 }
 
 export function getGenres() { 
