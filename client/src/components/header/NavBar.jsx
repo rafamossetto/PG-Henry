@@ -31,12 +31,12 @@ async function handleLogOut() {
   if (willLogOut) {
     await swal("You've been logged out!", {
       icon: "success",
+      buttons: false,
+      timer: 1500
     });
     dispatch(logOut())
     window.location.reload()
-  } else {
-    swal("Welcome back!");
-  }  
+  }
 }
 
   /*   function handleClick (e) {
