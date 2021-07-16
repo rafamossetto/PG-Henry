@@ -6,7 +6,7 @@ const verifySignup = require("../../middlewares/verifySignup");
 const verifyLogin = require("../../middlewares/verifyLogin");
 const authentication = require("../../middlewares/authentication");
 
-router.post("/signup", [verifySignup.checkEmail], UserCtrl.signUp);
+router.post("/signup", [verifySignup.checkEmailAndPassword], UserCtrl.signUp);
 router.post("/login", [verifyLogin.checkUser], UserCtrl.logIn);
 router.get("/verifyadmin", [authentication.verifyToken], UserCtrl.verifyAdmin);
 router.get("/bookings", [authentication.verifyToken], UserCtrl.getBookings);
