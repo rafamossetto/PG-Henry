@@ -41,7 +41,7 @@ export const StyledAside = styled.aside`
 
 export const StyledPagination = styled.div`
     position: relative;
-    left: 10%;
+    right: -25%;
     margin: 0;
     padding: 5px;
     border: 2px solid #30475E88;
