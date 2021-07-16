@@ -11,10 +11,9 @@ import LogInForm from "./components/login/LogIn";
 import EditMovie from "./components/editmovie/EditMovie";
 import Users from "./components/adminpage/users/index";
 import AdminMovies from "./components/adminpage/AdminMovies";
-import Success from './components/success/Success'
+import AdminOrders from "./components/adminpage/orders/AdminOrders";
+import Success from "./components/success/Success";
 // import GenreFilter from "./components/GenreFilter/GenreFilter";
-
-
 
 function App() {
   return (
@@ -32,6 +31,7 @@ function App() {
       <Route path="/profile" component={UserProfile} />
       <Route path="/users" component={Users} />
       <Route path="/AdminMovies" component={AdminMovies} />
+      <Route path="/adminorders" component={AdminOrders} />
       <Route path="/success/:id" component={Success} />
     </div>
   );
