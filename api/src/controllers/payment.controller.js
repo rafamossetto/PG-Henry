@@ -28,6 +28,7 @@ const processPayment = async (req, res) => {
           description: user.email,
           currency_id: "ARS",
           unit_price: Number(total),
+          id: movie_title,
         },
       ],
       auto_return: "approved",
@@ -102,6 +103,9 @@ const getPayments = async (req, res) => {
         status: el.status,
         paidWith: el.payment_method_id,
         items: el.description,
+        movie_title: el.additional_info.items
+          ? el.additional_info.items[0].id
+          : "",
       };
     });
     res.send(mapped);

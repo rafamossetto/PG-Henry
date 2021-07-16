@@ -4,11 +4,33 @@ import { getPayments } from "../../../actions/orders";
 import { isAdmin } from "../../../actions/users";
 import StyledDiv from "./OrderStyles";
 import { getTokenLocalStorage } from "../../../reducer/reducer";
+import Pagination from "./paginateOrders.js";
 function AdminOrders() {
   const dispatch = useDispatch();
   const payments = useSelector((state) => state.payments);
   let [admin, setAdmin] = useState(null);
   let [statusFilter, setStatusFilter] = useState(null);
+  let [orderEmailAsc, setOrderEmailAsc] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [paymentsPerPage] = useState(20);
+  const indexOfLastPayment = currentPage * paymentsPerPage;
+  const indexOfFirstPayment = indexOfLastPayment - paymentsPerPage;
+  const currentPayments =
+    payments.length > 0
+      ? payments
+          .filter((el) => el.movie_title)
+          .filter((el) => (statusFilter ? el.status === statusFilter : el))
+          .sort(function (a, b) {
+            if (a.email > b.email) {
+              return orderEmailAsc ? 1 : orderEmailAsc === false ? -1 : 0;
+            }
+            if (a.email < b.email) {
+              return orderEmailAsc ? -1 : orderEmailAsc === false ? 1 : 0;
+            }
+            return 0;
+          })
+          .slice(indexOfFirstPayment, indexOfLastPayment)
+      : [];
 
   useEffect(() => {
     let verifyAdmin = async () => {
@@ -22,10 +44,14 @@ function AdminOrders() {
   function handleFilterStatus(e) {
     setStatusFilter(e.target.value === "All" ? null : e.target.value);
   }
-
-  useEffect(() => {
-    console.log(statusFilter);
-  }, [statusFilter]);
+  function handleOrderEmail(e) {
+    setOrderEmailAsc(
+      e.target.value === "--" ? null : e.target.value === "A-Z" ? true : false
+    );
+  }
+  function renderPage(pageNumber) {
+    setCurrentPage(pageNumber);
+  }
 
   let odd = "odd";
 
@@ -33,10 +59,18 @@ function AdminOrders() {
     <StyledDiv>
       <h1>Orders List</h1>
       {admin ? (
-        <div className="listContainer">
+        <div className="listContainer boxContainer">
           <div className="listItem">
             <h3 className="userId orderTitle">Id</h3>
-            <h3 className="userEmail orderTitle">Client e-mail</h3>
+            <h3 className="movieTitle orderTitle">Movie</h3>
+            <div className="userEmail">
+              <h3 className="orderTitle">Client e-mail</h3>
+              <select onChange={(e) => handleOrderEmail(e)}>
+                <option>--</option>
+                <option>A-Z</option>
+                <option>Z-A</option>
+              </select>
+            </div>
             <div className="paymentStatus">
               <h3 className="orderTitle">Status</h3>
               <select onChange={(e) => handleFilterStatus(e)}>
@@ -47,34 +81,57 @@ function AdminOrders() {
               </select>
             </div>
           </div>
-          {payments &&
-            payments
-              .filter((el) => (statusFilter ? el.status === statusFilter : el))
-              .map((el) => {
+          <div className="listContainer scrollbar">
+            {currentPayments &&
+              currentPayments.map((el) => {
                 return (
                   <>
-                    {payments
-                      .filter((el) =>
-                        statusFilter ? el.status === statusFilter : el
-                      )
-                      .indexOf(el) %
-                      2 ===
-                    0 ? (
+                    {currentPayments.indexOf(el) % 2 === 0 ? (
                       <div className="listItem">
                         <h4 className="userId">{el.id}</h4>
+                        <h4 className="movieTitle">{el.movie_title || "--"}</h4>
                         <h4 className="userEmail">{el.email || "--"}</h4>
-                        <h4 className="paymentStatus">{el.status}</h4>
+                        <h4 className={`paymentStatus ${el.status}`}>
+                          {el.status}
+                        </h4>
                       </div>
                     ) : (
                       <div className={`listItem ${odd}`}>
                         <h4 className="userId">{el.id}</h4>
+                        <h4 className="movieTitle">{el.movie_title || "--"}</h4>
                         <h4 className="userEmail">{el.email || "--"}</h4>
-                        <h4 className="paymentStatus">{el.status}</h4>
+                        <h4 className={`paymentStatus ${el.status}`}>
+                          {el.status}
+                        </h4>
                       </div>
                     )}
                   </>
                 );
               })}
+          </div>
+          <div className="foot">
+            <h4 className="totalNumber">
+              {payments &&
+                payments
+                  .filter((el) => el.movie_title)
+                  .filter((el) =>
+                    statusFilter ? el.status === statusFilter : el
+                  ).length}{" "}
+              Orders |
+            </h4>
+            <h4>
+              Page 1 of{" "}
+              {Math.ceil(
+                payments.filter((el) => el.movie_title).length / paymentsPerPage
+              )}{" "}
+              |{" "}
+            </h4>
+            <Pagination
+              paymentsPerPage={paymentsPerPage}
+              totalPayments={payments.filter((el) => el.movie_title).length}
+              paginate={renderPage}
+            />
+          </div>
         </div>
       ) : (
         <h1>You are not and admin</h1>
