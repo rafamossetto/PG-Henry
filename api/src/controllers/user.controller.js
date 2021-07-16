@@ -72,6 +72,7 @@ const putUser = async (req, res) => {
       email,
       isAdmin,
       banned,
+      bookings: [],
     };
     await User.findByIdAndUpdate(req.params.id, newUser);
     //console.log(newUser);
