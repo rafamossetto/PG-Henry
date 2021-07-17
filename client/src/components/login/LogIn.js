@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import swal from "sweetalert";
 import StyledContainer from "./LogInStyles";
-import { logIn } from "../../actions/users";
-import { useDispatch } from "react-redux";
+import { logIn, userBookings } from "../../actions/users";
+import { useDispatch,useSelector } from "react-redux";
 import { FcGoogle } from "react-icons/fc";
 
 function LogIn() {
@@ -11,6 +11,8 @@ function LogIn() {
     name: "",
     password: "",
   });
+
+  const user = useSelector(state => state.user)
 
   function handleInputChange(e) {
     setLogInState({
@@ -36,7 +38,7 @@ function LogIn() {
         });
       }
     } else {
-      !logInState.name && !logInState.password
+      !logInState.name && !logInState.password 
         ? await swal(
             "Required credentials!",
             "Add name or email and password",

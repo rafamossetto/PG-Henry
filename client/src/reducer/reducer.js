@@ -16,10 +16,12 @@ import {
 } from "../actions/products";
 import {
   GET_USERS,
+  GET_USER_BY_ID,
   SIGNUP,
   LOGIN,
   LOG_OUT,
   GET_BOOKINGS,
+  SEARCH_USERS,
 } from "../actions/users";
 import { GET_PAYMENTS } from "../actions/orders";
 
@@ -45,6 +47,8 @@ const initialState = {
   token: getTokenLocalStorage(),
   bookings: [],
   payments: [],
+  searchUserByName: [],
+  searchUserById: [],
 };
 
 export function getTokenLocalStorage() {
@@ -168,6 +172,19 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         users: action.payload,
+      };
+    }
+    case GET_USER_BY_ID: {
+      return {
+        ...state,
+        searchUserById: action.payload,
+      };
+    }
+    case SEARCH_USERS: {
+      return {
+        ...state,
+        searchUserByName: action.payload,
+        
       };
     }
     // Ordenar usuarios por cantidad de puntos asc/desc

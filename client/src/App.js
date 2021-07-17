@@ -13,6 +13,7 @@ import Users from "./components/adminpage/users/index";
 import AdminMovies from "./components/adminpage/AdminMovies";
 import AdminOrders from "./components/adminpage/orders/AdminOrders";
 import Success from "./components/success/Success";
+import ComingSoon from "./components/comingSoon/ComingSoon";
 // import GenreFilter from "./components/GenreFilter/GenreFilter";
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
       <Route path="/movies/:id" component={MovieDetail} />
       {/* <Route path='/billboard' component ={GenreFilter}/> */}
       <Route path="/billboard" component={Billboard} />
+      <Route path="/comingsoon" component={ComingSoon} />
       <Route exact path="/administration/:id" component={EditMovie} />
       <Route exact path="/administration" component={AdminPage} />
       <Route path="/profile" component={UserProfile} />
