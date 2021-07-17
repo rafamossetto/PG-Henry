@@ -129,19 +129,22 @@ const updateBooking = async (req, res) => {
       to: user.email, // list of receivers
       subject: "Ticket booked succesfully", // Subject line
       html: `
-      <h1>Thanks for choosing us!</h1>
-      <h4> You have successfully bought a new ticket, here is the ticket info:<h4>
-      <ul>
-        <li>Movie: ${movie_title}</li>
-        <li>Date: ${date}</li>
-        <li>Time: ${time}</li>
-        <li>Parking lot: ${parking_lot}</li>
-      </ul>
-      <span>${
-        foundShow.extras[0] ? "Extras: " + foundShow.extras[0] : ""
-      }</span><br/>
-      <span>Show this e-mail at the entrance</span><br/>
-      <span>Ticket id: ${preference_id}</span>
+      <h1 style="color: #f05454;">Thanks for choosing us!</h1>
+<p style="color: #000000">Hello ${
+        user.username
+      } you have successfully bought a new ticket for ${movie_title}, here is the show info:</p>
+<div style="background-color: #f05454; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 3px 10px; font-weight: bold; border-radius: 5px;">
+<ul>
+	<li style="color: #fff;">Movie: ${movie_title}</li>
+	<li style="color: #fff;">Date: ${date}</li>
+	<li style="color: #fff;">Time: ${time}</li>
+	<li style="color: #fff;">Parking lot: ${parking_lot}</li>
+	<li style="color: #fff;">${
+    foundShow.extras[0] ? "Extras: " + foundShow.extras[0] : "No extras"
+  }</li>
+</ul>
+</div>
+<p style="color: #000000">Show this e-mail at the entrance to access to the cinema, and the info above in the candy-bar.<br /><br />Ticket ID: <span style="font-weight: bold; text-decoration: underline;">${preference_id}</span><br /><br />All rights reserved by &copy; <a href="https://www.google.com.ar">Autocinema App</a></p>
       `, // html body
     });
     res.send("Ok");
