@@ -1,7 +1,7 @@
 import styled from "styled-components";
-// @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap'); //roboto
+import { VscError } from "react-icons/vsc";
+import { BsCheckCircle } from "react-icons/bs";
 
-// font-family: 'Roboto', sans-serif;
 
 const ValidationColors ={
   Active:'#222831',
@@ -9,18 +9,37 @@ const ValidationColors ={
   Success:'#4e7816',   
 }
 
+
 const MoviesColors = {
   white: "#E8E8E8",
   red: "#F05454",
   grey: "#30475E",
   black: "#222831",
 };
-// export const StyledForm = styled.div`
-//   padding-top: 0.2em;
-//    width: 100%;
-//    display: flex;
-//    justify-content: center;
-//  `;
+
+
+export const ErrorIcon = styled(VscError)`
+     position: relative;
+     z-index: 100;
+     right: 40px;
+     bottom:-10px;
+     /* opacity: 0; */
+`;
+
+export const CheckIcon = styled(BsCheckCircle)`
+     position: relative;
+     z-index: 100;
+     right: 40px;
+     bottom:-10px;
+     /* opacity: 0; */
+`;
+
+export const Legend = styled.p`
+     font-size: 12px;
+     margin-bottom: 0px;
+     color: ${ValidationColors.Error};
+     /* display:none; */
+`;
 
 export const StyledForm = styled.div`
   padding-top: 0.2em;
@@ -97,10 +116,6 @@ export const StyledForm = styled.div`
   }
 `;
 
-// export const Error = styled.p`
-//     z-index:100;
-//     color:white;
-// `;
 
 /* background-color: ${MoviesColors.grey};
     color: ${MoviesColors.black};
