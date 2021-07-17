@@ -1,5 +1,6 @@
 const mercadopago = require("mercadopago");
 const User = require("../models/User");
+const Movie = require("../models/Movie");
 const axios = require("axios");
 const access_token =
   "TEST-4845784497089801-071314-abf58aac96d8d07a310c5d5c3575363d-170585248";
@@ -19,6 +20,11 @@ const processPayment = async (req, res) => {
   try {
     const { total, description, parking_lot, extras, movie_title, date, time } =
       req.body;
+
+    console.log(parking_lot);
+    console.log(movie_title);
+    console.log(date);
+    console.log(time);
     const user = await User.findById(req.userId);
     const preference = {
       items: [
@@ -40,8 +46,6 @@ const processPayment = async (req, res) => {
     };
     let result = await mercadopago.preferences.create(preference);
 
-    console.log(result.body);
-
     let newBooking = {
       id: result.body.id,
       payment_url: result.body.init_point,
@@ -55,12 +59,9 @@ const processPayment = async (req, res) => {
 
     let bookings = user.bookings;
 
-    console.log(user);
-
     const updatedUser = await User.findByIdAndUpdate(req.userId, {
       bookings: [...bookings, newBooking],
     });
-    console.log(updatedUser);
 
     res.status(201).send(result.body.init_point);
   } catch (error) {
@@ -74,6 +75,39 @@ const updateBooking = async (req, res) => {
     const user = await User.findById(req.userId);
     const bookings = user.bookings.map((el) =>
       el.id === preference_id ? { ...el, status } : el
+    );
+
+    let foundShow = user.bookings.find((el) => el.id === preference_id);
+    let movie_title = foundShow.movie_title;
+    let date = foundShow.date;
+    let parking_lot = foundShow.parking_lot;
+    let time = foundShow.time;
+
+    let movieFound = await Movie.findOne({ title: movie_title });
+
+    let updatedShows = movieFound.shows.map((el) =>
+      el.date.includes(date)
+        ? {
+            ...el,
+            time: el.time.map((show) =>
+              show.hasOwnProperty(time)
+                ? {
+                    ...show,
+                    [time]: show[time].map((slot) =>
+                      slot.slot === parking_lot
+                        ? { ...slot, ocuppied: true }
+                        : slot
+                    ),
+                  }
+                : show
+            ),
+          }
+        : el
+    );
+
+    await Movie.findOneAndUpdate(
+      { title: movie_title },
+      { shows: updatedShows }
     );
 
     const updatedUser = await User.findByIdAndUpdate(req.userId, {
@@ -92,7 +126,6 @@ const getPayments = async (req, res) => {
       config
     );
     let mapped = result.data.results.map((el) => {
-      console.log(el.additional_info);
       return {
         id: el.id,
         email: el.additional_info.items
