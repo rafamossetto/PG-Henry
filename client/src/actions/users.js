@@ -1,13 +1,16 @@
 import axios from "axios";
 import { getTokenLocalStorage } from "../reducer/reducer";
 export const GET_USERS = "GET_USERS";
+export const GET_USER_BY_ID = "GET_USER_BY_ID";
 export const GET_LOCATION = "GET_LOCATION";
 export const SIGNUP = "SIGNUP";
 export const LOGIN = "LOGIN";
 export const LOG_OUT = "LOG_OUT";
 export const UPDATE_USER = "UPDATE_USER";
 export const GET_BOOKINGS = "GET_BOOKINGS";
+export const SEARCH_USERS = "SEARCH_USERS";
 export const USER_INFO = "USER_INFO";
+
 
 const config = {
   headers: {
@@ -22,6 +25,15 @@ export function getUsers() {
     dispatch({ type: GET_USERS, payload: result.data });
     console.log(result);
   };
+}
+
+export function getUserById(id) {
+  return(dispatch) => {
+      axios.get(`http://localhost:3001/users/${id}`)
+          .then(res => {
+              dispatch({type: GET_USER_BY_ID, payload: res.data}) 
+          })
+  }
 }
 
 export function signUp(username, email, password) {
@@ -103,4 +115,14 @@ export function userBookings() {
     await dispatch({ type: GET_BOOKINGS, payload: bookings.data });
     return "Bookings loaded";
   };
+};
+
+export function searchUsers(name) {
+  return(dispatch) => {
+    axios.get(`http://localhost:3001/users?name=${name}`)
+      .then(res => {
+        dispatch({type: SEARCH_USERS, payload: res.data})
+      })
+  }
 }
+

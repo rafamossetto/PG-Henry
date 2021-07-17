@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import StyledDiv from './userStyles';
 import { getUsers, updateUser } from '../../../actions/users';
@@ -9,9 +9,18 @@ const Users = () => {
 
     const dispatch = useDispatch();
     const users = useSelector(state => state.users);
-    
+
+    //search
+    const [name, setName] = useState("");
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        setName("");
+    }
+
+    //BlockUser
     const ChangeClick = async (user, e) => {
-        console.log('banned: ', user.banned)
+        //console.log('banned: ', user.banned)
         e.preventDefault();
         const blockDisable = await swal({
             title: `Are you sure you want to ${user.banned ? 'disable' : 'block'}  to ${user.username}?`,
@@ -70,6 +79,20 @@ const Users = () => {
         {
             window.localStorage.token && users.length ?
                 <StyledDiv>
+                    <div className="search">
+                        <form onSubmit={(e) => handleSubmit(e)} className="formContainer">
+                            <div className="searchBarContainer">
+                            <input
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                placeholder="Search Username..."
+                                type="text"
+                                className="input">
+                            </input>
+                            </div>
+                        </form>
+                    </div>
+
                     <table className="container" >
                         <thead className="title">
                             <h1>Users registrates</h1>     
@@ -77,12 +100,12 @@ const Users = () => {
                                 <td>Username</td>
                                 <td>Email</td>
                                 <td>Adm/User</td>
-                                <td>Dis/Block</td>
+                                <td>Ava/Block</td>
                             </tr>
                         </thead>
                         <tbody className="item">
                         {users &&
-                            users.map(user => (
+                            users.filter(user => name ? user.username.includes(name) : user).map(user => (
                                 <tr key={user._id}>
                                     <td>{user.username}</td>
                                     <td>{user.email}</td>
@@ -98,7 +121,7 @@ const Users = () => {
                                     <button
                                     className='userButton'
                                     onClick={(e) => ChangeClick(user, e)}
-                                    >{user.banned ? 'UserBlock' : 'Disable'}
+                                    >{user.banned ? 'UserBlocked' : 'Available'}
                                     </button>
                                     </td>
                                 </tr>

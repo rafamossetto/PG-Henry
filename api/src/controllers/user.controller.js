@@ -40,9 +40,28 @@ const logIn = async (req, res) => {
 };
 
 const getUsers = async (req, res) => {
+  let users
+  let { name } = req.query;
+  //console.log(name)
+
   try {
-    let users = await User.find();
-    res.send(users);
+    if(name) {
+      users = await User.find({username: name});
+      return res.status(200).send(users); 
+    }else {
+      users = await User.find();
+      res.send(users);
+    }
+  } catch (error) {
+    res.json({ error: "Username not found" })
+  }
+};
+
+const getUserById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const userFound = await User.findById(id);
+    return res.json(userFound);
   } catch (error) {
     console.log(error);
   }
@@ -95,6 +114,7 @@ module.exports = {
   signUp,
   logIn,
   getUsers,
+  getUserById,
   verifyAdmin,
   putUser,
   getBookings,
