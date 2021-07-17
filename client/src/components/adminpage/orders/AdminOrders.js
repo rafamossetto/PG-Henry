@@ -58,7 +58,6 @@ function AdminOrders() {
 
   return (
     <StyledDiv>
-      <h1>Orders List</h1>
       {admin ? (
         <div className="listContainer boxContainer">
           <div className="listItem">
