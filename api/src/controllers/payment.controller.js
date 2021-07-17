@@ -4,6 +4,17 @@ const Movie = require("../models/Movie");
 const axios = require("axios");
 const access_token =
   "TEST-4845784497089801-071314-abf58aac96d8d07a310c5d5c3575363d-170585248";
+const nodemailer = require("nodemailer");
+//ykxotzanjxikdvjt
+let transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true, // true for 465, false for other ports
+  auth: {
+    user: "autocinehenry@gmail.com", // generated ethereal user
+    pass: "ykxotzanjxikdvjt", // generated ethereal password
+  },
+});
 
 mercadopago.configure({
   access_token,
@@ -110,8 +121,29 @@ const updateBooking = async (req, res) => {
       { shows: updatedShows }
     );
 
-    const updatedUser = await User.findByIdAndUpdate(req.userId, {
+    await User.findByIdAndUpdate(req.userId, {
       bookings,
+    });
+    await transporter.sendMail({
+      from: '"AutoCine Henry 🎥" <autocinehenry@gmail.com>', // sender address
+      to: user.email, // list of receivers
+      subject: "Ticket booked succesfully", // Subject line
+      html: `
+      <h1>Thanks for choosing us!</h1>
+      <h4> You have successfully bought a new ticket, here is the ticket info:<h4>
+      <ul>
+        <li>Movie: ${movie_title}</li>
+        <li>Date: ${date}</li>
+        <li>Time: ${time}</li>
+        <li>Parking lot: ${parking_lot}</li>
+      </ul>
+      <span>${
+        foundShow.extras[0] ? "Extras: " + foundShow.extras[0] : ""
+      }</span>
+
+      <span>Show this e-mail at the entrance</span><br/>
+      <span>Ticket id: ${preference_id}</span>
+      `, // html body
     });
     res.send("Ok");
   } catch (error) {

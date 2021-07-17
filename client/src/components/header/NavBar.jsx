@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getTokenLocalStorage } from "../../reducer/reducer";
+import { getTokenLocalStorage, getUserDataStorage } from "../../reducer/reducer";
 import { NavBarAlpha, SignButton, Cart, Linked } from './Styles';
 import { isAdmin, logOut} from '../../actions/users';
 import { useHistory } from 'react-router-dom';
@@ -11,6 +11,7 @@ export default function NavBar() {
     const dispatch = useDispatch()
     const history = useHistory()
     const token = getTokenLocalStorage();
+    const user = getUserDataStorage();
     let [admin, setAdmin] = useState(null);
     
     useEffect(() => {
@@ -69,7 +70,7 @@ async function handleLogOut() {
                 : token && admin === false
                 ? 
                 <div className='accountLogout'>
-                    <Linked to='/profile'>Account</Linked>
+                    <Linked to='/profile'>{user.username}</Linked>
                     <img className='logout' alt="" src='https://res.cloudinary.com/juancereceda/image/upload/v1625936866/logout_nt6exa.png'onClick={() => handleLogOut()}/>
                 </div> 
                 : <Linked><SignButton onClick={() => history.push('/login')}>Sign In / Sign Up</SignButton></Linked>
