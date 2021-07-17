@@ -139,8 +139,7 @@ const updateBooking = async (req, res) => {
       </ul>
       <span>${
         foundShow.extras[0] ? "Extras: " + foundShow.extras[0] : ""
-      }</span>
-
+      }</span><br/>
       <span>Show this e-mail at the entrance</span><br/>
       <span>Ticket id: ${preference_id}</span>
       `, // html body
