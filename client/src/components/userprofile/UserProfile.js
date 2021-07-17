@@ -1,15 +1,19 @@
 import React from "react";
-import { getTokenLocalStorage } from "../../reducer/reducer";
+import {
+  getTokenLocalStorage,
+  getUserDataStorage,
+} from "../../reducer/reducer";
 import StyledUserPage from "./StyledUserPage";
 import Reservations from "./Reservations";
 
 function UserProfile() {
   const token = getTokenLocalStorage();
+  const user = getUserDataStorage();
   return (
     <StyledUserPage>
       {token ? (
         <>
-          <h1>Welcome back, user!</h1>
+          <h1>Welcome back, {user.username}!</h1>
           <Reservations />
         </>
       ) : (

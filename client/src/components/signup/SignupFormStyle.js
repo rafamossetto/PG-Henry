@@ -1,4 +1,14 @@
 import styled from "styled-components";
+import { VscError } from "react-icons/vsc";
+import { BsCheckCircle } from "react-icons/bs";
+
+
+const ValidationColors ={
+  Active:'#222831',
+  Error: '#F05454',
+  Success:'#4e7816',   
+}
+
 
 const MoviesColors = {
   white: "#E8E8E8",
@@ -6,6 +16,30 @@ const MoviesColors = {
   grey: "#30475E",
   black: "#222831",
 };
+
+
+export const ErrorIcon = styled(VscError)`
+     position: relative;
+     z-index: 100;
+     right: 40px;
+     bottom:-10px;
+     /* opacity: 0; */
+`;
+
+export const CheckIcon = styled(BsCheckCircle)`
+     position: relative;
+     z-index: 100;
+     right: 40px;
+     bottom:-10px;
+     /* opacity: 0; */
+`;
+
+export const Legend = styled.p`
+     font-size: 12px;
+     margin-bottom: 0px;
+     color: ${ValidationColors.Error};
+     /* display:none; */
+`;
 
 export const StyledForm = styled.div`
   padding-top: 0.2em;
@@ -81,6 +115,7 @@ export const StyledForm = styled.div`
     }
   }
 `;
+
 
 /* background-color: ${MoviesColors.grey};
     color: ${MoviesColors.black};

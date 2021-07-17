@@ -1,74 +1,40 @@
 import styled from "styled-components";
 
-export const StyledCard = styled.div`
-    display: grid;
-    grid-template-columns: 20% 30% 30% 20%;
-    grid-template-rows: 25% 40% 20% 15%;
-    width: 80%;
-    color: #E8E8E8;
-    a{
-        grid-column: 1/2;
-        grid-row: 1/5;
-        margin: 5%;
-        text-decoration: none;
-        color: #E8E8E8;
-    }
-    a img{
-        grid-column: 1/2;
-        grid-row: 1/5;
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-    }
-    h2{
-        grid-column: 2/5;
-        grid-row: 1/2;
-        text-align: center;
-        font-size: 2rem;
-        text-shadow: .5rem .5rem .3rem #222831;
-    }
-    p{
-        margin-left: 1vw;
-        margin-right: 1vw;
-        text-align: justify;
-        grid-column: 2/5;
-        grid-row: 2/3;
-    }
-    h4{
-        margin-left: 1vw;
-        grid-column: 2/3;
-        grid-row: 3/4;
-    }
-    h5{
-        margin-left: 1vw;
-        grid-column: 3/5;
-        grid-row: 3/4;
-    }
-    h6{
-        margin-left: 1vw;
-        grid-column: 2/5;
-        grid-row: 4/5;
-    }
-    span{
-        color: #F05454;
-    }
-    margin-top: 2%;
-    margin-bottom: 1%;
-    background-color: #30475E88;
-    box-sizing: border-box;
-    // border: 3px solid #30475E;
-    border-radius: 5px;
-    box-shadow: 5px 5px 5px rgba(0,0,0,0.7),
-                inset 2px 3px 5px rgba(0,0,0,0.3),
-                inset -2px -3px 5px rgba(0,0,0,0.5);
-`;
-
 export const StyleFilter= styled.div`
-   
-   display:flex;
-   max-width: 30%;
+   box-sizing: border-box;
    position: absolute;
-   left: 0;
-   top:25%;
+   top: 1%;
+   left: 1%;
+   width: 15%;
+   margin: 0;
+   padding: 0;
+   & select{
+      width: 100%;
+      font-size: 2.5rem;
+      border-top: 20px solid #E8E8E8;
+      border-bottom: 20px solid #E8E8E8;
+      border-image: url("https://www.clipartmax.com/png/full/1-10009_onlinelabels-clip-art-movie-tape-cinta-de-pelicula-dibujo.png") 40 round;
+      background-color: #E8E8E8;
+      margin: 0;
+      padding: 0;
+      cursor: pointer;
+      :hover{
+         background-color: transparent;
+         color: #E8E8E8;
+         padding: 2px 0px 2px 15px;
+      }
+      :focus{
+         outline: none;
+      }
+      transition: all .5s;
+   }
+   & select option{
+      background-color: #222831;
+      color: #E8E8E8;
+      width: 100%;
+      :hover{
+         background-color: #222831;
+         opacity: 0.2;
+      }
+   }
 `;

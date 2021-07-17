@@ -17,7 +17,7 @@ const signUp = async (req, res) => {
       expiresIn: 86400,
     });
 
-    res.status(201).send({ token });
+    res.status(201).send({ token, username, email });
   } catch (error) {
     console.log(error);
   }
@@ -33,7 +33,7 @@ const logIn = async (req, res) => {
       expiresIn: 86400,
     });
 
-    res.status(200).json({ token });
+    res.status(200).json({ token, email: user.email, username: user.username });
   } catch (error) {
     console.log(error);
   }

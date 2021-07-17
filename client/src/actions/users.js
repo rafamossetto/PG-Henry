@@ -9,6 +9,8 @@ export const LOG_OUT = "LOG_OUT";
 export const UPDATE_USER = "UPDATE_USER";
 export const GET_BOOKINGS = "GET_BOOKINGS";
 export const SEARCH_USERS = "SEARCH_USERS";
+export const USER_INFO = "USER_INFO";
+
 
 const config = {
   headers: {
@@ -43,10 +45,15 @@ export function signUp(username, email, password) {
         password,
       });
       dispatch({ type: SIGNUP, payload: token.data.token });
+      dispatch({
+        type: USER_INFO,
+        payload: { username: token.data.username, email: token.data.email },
+      });
       return "Account created";
     } catch (error) {
       if (error.response.status === 400) {
-        return error.response.data;
+        console.log(error.response.data.message);
+        return error.response.data.message;
       }
     }
   };
@@ -61,6 +68,13 @@ export function logIn(name, password) {
       });
       if (response.data.token) {
         await dispatch({ type: LOGIN, payload: response.data.token });
+        dispatch({
+          type: USER_INFO,
+          payload: {
+            username: response.data.username,
+            email: response.data.email,
+          },
+        });
         return "Logged in succesfully";
       } else {
         return response.data.message;
@@ -79,22 +93,26 @@ export function logOut() {
 
 export async function isAdmin() {
   const result = await axios.get(
-    "http://localhost:3001/users/verifyadmin", config);
+    "http://localhost:3001/users/verifyadmin",
+    config
+  );
   return result.data.isAdmin;
 }
 
 export function updateUser(user, id) {
-  return(dispatch) =>
-  axios.put(`http://localhost:3001/users/${id}`, user, config)
-  .then((res) => {
-    dispatch({type: UPDATE_USER, payload: res.data});
-  });
+  return (dispatch) =>
+    axios.put(`http://localhost:3001/users/${id}`, user, config).then((res) => {
+      dispatch({ type: UPDATE_USER, payload: res.data });
+    });
 }
 
 export function userBookings() {
   return async function (dispatch) {
-    const bookings = await axios.get('http://localhost:3001/users/bookings', config);
-    await dispatch({type: GET_BOOKINGS, payload: bookings.data});
+    const bookings = await axios.get(
+      "http://localhost:3001/users/bookings",
+      config
+    );
+    await dispatch({ type: GET_BOOKINGS, payload: bookings.data });
     return "Bookings loaded";
   };
 };
@@ -107,3 +125,4 @@ export function searchUsers(name) {
       })
   }
 }
+

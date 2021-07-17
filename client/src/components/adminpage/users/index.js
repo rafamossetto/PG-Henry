@@ -22,47 +22,56 @@ const Users = () => {
     const ChangeClick = async (user, e) => {
         //console.log('banned: ', user.banned)
         e.preventDefault();
-
-        if(!user.banned) {
-            let result = await swal({
-                title: "Are you sure?",
-                text: `The Blocked to ${user.username}`,
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-            if (result) {
-                await swal("Blocked User!", 
+        const blockDisable = await swal({
+            title: `Are you sure you want to ${user.banned ? 'disable' : 'block'}  to ${user.username}?`,
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        if (blockDisable) {
+            dispatch(getUsers())
+            console.log('Admin: ', user.isAdmin)
+            dispatch(updateUser(
                 {
-                    icon: "success",
-                })
-                dispatch(getUsers())
-                dispatch(updateUser(
-                    {
-                        ...user,
-                        banned: !user.banned,
-                    },
-                    user._id
-                ))
-                dispatch(getUsers())
-            } else {
-                swal("Your user is safe!");
-            }
-        }
+                    ...user,
+                    banned: !user.banned,
+                },
+                user._id
+            ))
+            dispatch(getUsers())
+            await swal("The change has been made!", {
+              icon: "success",
+              buttons: false,
+              timer: 1500
+            });
+        } 
     }
 
-    const handleClick = (user, e) => {
+    const handleClick = async (user, e) => {
         e.preventDefault()
-        dispatch(getUsers())
-        //console.log('Admin: ', user.isAdmin)
-        dispatch(updateUser(
-            {
-                ...user, 
-                isAdmin: !user.isAdmin
-            },
-            user._id
-        ))
-        dispatch(getUsers())
+        const changeRole = await swal({
+            title: `Are you sure you want to change the role ${user.isAdmin ? 'Admin' : 'User'}  to ${user.isAdmin ? 'User' : 'Admin'}?`,
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        if (changeRole) {
+            dispatch(getUsers())
+            console.log('Admin: ', user.isAdmin)
+            dispatch(updateUser(
+                {
+                    ...user, 
+                    isAdmin: !user.isAdmin
+                },
+                user._id
+            ))
+            dispatch(getUsers())
+            await swal("The change has been made!", {
+              icon: "success",
+              buttons: false,
+              timer: 1500
+            });
+        } 
     }
 
     return (
@@ -101,10 +110,11 @@ const Users = () => {
                                     <td>{user.username}</td>
                                     <td>{user.email}</td>
                                     <td>
+                                        <label>Is {user.isAdmin ? 'Admin' : 'User'}</label>
                                     <button
                                     className='userButton'
                                     onClick={(e) => handleClick(user, e)}
-                                    >{user.isAdmin ? 'Admin' : 'User'}
+                                    >{user.isAdmin ? 'ChangeToUser' : 'ChangeToAdmin'}
                                     </button>
                                     </td>
                                     <td>

@@ -22,6 +22,8 @@ import {
   LOG_OUT,
   GET_BOOKINGS,
   SEARCH_USERS,
+  USER_INFO,
+
 } from "../actions/users";
 import { GET_PAYMENTS } from "../actions/orders";
 
@@ -41,7 +43,7 @@ const initialState = {
   purchase: getPurchaseLocalStorage() ? getPurchaseLocalStorage() : {},
   movieDetail: {},
   moviesGenre: [],
-  genre: [], // pendiente de revisión
+  genre: "",
   users: [],
   movieList: [],
   token: getTokenLocalStorage(),
@@ -49,6 +51,7 @@ const initialState = {
   payments: [],
   searchUserByName: [],
   searchUserById: [],
+  userData: {},
 };
 
 export function getTokenLocalStorage() {
@@ -59,6 +62,16 @@ export function getTokenLocalStorage() {
 function setTokenLocalStorage(token) {
   window.localStorage.setItem("token", JSON.stringify(token));
 }
+
+export function getUserDataStorage() {
+  const userdata = window.localStorage.getItem("userdata");
+  return userdata ? JSON.parse(userdata) : "";
+}
+
+function setUserDataLocalStorage(userdata) {
+  window.localStorage.setItem("userdata", JSON.stringify(userdata));
+}
+
 export function getPurchaseLocalStorage() {
   const purchase = window.localStorage.getItem("purchase");
   return purchase ? JSON.parse(purchase) : "";
@@ -86,24 +99,30 @@ export default function reducer(state = initialState, action) {
     case GET_MOVIES_BY_GENRE: {
       return {
         ...state,
-        moviesGenre: action.payload,
+        genre: action.payload,
       };
     }
     case GET_GENRES: {
-      // pendiente de revisión
+      const moviesGenres = state.movieList.map((movie) =>
+        movie.onBillboard ? movie.genre : ", "
+      );
+      let moviesGenresFiltred = [];
+      moviesGenres.forEach((element) =>
+        moviesGenresFiltred.push(
+          element.includes(", ")
+            ? element
+                .split(", ")
+                .forEach((element) => moviesGenresFiltred.push(element))
+            : element
+        )
+      );
+      moviesGenresFiltred = moviesGenresFiltred.filter(
+        (el) => el !== undefined && el !== ""
+      );
+      let genresList = [...new Set(moviesGenresFiltred)];
       return {
         ...state,
-        genre: state.movieList
-          .map((el) => {
-            var word = el.split(",");
-            var filtred = [];
-            for (var i = 0; i < word.length; i++) {
-              if (filtred.includes(word[i])) continue;
-              filtred.push(word[i]);
-            }
-            return filtred;
-          })
-          .concat(state.genre),
+        moviesGenre: genresList,
       };
     }
 
@@ -216,8 +235,16 @@ export default function reducer(state = initialState, action) {
         token: action.payload,
       };
     }
+    case USER_INFO: {
+      setUserDataLocalStorage(action.payload);
+      return {
+        ...state,
+        userData: action.payload,
+      };
+    }
     case LOG_OUT: {
       window.localStorage.removeItem("token");
+      window.localStorage.removeItem("userdata");
       return {
         ...state,
         token: "",
