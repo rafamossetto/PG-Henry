@@ -5,6 +5,7 @@ import { isAdmin } from "../../../actions/users";
 import StyledDiv from "./OrderStyles";
 import { getTokenLocalStorage } from "../../../reducer/reducer";
 import Pagination from "./paginateOrders.js";
+import NotFound from "../../404/NotFound";
 function AdminOrders() {
   const dispatch = useDispatch();
   const payments = useSelector((state) => state.payments);
@@ -134,7 +135,7 @@ function AdminOrders() {
           </div>
         </div>
       ) : (
-        <h1>You are not and admin</h1>
+        <NotFound />
       )}
     </StyledDiv>
   );
