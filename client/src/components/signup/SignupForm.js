@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { StyledForm, StyledInput, StyledButton } from "./SignupFormStyle.js";
+import { StyledForm, StyledInput, StyledButton,Legend, ErrorIcon, CheckIcon } from "./SignupFormStyle.js";
 import { signUp } from "../../actions/users";
 import { FcGoogle } from "react-icons/fc";
 import swal from "sweetalert";
@@ -19,30 +19,22 @@ export default function SignupForm() {
     passMatch: false,
   });
 
-  // const selector = useSelector(state => state)
+  const[error, setError]= useState({
+      email:'',
+      password:''
+  })
 
-  /*info = {
-        username: Username.value,
-        email : E-Mail.value,
-        password: Password.value,
-        isAdmin: false,
-        bookings: []
-    }*/
+    function handleUsername(e){setInfo({...info, username: e.target.value})}
+    function handleEmail(e){setInfo({...info, email: e.target.value})}
+    function handlePassword(e){setInfo({...info, password: e.target.value})}
 
-  function ChangeHandler(event) {
-    const property = event.target.id;
-    const value = event.target.value;
-    setInfo({ ...info, [property]: value });
-  }
-
-  function PasswordCorroboration(event) {
-    //agregar funcion de minimo 8 caracteres
-    const password = info.password;
-    const comparation = event.target.value;
-    password === comparation
-      ? setInfo({ ...info, passMatch: true })
-      : setInfo({ ...info, passMatch: false });
-  }
+    function PasswordCorroboration(event) {
+      const password = info.password;
+      const comparation = event.target.value;
+      password === comparation
+        ? setInfo({ ...info, passMatch: true })
+        : setInfo({ ...info, passMatch: false });
+    }
 
   async function SubmitHandler(event) {
     event.preventDefault();
@@ -54,19 +46,19 @@ export default function SignupForm() {
       if (response === "Account created") {
         await swal(response, "Success", "success", {
           buttons: false,
-          timer: 2000,
+          timer: 1000,
         });
         window.location.assign("http://localhost:3000/");
       } else {
         swal(response, "Error", "error", {
           buttons: false,
-          timer: 3000,
+          timer: 2000,
         });
       }
     } else {
       return swal("Passwords dont match", "Error", "error", {
         buttons: false,
-        timer: 3000,
+        timer: 2000,
       });
     }
   }
@@ -74,34 +66,11 @@ export default function SignupForm() {
   return (
     <StyledForm>
       <form onSubmit={SubmitHandler}>
-        <input
-          type="text"
-          onChange={ChangeHandler}
-          id="username"
-          placeholder="Username"
-          required
-        />
-        <input
-          type="email"
-          onChange={ChangeHandler}
-          id="email"
-          placeholder="Email"
-          required
-        />
-        <input
-          type="password"
-          onChange={ChangeHandler}
-          id="password"
-          placeholder="Password"
-          required
-        />
-        <input
-          type="password"
-          onChange={PasswordCorroboration}
-          id="password-confirm"
-          placeholder="Confirm Password"
-          required
-        />
+        <input type="text" onChange={handleUsername} id="username" placeholder="Username" required/>
+        <input type="email" onChange={handleEmail} id="email" placeholder="Email" required/>
+        <input type="password" onChange={handlePassword} id="password" placeholder="Password" required/>
+        <input type="password" onChange={PasswordCorroboration} id="password-confirm" placeholder="Confirm Password" required/>
+        
         <button className="google">
           <FcGoogle size="35" />
           Sign in with Google
