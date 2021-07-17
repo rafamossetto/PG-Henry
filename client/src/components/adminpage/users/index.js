@@ -41,7 +41,7 @@ const Users = () => {
     const handleClick = async (user, e) => {
         e.preventDefault()
         const changeRole = await swal({
-            title: `Are you sure you want to chage the role ${user.isAdmin ? 'Amin' : 'User'}  to ${user.isAdmin ? 'User' : 'Admin'}?`,
+            title: `Are you sure you want to change the role ${user.isAdmin ? 'Admin' : 'User'}  to ${user.isAdmin ? 'User' : 'Admin'}?`,
             icon: "warning",
             buttons: true,
             dangerMode: true,
