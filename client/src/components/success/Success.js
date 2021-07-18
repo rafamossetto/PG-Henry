@@ -18,7 +18,7 @@ const Success = (props) => {
         intervalo = setInterval(() => {  
             if(counter > 0) setCounter(counter - 1)
             if(counter === 1){
-                clearInterval()  
+                intervalo.clearInterval()  
                 window.location.assign('http://localhost:3000/profile')
             }
         }, 1000)            
