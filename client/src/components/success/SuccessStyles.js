@@ -3,7 +3,7 @@ import styled from "styled-components";
 const SuccessMsg = styled.div`
   padding-top: 200px;
   position: static;
-  font-size: 24px;  
+  font-size: 24px;
   color: rgba(255, 255, 255, 1);
   font-family: Questrial;
   display: flex;

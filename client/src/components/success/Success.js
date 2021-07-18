@@ -26,7 +26,7 @@ const Success = (props) => {
     return (
         <SuccessMsg>
             <div className="successBox">
-                <h2>Payment Aproved</h2>
+                <h2>Payment {status}</h2>
                 <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Redirecting in {counter}...</h3>
             </div>
         </SuccessMsg>

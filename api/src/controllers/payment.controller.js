@@ -50,7 +50,7 @@ const processPayment = async (req, res) => {
       ],
       auto_return: "approved",
       back_urls: {
-        failure: "http://localhost:3000/products",
+        failure: `http://localhost:3000/success/${req.userId}/`,
         pending: "http://localhost:3000/products",
         success: `http://localhost:3000/success/${req.userId}/`,
       },
