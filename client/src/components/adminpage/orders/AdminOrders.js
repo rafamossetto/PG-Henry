@@ -122,13 +122,23 @@ function AdminOrders() {
             <h4>
               Page 1 of{" "}
               {Math.ceil(
-                payments.filter((el) => el.movie_title).length / paymentsPerPage
+                payments
+                  .filter((el) => el.movie_title)
+                  .filter((el) =>
+                    statusFilter ? el.status === statusFilter : el
+                  ).length / paymentsPerPage
               )}{" "}
               |{" "}
             </h4>
             <Pagination
               paymentsPerPage={paymentsPerPage}
-              totalPayments={payments.filter((el) => el.movie_title).length}
+              totalPayments={
+                payments
+                  .filter((el) => el.movie_title)
+                  .filter((el) =>
+                    statusFilter ? el.status === statusFilter : el
+                  ).length
+              }
               paginate={renderPage}
             />
           </div>

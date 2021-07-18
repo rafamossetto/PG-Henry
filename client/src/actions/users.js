@@ -11,7 +11,6 @@ export const GET_BOOKINGS = "GET_BOOKINGS";
 export const SEARCH_USERS = "SEARCH_USERS";
 export const USER_INFO = "USER_INFO";
 
-
 const config = {
   headers: {
     "Access-Control-Allow-Headers": "x-access-token",
@@ -28,12 +27,11 @@ export function getUsers() {
 }
 
 export function getUserById(id) {
-  return(dispatch) => {
-      axios.get(`http://localhost:3001/users/${id}`)
-          .then(res => {
-              dispatch({type: GET_USER_BY_ID, payload: res.data}) 
-          })
-  }
+  return (dispatch) => {
+    axios.get(`http://localhost:3001/users/${id}`).then((res) => {
+      dispatch({ type: GET_USER_BY_ID, payload: res.data });
+    });
+  };
 }
 
 export function signUp(username, email, password) {
@@ -115,14 +113,51 @@ export function userBookings() {
     await dispatch({ type: GET_BOOKINGS, payload: bookings.data });
     return "Bookings loaded";
   };
-};
+}
 
 export function searchUsers(name) {
-  return(dispatch) => {
-    axios.get(`http://localhost:3001/users?name=${name}`)
-      .then(res => {
-        dispatch({type: SEARCH_USERS, payload: res.data})
-      })
+  return (dispatch) => {
+    axios.get(`http://localhost:3001/users?name=${name}`).then((res) => {
+      dispatch({ type: SEARCH_USERS, payload: res.data });
+    });
+  };
+}
+
+export async function verifyUser(email) {
+  try {
+    let result = await axios.post("http://localhost:3001/users/verifyuser", {
+      email,
+    });
+    return result.data.message;
+  } catch (error) {
+    console.log(error);
+  }
+}
+export async function verifyToken(token) {
+  try {
+    let result = await axios.post("http://localhost:3001/users/verifytoken", {
+      token,
+    });
+    return result.data.message;
+  } catch (error) {
+    console.log(error);
   }
 }
 
+export async function changePassword(password, token) {
+  try {
+    let result = await axios.put(
+      "http://localhost:3001/users/restorepassword",
+      { password },
+      {
+        headers: {
+          "Access-Control-Allow-Headers": "x-access-token",
+          "x-access-token": token,
+        },
+      }
+    );
+    return result.data.message;
+  } catch (error) {
+    return error.response.data.message;
+  }
+}

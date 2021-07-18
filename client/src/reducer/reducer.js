@@ -23,7 +23,6 @@ import {
   GET_BOOKINGS,
   SEARCH_USERS,
   USER_INFO,
-
 } from "../actions/users";
 import { GET_PAYMENTS } from "../actions/orders";
 
@@ -59,7 +58,7 @@ export function getTokenLocalStorage() {
   return token ? JSON.parse(token) : "";
 }
 
-function setTokenLocalStorage(token) {
+export function setTokenLocalStorage(token) {
   window.localStorage.setItem("token", JSON.stringify(token));
 }
 
@@ -203,7 +202,6 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         searchUserByName: action.payload,
-        
       };
     }
     // Ordenar usuarios por cantidad de puntos asc/desc
