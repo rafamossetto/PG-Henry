@@ -44,7 +44,7 @@ export default function SignupForm() {
           buttons: false,
           timer: 1000,
         });
-        window.location.assign("http://localhost:3000/");
+        window.location.assign("http://henry-movie-app.vercel.app/");
       } else {
         swal(response, "Error", "error", {
           buttons: false,

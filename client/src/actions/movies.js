@@ -17,7 +17,7 @@ const config = {
 export function getMovieById(id) {
   return function (dispatch) {
     return axios
-      .get(`http://localhost:3001/movies/${id}`)
+      .get(`https://movies-henry-app.herokuapp.com/movies/${id}`)
       .then((result) => {
         dispatch({
           type: GET_MOVIES_DETAIL,
@@ -33,7 +33,7 @@ export function getMovieById(id) {
 
 export function getMovieList() {
   return function (dispatch) {
-    return axios.get("http://localhost:3001/movies").then((result) => {
+    return axios.get("https://movies-henry-app.herokuapp.com/movies").then((result) => {
       dispatch({
         type: GET_MOVIE_LIST,
         payload: result.data,
@@ -51,14 +51,14 @@ export function clearMovie() { //se usa en el willunmount
 
 export function postMovie(movie) {
   return(dispatch) =>
-    axios.post("http://localhost:3001/movies", movie, config)
+    axios.post("https://movies-henry-app.herokuapp.com/movies", movie, config)
     .then((res) => {
       dispatch({type: POST_MOVIE, payload: res.data});
     });
 }    
     
 export function updateMovie(movie, id) {
-  axios.put(`http://localhost:3001/movies/${id}`, movie, config)
+  axios.put(`https://movies-henry-app.herokuapp.com/movies/${id}`, movie, config)
 }
 
 export function getMoviesByGenre(genre){

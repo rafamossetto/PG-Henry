@@ -19,7 +19,7 @@ const Success = (props) => {
             if(counter > 0) setCounter(counter - 1)
             if(counter === 1){
                 intervalo.clearInterval()  
-                window.location.assign('http://localhost:3000/profile')
+                window.location.assign('http://henry-movie-app.vercel.app/profile')
             }
         }, 1000)            
     }, [status, preference_id, counter])

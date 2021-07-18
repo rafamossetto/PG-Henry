@@ -38,7 +38,7 @@ function EditMovie() {
     //Efecto para traer el detalle de la pelicula
     useEffect(() => {
         const fetchMovieDetail = async () => {
-            const response = await axios.get(`http://localhost:3001/movies/${params.id}`);
+            const response = await axios.get(`https://movies-henry-app.herokuapp.com/movies/${params.id}`);
             const date = new Date(response.data.date)
             response.data.date = date.toISOString().split('T')[0]
             setMovieDetail(response.data);
