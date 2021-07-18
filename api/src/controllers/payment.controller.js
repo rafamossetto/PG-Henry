@@ -93,33 +93,34 @@ const updateBooking = async (req, res) => {
     let date = foundShow.date;
     let parking_lot = foundShow.parking_lot;
     let time = foundShow.time;
+    if (status === "approved") {
+      let movieFound = await Movie.findOne({ title: movie_title });
 
-    let movieFound = await Movie.findOne({ title: movie_title });
+      let updatedShows = movieFound.shows.map((el) =>
+        el.date.includes(date)
+          ? {
+              ...el,
+              time: el.time.map((show) =>
+                show.hasOwnProperty(time)
+                  ? {
+                      ...show,
+                      [time]: show[time].map((slot) =>
+                        slot.slot === parking_lot
+                          ? { ...slot, ocuppied: true }
+                          : slot
+                      ),
+                    }
+                  : show
+              ),
+            }
+          : el
+      );
 
-    let updatedShows = movieFound.shows.map((el) =>
-      el.date.includes(date)
-        ? {
-            ...el,
-            time: el.time.map((show) =>
-              show.hasOwnProperty(time)
-                ? {
-                    ...show,
-                    [time]: show[time].map((slot) =>
-                      slot.slot === parking_lot
-                        ? { ...slot, ocuppied: true }
-                        : slot
-                    ),
-                  }
-                : show
-            ),
-          }
-        : el
-    );
-
-    await Movie.findOneAndUpdate(
-      { title: movie_title },
-      { shows: updatedShows }
-    );
+      await Movie.findOneAndUpdate(
+        { title: movie_title },
+        { shows: updatedShows }
+      );
+    }
 
     await User.findByIdAndUpdate(req.userId, {
       bookings,
