@@ -135,6 +135,7 @@ const verifyUser = async (req, res) => {
         html: `
         <h4>Here is the token to restore your password: </h4>
         <h5>${token}</h5>
+        <br/><br/>All rights reserved by &copy; <a href="https://www.google.com.ar">Autocinema App</a></p>
         `, // html body
       });
       return res.send({
