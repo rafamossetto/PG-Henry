@@ -156,7 +156,7 @@ const updateBooking = async (req, res) => {
 const getPayments = async (req, res) => {
   try {
     let result = await axios.get(
-      "https://api.mercadopago.com/v1/payments/search",
+      "https://api.mercadopago.com/v1/payments/search?limit=1000",
       config
     );
     let mapped = result.data.results.map((el) => {
