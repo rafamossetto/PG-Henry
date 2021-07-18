@@ -10,7 +10,17 @@ const Users = () => {
     const dispatch = useDispatch();
     const users = useSelector(state => state.users);
     const [statusFilter, setStatusFilter] = React.useState(null);
-    const usersCurrent = users?.filter(user => statusFilter === 'Admins' ? user.isAdmin : statusFilter === 'Users' ? !user.isAdmin : user)
+    const usersCurrent = users?.filter(user => (
+        statusFilter === 'Admins' ? user.isAdmin 
+        : 
+        statusFilter === 'Users' ? !user.isAdmin 
+        : 
+        statusFilter === 'Disables' ? user.banned
+        :
+        statusFilter === 'Enables' ? !user.banned
+        : 
+        user
+    ))
     const ChangeClick = async (user, e) => {
         console.log('banned: ', user.banned)
         e.preventDefault();
@@ -88,11 +98,18 @@ const Users = () => {
                                         <option>Users</option>
                                     </select>
                                 </td>
-                                <td>Dis/Block</td>
+                                <td>                                    
+                                    <span> Dis/Block </span>
+                                    <select onChange={(e) => handleFilterStatus(e)}>
+                                        <option>All</option>
+                                        <option>Disables</option>
+                                        <option>Enables</option>
+                                    </select>
+                                </td>
                             </tr>
                         </thead>
                         <tbody className="item">
-                        {usersCurrent &&
+                        {usersCurrent?.length ?
                             usersCurrent.map(user => (
                                 <tr key={user._id}>
                                     <td>{user.username}</td>
@@ -113,7 +130,16 @@ const Users = () => {
                                     </button>
                                     </td>
                                 </tr>
-                            ))}
+                            ))
+                        :
+                        <div className="errorCnt">
+                            <img
+                                className="sadFace"
+                                src="https://res.cloudinary.com/juancereceda/image/upload/v1625945361/sad-face-in-rounded-square_q7qmr7.png"
+                                alt="404"
+                            />
+                            <h1 className="errorMsg">Sorry! No users with this parameter</h1>
+                        </div>}
                         </tbody>
                     </table>
                 </StyledDiv>
