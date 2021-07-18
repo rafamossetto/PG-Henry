@@ -41,6 +41,10 @@ const form = styled.div`
       background-color: #ea5455;
       color: #ffffff;
       border-radius: 10px;
+      cursor: pointer;
+      &:hover {
+        filter: opacity(80%);
+      }
     }
     h4 {
       color: #ffffff;

@@ -158,7 +158,7 @@ const verifyToken = async (req, res) => {
       return res.send({ message: "Token is valid" });
     }
   } catch (error) {
-    console.log(error);
+    return res.send({ message: "Token invalid" });
   }
 };
 
