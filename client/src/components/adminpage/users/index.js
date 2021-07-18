@@ -9,7 +9,8 @@ const Users = () => {
 
     const dispatch = useDispatch();
     const users = useSelector(state => state.users);
-    
+    const [statusFilter, setStatusFilter] = React.useState(null);
+    const usersCurrent = users?.filter(user => statusFilter === 'Admins' ? user.isAdmin : statusFilter === 'Users' ? !user.isAdmin : user)
     const ChangeClick = async (user, e) => {
         console.log('banned: ', user.banned)
         e.preventDefault();
@@ -65,6 +66,9 @@ const Users = () => {
         } 
     }
 
+    const handleFilterStatus = (e) => {
+        setStatusFilter(e.target.value === "All" ? null : e.target.value);
+      }
     return (
         <>
         {
@@ -76,13 +80,20 @@ const Users = () => {
                             <tr className="header">
                                 <td>Username</td>
                                 <td>Email</td>
-                                <td>Adm/User</td>
+                                <td>
+                                   <span> Adm/User </span>
+                                   <select onChange={(e) => handleFilterStatus(e)}>
+                                        <option>All</option>
+                                        <option>Admins</option>
+                                        <option>Users</option>
+                                    </select>
+                                </td>
                                 <td>Dis/Block</td>
                             </tr>
                         </thead>
                         <tbody className="item">
-                        {users &&
-                            users.map(user => (
+                        {usersCurrent &&
+                            usersCurrent.map(user => (
                                 <tr key={user._id}>
                                     <td>{user.username}</td>
                                     <td>{user.email}</td>
