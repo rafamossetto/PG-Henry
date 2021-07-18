@@ -3,7 +3,7 @@ import axios from 'axios';
 export async function post(info){
     try{
       const response=await axios({
-          url:'http://localhost:3001/users/signup',
+          url:'https://movies-henry-app.herokuapp.com/users/signup',
           method: 'POST',
           data: info,
       })
