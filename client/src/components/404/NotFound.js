@@ -10,6 +10,7 @@ function NotFound() {
         <img
           src="https://res.cloudinary.com/juancereceda/image/upload/v1626531685/castaway_volleyball-320_grk8qb.png"
           className="wilsonImg"
+          alt=""
         />
         4
       </h1>

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import swal from "sweetalert";
 import StyledContainer from "./LogInStyles";
-import { logIn, userBookings } from "../../actions/users";
-import { useDispatch, useSelector } from "react-redux";
+import { logIn } from "../../actions/users";
+import { useDispatch } from "react-redux";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 
@@ -13,7 +13,6 @@ function LogIn() {
     password: "",
   });
 
-  const user = useSelector((state) => state.user);
 
   function handleInputChange(e) {
     setLogInState({

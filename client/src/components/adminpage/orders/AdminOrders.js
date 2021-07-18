@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPayments } from "../../../actions/orders";
 import { isAdmin } from "../../../actions/users";
 import StyledDiv from "./OrderStyles";
-import { getTokenLocalStorage } from "../../../reducer/reducer";
 import Pagination from "./paginateOrders.js";
 import NotFound from "../../404/NotFound";
 function AdminOrders() {
@@ -40,7 +39,7 @@ function AdminOrders() {
     };
     verifyAdmin();
     dispatch(getPayments());
-  }, []);
+  }, [dispatch]);
 
   function handleFilterStatus(e) {
     setStatusFilter(e.target.value === "All" ? null : e.target.value);
