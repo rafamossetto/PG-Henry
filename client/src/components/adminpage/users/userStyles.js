@@ -11,7 +11,6 @@ const StyledDiv = styled.div`
         font-size: 2em;
         align-items: center;
     }
-
     .container {
         table-layout: fixed;
         background-color: #2d4059;
@@ -21,7 +20,6 @@ const StyledDiv = styled.div`
         padding: 0 1em;
         border-radius: .8em;
     }
-
     .header {
         text-align: center;
     }
@@ -30,7 +28,6 @@ const StyledDiv = styled.div`
         border: solid 1px black;
         word-wrap:break-word;
     }
-
     .userButton {
         background-color: #f05454;    
         height: 25px;
@@ -45,14 +42,12 @@ const StyledDiv = styled.div`
           transition: 0.3s;
         }
     }
-
     .search {
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
         align-items:flex-end;
     }    
-
     .formContainer{
         display: flex;
     }
