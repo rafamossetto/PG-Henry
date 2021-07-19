@@ -30,7 +30,7 @@ function LogIn() {
           buttons: false,
           timer: 2000,
         });
-        window.location.assign("http://henry-movie-app.vercel.app/");
+        window.location.assign("https://henry-movie-app.vercel.app/");
       } else {
         swal(message, "No Logged!", "error", {
           buttons: false,
@@ -100,7 +100,7 @@ function LogIn() {
             type="button"
             className="signUp"
             onClick={() =>
-              window.location.assign("http://henry-movie-app.vercel.app/signup")
+              window.location.assign("https://henry-movie-app.vercel.app/signup")
             }
           >
             Sign Up
