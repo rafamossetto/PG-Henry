@@ -29,7 +29,7 @@ const StyledDiv = styled.div`
         word-wrap:break-word;
     }
     .userButton {
-        background-color: #f05454;        
+        background-color: #f05454;    
         height: 25px;
         margin: 10px;
         color: #ffffff;
