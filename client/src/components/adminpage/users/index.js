@@ -8,10 +8,22 @@ import NotFound from "../../404/NotFound";
 const Users = () => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users);
-
+  const [statusFilter, setStatusFilter] = React.useState(null);
+  const usersCurrent = users?.filter(user => (
+      statusFilter === 'Admins' ? user.isAdmin 
+      : 
+      statusFilter === 'Users' ? !user.isAdmin 
+      : 
+      statusFilter === 'UserBloqued' ? user.banned
+      :
+      statusFilter === 'Enabled' ? !user.banned
+      : 
+      user
+  ))
+  
   //search
   const [name, setName] = useState("");
-
+      
   function handleSubmit(e) {
     e.preventDefault();
     setName("");
@@ -23,7 +35,7 @@ const Users = () => {
     e.preventDefault();
     const blockDisable = await swal({
       title: `Are you sure you want to ${
-        user.banned ? "disable" : "block"
+        user.banned ? "Enabled" : "Blocked"
       }  to ${user.username}?`,
       icon: "warning",
       buttons: true,
@@ -31,7 +43,6 @@ const Users = () => {
     });
     if (blockDisable) {
       dispatch(getUsers());
-      console.log("Admin: ", user.isAdmin);
       dispatch(
         updateUser(
           {
@@ -81,51 +92,70 @@ const Users = () => {
     }
   };
 
+  const handleFilterStatus = (e) => {
+    setStatusFilter(e.target.value === "All" ? null : e.target.value);
+  }
+  
   return (
     <>
-      {window.localStorage.token && users.length ? (
-        <StyledDiv>
-          <div className="search">
-            <form onSubmit={(e) => handleSubmit(e)} className="formContainer">
-              <div className="searchBarContainer">
-                <input
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Search Username..."
-                  type="text"
-                  className="input"
-                ></input>
-              </div>
-            </form>
-          </div>
-
-          <table className="container">
+      {window.localStorage.token && users?.length ? 
+        <StyledDiv>          
+          <table className="container" >
             <thead className="title">
-              <h1>Users registrates</h1>
+              <div className='titleSearch'>
+                <h1>Users registrates</h1> 
+                <div className="search">
+                  <form onSubmit={(e) => handleSubmit(e)} className="formContainer">
+                    <div className="searchBarContainer">
+                      <input
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Search Username..."
+                        type="text"
+                        className="input"
+                      ></input>
+                    </div>
+                  </form>
+                </div>      
+              </div>  
               <tr className="header">
                 <td>Username</td>
                 <td>Email</td>
-                <td>Adm/User</td>
-                <td>Ava/Block</td>
+                <td>
+                  <span> Adm/User </span>
+                  <select onChange={(e) => handleFilterStatus(e)}>
+                    <option>All</option>
+                    <option>Admins</option>
+                    <option>Users</option>
+                  </select>
+                </td>
+                <td>                                    
+                  <span> Enabled / UserBlocked </span>
+                  <select onChange={(e) => handleFilterStatus(e)}>
+                    <option>All</option>
+                    <option>UserBloqued</option>
+                    <option>Enabled</option>
+                  </select>
+                </td>
               </tr>
             </thead>
             <tbody className="item">
-              {users &&
-                users
+              {usersCurrent?.length ?
+                usersCurrent
                   .filter((user) =>
                     name ? user.username.includes(name) : user
                   )
-                  .map((user) => (
-                    <tr key={user._id}>
+                  .map(user => (
+                    <tr key={user._id} className='center'>
                       <td>{user.username}</td>
                       <td>{user.email}</td>
                       <td>
-                        <label>Is {user.isAdmin ? "Admin" : "User"}</label>
+                        <label>Is {user.isAdmin ? 'Admin' : 'User'}</label>
                         <button
-                          className="userButton"
+                          className='userButton'
                           onClick={(e) => handleClick(user, e)}
                         >
-                          {user.isAdmin ? "ChangeToUser" : "ChangeToAdmin"}
+                          {user.isAdmin ? 'ChangeToUser' : 'ChangeToAdmin'}
                         </button>
                       </td>
                       <td>
@@ -133,19 +163,22 @@ const Users = () => {
                           className="userButton"
                           onClick={(e) => ChangeClick(user, e)}
                         >
-                          {user.banned ? "UserBlocked" : "Available"}
+                          {user.banned ? "UserBlocked" : "Enabled"}
                         </button>
                       </td>
                     </tr>
-                  ))}
+                ) )
+              :
+                <NotFound />
+              }     
             </tbody>
           </table>
         </StyledDiv>
-      ) : (
+      :
         <NotFound />
-      )}
+      }
     </>
-  );
-};
+  )
+}
 
 export default Users;
