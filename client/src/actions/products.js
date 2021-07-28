@@ -10,7 +10,7 @@ const config = {
 
 export function getProducts() {
       return async function(dispatch) {
-        const result = await axios.get("http://localhost:3001/products");
+        const result = await axios.get("https://movies-henry-app.herokuapp.com/products");
         dispatch({ type: GET_PRODUCTS, payload: result.data });
       };
 }
@@ -49,21 +49,21 @@ export function sendToProducts(data) {
   };
 }
 export async function postPayment(data) {
-  let response = await axios.post('http://localhost:3001/payment', data, config)
+  let response = await axios.post('https://movies-henry-app.herokuapp.com/payment', data, config)
   window.location.assign(response.data)
 }
 
 export function updateStatus(data) {
-  axios.put("http://localhost:3001/users/bookings", data, config)
+  axios.put("https://movies-henry-app.herokuapp.com/users/bookings", data, config)
 }
 
 export const eraseProduct = async name => {
-  const res = await axios.delete("http://localhost:3001/products/"+name, config)
+  const res = await axios.delete("https://movies-henry-app.herokuapp.com/products/"+name, config)
   return console.log(res.data.message)
 }
 
 export const getPrice = async extras => {
-  const res = await axios.post("http://localhost:3001/products/price", extras)
+  const res = await axios.post("https://movies-henry-app.herokuapp.com/products/price", extras)
   return res.data
 }
 

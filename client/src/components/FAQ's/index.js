@@ -67,7 +67,7 @@ export function FAQs() {
         buttons: false,
         timer: 2000,
       });
-      window.location.assign("http://localhost:3000/");
+      window.location.assign("https://henry-movie-app.vercel.app/");
     } else if (msg === "User not found") {
       await swal(msg, "Error", "error", {
         buttons: false,

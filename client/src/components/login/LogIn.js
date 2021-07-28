@@ -21,7 +21,7 @@ function LogIn() {
         buttons: false,
         timer: 2000,
       });
-      window.location.assign("http://localhost:3000/");
+      window.location.assign("https://henry-movie-app.vercel.app/");
     } else if (message === "Invalid Password") {
       swal(
         "There is no existing user with this Google Account. Sign Up first!",
@@ -47,7 +47,7 @@ function LogIn() {
           buttons: false,
           timer: 1500,
         });
-        window.location.assign("http://localhost:3000/restorepassword");
+        window.location.assign("https://henry-movie-app.vercel.app/restorepassword");
       }
     } else {
       swal(message, "No Logged!", "error", {
@@ -73,7 +73,7 @@ function LogIn() {
           buttons: false,
           timer: 2000,
         });
-        window.location.assign("http://localhost:3000/");
+        window.location.assign("https://henry-movie-app.vercel.app/");
       }else if(message === "Your Password has been reset to protect your account, you'll be redirected to restore your password"){
         let resetPassword =  await swal({
           title: message,
@@ -87,7 +87,7 @@ function LogIn() {
               buttons: false,
               timer: 1500
             });
-            window.location.assign("http://localhost:3000/restorepassword")
+            window.location.assign("https://henry-movie-app.vercel.app/restorepassword")
           }
 
       } else {
@@ -177,7 +177,7 @@ function LogIn() {
             type="button"
             className="signUp"
             onClick={() =>
-              window.location.assign("http://localhost:3000/signup")
+              window.location.assign("https://henry-movie-app.vercel.app/signup")
             }
           >
             Sign Up

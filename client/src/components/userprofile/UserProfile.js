@@ -28,7 +28,7 @@ function UserProfile() {
             buttons: false,
             timer: 3000,
           });
-          window.location.assign("http://localhost:3000/");
+          window.location.assign("https://henry-movie-app.vercel.app/");
         }
       } else {
         return swal("we couldn't delete your acount", "Error", "error", {

@@ -134,7 +134,7 @@ const Products = (props) => {
   };
   const handleSubmitExtra = async function (e) {
     e.preventDefault();
-    await axios.post("http://localhost:3001/products", state, config);
+    await axios.post("https://movies-henry-app.herokuapp.com/products", state, config);
     setState({
       name: "",
       category: "",
@@ -147,7 +147,7 @@ const Products = (props) => {
   };
   const handleSubmitCombo = async function (e) {
     e.preventDefault();
-    await axios.post("http://localhost:3001/products", state, config);
+    await axios.post("https://movies-henry-app.herokuapp.com/products", state, config);
     setState({
       name: "",
       category: "",
@@ -474,7 +474,7 @@ const Products = (props) => {
                   </div>
                   <label>
                     You cant buy if you are not{" "}
-                    <a href="http://localhost:3000/login">logged in</a>
+                    <a href="https://henry-movie-app.vercel.app/login">logged in</a>
                   </label>
                 </div>
               )}

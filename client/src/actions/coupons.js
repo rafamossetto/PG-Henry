@@ -11,7 +11,7 @@ const config = {
 export async function validateCoupon(couponCode, date) {
   try {
     let result = await axios.post(
-      "http://localhost:3001/coupons/validate",
+      "https://movies-henry-app.herokuapp.com/coupons/validate",
       { couponCode, date },
       config
     );

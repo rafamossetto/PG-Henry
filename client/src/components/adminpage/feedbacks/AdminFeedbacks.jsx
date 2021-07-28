@@ -6,7 +6,7 @@ import NotFound from '../../404/NotFound'
 import {getTokenLocalStorage} from '../../../reducer/reducer'
 
 function AdminFeedbacks() {
-    const URL = 'http://localhost:3001/feedbacks/';
+    const URL = 'https://movies-henry-app.herokuapp.com/feedbacks/';
 
     const [feedbacks, setFeedbacks] = useState([]);
     const [filteredFeedbacks, setFilteredFeedbacks] = useState([]);

@@ -9,7 +9,7 @@ const Slider = () => {
 
   async function GetProducts() {
     let ListaCombos = await axios
-      .get("http://localhost:3001/products")
+      .get("https://movies-henry-app.herokuapp.com/products")
       .then((response) => response.data);
     setComboList(ListaCombos.filter((producto) => producto.combo));
   }

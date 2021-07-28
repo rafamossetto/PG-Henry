@@ -25,7 +25,7 @@ export default function Reviews() {
     e.preventDefault();
     const feedback = { author: user.username, text: review.review };
 
-    await axios.post("http://localhost:3001/feedbacks", feedback);
+    await axios.post("https://movies-henry-app.herokuapp.com/feedbacks", feedback);
     await swal(`${user.username} thank you very much for your feedback!`, {
       icon: "success",
       buttons: false,

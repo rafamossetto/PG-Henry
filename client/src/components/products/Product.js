@@ -69,7 +69,7 @@ const Product = (props) => {
         e.preventDefault();
         let prod = {name: pricing.name, price: pricing.price}
 
-        await axios.put('http://localhost:3001/products', prod, config);
+        await axios.put('https://movies-henry-app.herokuapp.com/products', prod, config);
 
         setPricing({...pricing, show: false});
 

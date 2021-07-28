@@ -10,7 +10,7 @@ const Slider = () => {
   const SlideImages = useRef(null);
 
   async function getCoupons() {
-    let list = await axios.get("http://localhost:3001/coupons");
+    let list = await axios.get("https://movies-henry-app.herokuapp.com/coupons");
     setDiscounts([...discounts, ...list.data.map((coupon) => coupon.image)]);
     console.log(discounts);
   }
