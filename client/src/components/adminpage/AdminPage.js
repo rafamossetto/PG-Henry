@@ -9,6 +9,7 @@ import {
   BiUserCheck,
   BiStore,
   BiListCheck,
+  BiCommentDots
 } from "react-icons/bi";
 import NotFound from "../404/NotFound";
 
@@ -50,8 +51,14 @@ function AdminPage({ props }) {
           </div>
           <div className="userBox">
             <BiStore size="100" />
-            <Link to="/AdminProd" className="link">
+            <Link to="/products" className="link">
               Products
+            </Link>
+          </div>
+          <div className="userBox">
+            <BiCommentDots size="100" />
+            <Link to="/feedbacks" className="link">
+              Feedbacks
             </Link>
           </div>
         </div>

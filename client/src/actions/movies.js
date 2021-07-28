@@ -7,6 +7,7 @@ export const UPDATE_MOVIE = 'UPDATE_MOVIE';
 export const GET_MOVIES_BY_GENRE = 'GET_MOVIES_BY_GENRE';
 export const GET_GENRES = 'GET_GENRES';
 
+
 const config = {
   headers: {
     "Access-Control-Allow-Headers": "x-access-token",
@@ -17,7 +18,7 @@ const config = {
 export function getMovieById(id) {
   return function (dispatch) {
     return axios
-      .get(`https://movies-henry-app.herokuapp.com/movies/${id}`)
+      .get(`http://localhost:3001/movies/${id}`)
       .then((result) => {
         dispatch({
           type: GET_MOVIES_DETAIL,
@@ -33,7 +34,7 @@ export function getMovieById(id) {
 
 export function getMovieList() {
   return function (dispatch) {
-    return axios.get("https://movies-henry-app.herokuapp.com/movies").then((result) => {
+    return axios.get("http://localhost:3001/movies").then((result) => {
       dispatch({
         type: GET_MOVIE_LIST,
         payload: result.data,
@@ -51,14 +52,14 @@ export function clearMovie() { //se usa en el willunmount
 
 export function postMovie(movie) {
   return(dispatch) =>
-    axios.post("https://movies-henry-app.herokuapp.com/movies", movie, config)
+    axios.post("http://localhost:3001/movies", movie, config)
     .then((res) => {
       dispatch({type: POST_MOVIE, payload: res.data});
     });
 }    
     
 export function updateMovie(movie, id) {
-  axios.put(`https://movies-henry-app.herokuapp.com/movies/${id}`, movie, config)
+  axios.put(`http://localhost:3001/movies/${id}`, movie, config)
 }
 
 export function getMoviesByGenre(genre){
@@ -69,9 +70,16 @@ export function getMoviesByGenre(genre){
     })
   }
 }
-
+export function updateShow(movie_title, date, time){
+  axios.put(`http://localhost:3001/movies/updateShow`, {movie_title, date, time}, config);
+}
 export function getGenres() { 
   return  { 
    type: GET_GENRES, 
  };  
+}
+
+export const deleteMovie = async _id => {
+  const res = await axios.delete(`http://localhost:3001/movies`, {params: {_id}}, config)
+  return res.data.message
 }

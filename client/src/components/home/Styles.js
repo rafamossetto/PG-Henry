@@ -3,129 +3,89 @@ import { Link } from "react-router-dom";
 
 // ESTILOS HOME
 
-export const HomeCont = styled.div`
-  position: absolute;
-  top: 30%;
-  height: auto;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-`;
-
-export const ContMovies = styled.div`
+export const ContCar = styled.div`
+  position: relative;
   height: 100%;
-  width: 100%;
+  width: 80%;
+  margin-top: 2em;
   display: flex;
-  flex-direction: row;
   justify-content: flex-start;
-  align-items: center;
-`;
-
-export const Movies = styled.div`
-  margin: 1.25%;
-  height: auto;
-  width: 85%;
-  display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-`;
-
-export const Billboard = styled.div`
-  height: 250px;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  overflow-x: scroll;
-  &::-webkit-scrollbar {
-    display: block;
+  button.rec-dot {
+    box-shadow: 0 0 1px 3px #293949;
   }
-`;
-
-export const ComingSoon = styled.div`
-  height: 250px;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  overflow-x: scroll;
-  &::-webkit-scrollbar {
-    display: block;
+  .rec.rec-arrow {
+    background-color: #293949;
+    &:hover {
+      background-color: #e8e8e8;
+    }
   }
-`;
-
-export const Labels = styled.label`
-  margin-bottom: 5px;
-  margin-top: 5px;
-  color: #e8e8e8;
-  font-size: 15px;
-  letter-spacing: 5px;
-`;
-
-export const Stores = styled.div`
-  margin: 1.25%;
-  background-color: #30475e;
-  height: 500px;
-  width: 15%;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.7),
-    inset 2px 3px 5px rgba(0, 0, 0, 0.3), inset -2px -3px 5px rgba(0, 0, 0, 0.5);
-`;
-
-// ESTILOS MOVIE CARDS
-
-export const Movie = styled.img`
-  height: 220px;
-  width: 160px;
-  object-fit: cover;
-  margin-left: 10px;
-  margin-right: 10px;
-  cursor: pointer;
-`;
-
-// ESTILOS MERCH CARDS
-
-export const MerchCard = styled.div`
-  height: 25%;
-  width: 90%;
-  border-radius: 5px;
-  background-color: #f05454;
-  box-shadow: inset 2px 3px 5px rgba(0, 0, 0, 0.3),
-    inset -2px -3px 5px rgba(0, 0, 0, 0.5);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const PubliCard = styled.div`
-  height: 45%;
-  width: 90%;
-  border-radius: 5px;
-  background-color: #f05454;
-  box-shadow: inset 2px 3px 5px rgba(0, 0, 0, 0.3),
-    inset -2px -3px 5px rgba(0, 0, 0, 0.5);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const Icon = styled.img`
-  height: 100%;
-  width: 100%;
 `;
 
 export const Linked = styled(Link)`
-  height: 95%;
-  width: 95%;
+  text-decoration: none;
+  padding: 2em;
+  margin: 0px 0px 15px 10px;
+`;
+
+export const Labels = styled.label`
+  margin-bottom: 10px;
+  margin-top: 5px;
+  color: #e8e8e8;
+  font-size: 25px;
+  letter-spacing: 5px;
+  cursor: pointer;
+`;
+
+// // ESTILOS MOVIE CARDS
+
+export const Movie = styled.img`
+  height: 20em;
+  width: 13em;
+  padding: 10px;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 10px;
+`;
+
+// // ESTILOS MERCH CARDS
+
+export const DiscountOffer = styled.div`
+  position: absolute;
+  top: 0.5em;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  margin: 10% auto;
+  padding: 0;
+  line-height: 1.7;
+  max-width: 98%;
+  background-color: #30475e;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.7),
+    inset 2px 3px 5px rgba(0, 0, 0, 0.3), inset -2px -3px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 0.7em;
+  color: #e8e8e8;
+`;
+
+export const TestimonialCards = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  p {
+    font-family: Questrial; // Poppins
+    font-size: 18px;
+    font-weight: bold;
+    color: #e8e8e8; //
+  }
+  .testimonialcard {
+    margin-left: 15px;
+    width: 250px;
+    min-height: 200px;
+    border-radius: 10%;
+    background: #30475e;
+  }
+  .testimonial-avatar-container {
+    // Borramos la foto del feedback
+    /* display:none; */
+  }
 `;

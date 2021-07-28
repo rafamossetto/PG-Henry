@@ -8,8 +8,11 @@ export const LOGIN = "LOGIN";
 export const LOG_OUT = "LOG_OUT";
 export const UPDATE_USER = "UPDATE_USER";
 export const GET_BOOKINGS = "GET_BOOKINGS";
+export const GET_BOOK = "GET_BOOK";
 export const SEARCH_USERS = "SEARCH_USERS";
 export const USER_INFO = "USER_INFO";
+export const DELETE_ACCOUNT = "DELETE_ACCOUNT";
+export const ALL_REV = "ALLOW_REVIEW";
 
 const config = {
   headers: {
@@ -20,15 +23,15 @@ const config = {
 
 export function getUsers() {
   return async function (dispatch) {
-    const result = await axios.get("https://movies-henry-app.herokuapp.com/users", config);
+    const result = await axios.get("http://localhost:3001/users", config);
     dispatch({ type: GET_USERS, payload: result.data });
-    console.log(result);
+    //console.log(result);
   };
 }
 
 export function getUserById(id) {
   return (dispatch) => {
-    axios.get(`https://movies-henry-app.herokuapp.com/users/${id}`).then((res) => {
+    axios.get(`http://localhost:3001/users/${id}`).then((res) => {
       dispatch({ type: GET_USER_BY_ID, payload: res.data });
     });
   };
@@ -37,7 +40,7 @@ export function getUserById(id) {
 export function signUp(username, email, password) {
   return async function (dispatch) {
     try {
-      const token = await axios.post("https://movies-henry-app.herokuapp.com/users/signup", {
+      const token = await axios.post("http://localhost:3001/users/signup", {
         username,
         email,
         password,
@@ -61,7 +64,7 @@ export function signUpWithGoogle(tokenId) {
   return async function (dispatch) {
     try {
       const token = await axios.post(
-        "https://movies-henry-app.herokuapp.com/users/google_signup",
+        "http://localhost:3001/users/google_signup",
         {
           token: tokenId,
         }
@@ -84,7 +87,7 @@ export function signUpWithGoogle(tokenId) {
 export function logIn(name, password) {
   return async function (dispatch) {
     try {
-      const response = await axios.post("https://movies-henry-app.herokuapp.com/users/login", {
+      const response = await axios.post("http://localhost:3001/users/login", {
         name,
         password,
       });
@@ -111,7 +114,7 @@ export function logInWithGoogle(token) {
   return async function (dispatch) {
     try {
       const response = await axios.post(
-        "https://movies-henry-app.herokuapp.com/users/google_login",
+        "http://localhost:3001/users/google_login",
         {
           token,
         }
@@ -143,7 +146,7 @@ export function logOut() {
 
 export async function isAdmin() {
   const result = await axios.get(
-    "https://movies-henry-app.herokuapp.com/users/verifyadmin",
+    "http://localhost:3001/users/verifyadmin",
     config
   );
   return result.data.isAdmin;
@@ -151,7 +154,7 @@ export async function isAdmin() {
 
 export function updateUser(user, id) {
   return (dispatch) =>
-    axios.put(`https://movies-henry-app.herokuapp.com/users/${id}`, user, config).then((res) => {
+    axios.put(`http://localhost:3001/users/${id}`, user, config).then((res) => {
       dispatch({ type: UPDATE_USER, payload: res.data });
     });
 }
@@ -159,7 +162,7 @@ export function updateUser(user, id) {
 export function userBookings() {
   return async function (dispatch) {
     const bookings = await axios.get(
-      "https://movies-henry-app.herokuapp.com/users/bookings",
+      "http://localhost:3001/users/bookings",
       config
     );
     await dispatch({ type: GET_BOOKINGS, payload: bookings.data });
@@ -167,17 +170,9 @@ export function userBookings() {
   };
 }
 
-export function searchUsers(name) {
-  return (dispatch) => {
-    axios.get(`https://movies-henry-app.herokuapp.com/users?name=${name}`).then((res) => {
-      dispatch({ type: SEARCH_USERS, payload: res.data });
-    });
-  };
-}
-
 export async function verifyUser(email) {
   try {
-    let result = await axios.post("https://movies-henry-app.herokuapp.com/users/verifyuser", {
+    let result = await axios.post("http://localhost:3001/users/verifyuser", {
       email,
     });
     return result.data.message;
@@ -185,9 +180,10 @@ export async function verifyUser(email) {
     console.log(error);
   }
 }
+
 export async function verifyToken(token) {
   try {
-    let result = await axios.post("https://movies-henry-app.herokuapp.com/users/verifytoken", {
+    let result = await axios.post("http://localhost:3001/users/verifytoken", {
       token,
     });
     return result.data.message;
@@ -199,7 +195,7 @@ export async function verifyToken(token) {
 export async function changePassword(password, token) {
   try {
     let result = await axios.put(
-      "https://movies-henry-app.herokuapp.com/users/restorepassword",
+      "http://localhost:3001/users/restorepassword",
       { password },
       {
         headers: {
@@ -212,4 +208,30 @@ export async function changePassword(password, token) {
   } catch (error) {
     return error.response.data.message;
   }
+}
+
+export function getBook(id) {
+  return async function (dispatch) {
+    const book = await axios.get(
+      `http://localhost:3001/users/bookings/${id}`,
+      config
+    );
+    await dispatch({ type: GET_BOOK, payload: book.data });
+  };
+}
+
+export async function deleteAccount() {
+  try {
+    let answer = await axios.delete(
+      "http://localhost:3001/users/deleteAccount",
+      config
+    );
+    return answer.data.message;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export function allowRev(flag) {
+  return {type: ALL_REV, payload: flag}
 }

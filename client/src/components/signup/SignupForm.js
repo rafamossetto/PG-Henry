@@ -7,7 +7,7 @@ import { signUp, signUpWithGoogle } from "../../actions/users";
 import { FcGoogle } from "react-icons/fc";
 import swal from "sweetalert";
 import { GoogleLogin } from "react-google-login";
-import axios from "axios";
+
 
 export default function SignupForm() {
   const dispatch = useDispatch();
@@ -19,6 +19,7 @@ export default function SignupForm() {
     email: undefined,
     password: undefined,
     passMatch: false,
+    passwordReset:false,
   });
 
   function handleUsername(e) {
@@ -51,7 +52,7 @@ export default function SignupForm() {
           buttons: false,
           timer: 1000,
         });
-        window.location.assign("https://henry-movie-app.vercel.app/");
+        window.location.assign("http://localhost:3000/");
       } else {
         swal(response, "Error", "error", {
           buttons: false,
@@ -73,7 +74,7 @@ export default function SignupForm() {
         buttons: false,
         timer: 1000,
       });
-      window.location.assign("https://henry-movie-app.vercel.app/");
+      window.location.assign("http://localhost:3000/");
     } else {
       swal(result, "Error", "error", {
         buttons: false,

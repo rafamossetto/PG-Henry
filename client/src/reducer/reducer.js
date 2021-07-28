@@ -21,23 +21,15 @@ import {
   LOGIN,
   LOG_OUT,
   GET_BOOKINGS,
-  SEARCH_USERS,
   USER_INFO,
+  GET_BOOK,
+  ALL_REV,
 } from "../actions/users";
 import { GET_PAYMENTS } from "../actions/orders";
+import { GET_VISIBLES_FEEDBACKS } from "../actions/feedbacks";
 
 const initialState = {
   products: [],
-  /*   purchase:{
-    parking:'',
-    price:0,
-    day:'',
-    time:'',
-    title:'',
-    slot:'',
-    extras:{},
-    total:0
-  }, */
   slot: "",
   purchase: getPurchaseLocalStorage() ? getPurchaseLocalStorage() : {},
   movieDetail: {},
@@ -47,10 +39,10 @@ const initialState = {
   movieList: [],
   token: getTokenLocalStorage(),
   bookings: [],
+  selBook: {},
   payments: [],
-  searchUserByName: [],
-  searchUserById: [],
   userData: {},
+  showRevs: false,
 };
 
 export function getTokenLocalStorage() {
@@ -76,7 +68,7 @@ export function getPurchaseLocalStorage() {
   return purchase ? JSON.parse(purchase) : "";
 }
 
-function setPurchaseLocalStorage(purchase) {
+export function setPurchaseLocalStorage(purchase) {
   window.localStorage.setItem("purchase", JSON.stringify(purchase));
 }
 
@@ -183,7 +175,13 @@ export default function reducer(state = initialState, action) {
       }
       return state;
     }
-
+    // Feedbacks
+    case GET_VISIBLES_FEEDBACKS: {
+      return {
+        ...state,
+        visiblesFeedbacks: action.payload
+      }
+    }
     //users
     case GET_USERS: {
       // Para que en la pantalla del admin se muestren los usuarios
@@ -198,12 +196,7 @@ export default function reducer(state = initialState, action) {
         searchUserById: action.payload,
       };
     }
-    case SEARCH_USERS: {
-      return {
-        ...state,
-        searchUserByName: action.payload,
-      };
-    }
+    
     // Ordenar usuarios por cantidad de puntos asc/desc
     case ORDER_USERS_BY_POINTS: {
       //Si no hay payload, order desc
@@ -252,6 +245,18 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         bookings: action.payload,
+      };
+    }
+    case GET_BOOK: {
+      return {
+        ...state,
+        selBook: action.payload,
+      };
+    }
+    case ALL_REV: {
+      return {
+        ...state,
+        showRevs: action.payload,
       };
     }
     case GET_PAYMENTS: {

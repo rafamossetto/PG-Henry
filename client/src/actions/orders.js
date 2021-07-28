@@ -12,7 +12,7 @@ const config = {
 export function getPayments() {
   return async function (dispatch) {
     try {
-      let payments = await axios.get("https://movies-henry-app.herokuapp.com/payment", config);
+      let payments = await axios.get("http://localhost:3001/payment", config);
 
       dispatch({ type: GET_PAYMENTS, payload: payments.data });
     } catch (error) {}

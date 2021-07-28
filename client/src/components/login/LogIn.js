@@ -21,7 +21,7 @@ function LogIn() {
         buttons: false,
         timer: 2000,
       });
-      window.location.assign("https://henry-movie-app.vercel.app/");
+      window.location.assign("http://localhost:3000/");
     } else if (message === "Invalid Password") {
       swal(
         "There is no existing user with this Google Account. Sign Up first!",
@@ -31,6 +31,24 @@ function LogIn() {
           buttons: true,
         }
       );
+    }else if (
+      message ===
+      "Your Password has been reset to protect your account, you'll be redirected to restore your password"
+    ) {
+      let resetPassword = await swal({
+        title: message,
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      });
+      if (resetPassword) {
+        await swal("Redirecting", {
+          icon: "success",
+          buttons: false,
+          timer: 1500,
+        });
+        window.location.assign("http://localhost:3000/restorepassword");
+      }
     } else {
       swal(message, "No Logged!", "error", {
         buttons: false,
@@ -55,7 +73,23 @@ function LogIn() {
           buttons: false,
           timer: 2000,
         });
-        window.location.assign("https://henry-movie-app.vercel.app/");
+        window.location.assign("http://localhost:3000/");
+      }else if(message === "Your Password has been reset to protect your account, you'll be redirected to restore your password"){
+        let resetPassword =  await swal({
+          title: message,
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+            });
+          if(resetPassword) {
+            await swal("Redirecting", {
+              icon: "success",
+              buttons: false,
+              timer: 1500
+            });
+            window.location.assign("http://localhost:3000/restorepassword")
+          }
+
       } else {
         swal(message, "No Logged!", "error", {
           buttons: false,
@@ -143,7 +177,7 @@ function LogIn() {
             type="button"
             className="signUp"
             onClick={() =>
-              window.location.assign("https://henry-movie-app.vercel.app/signup")
+              window.location.assign("http://localhost:3000/signup")
             }
           >
             Sign Up
