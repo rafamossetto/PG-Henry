@@ -7,6 +7,7 @@ export const UPDATE_MOVIE = 'UPDATE_MOVIE';
 export const GET_MOVIES_BY_GENRE = 'GET_MOVIES_BY_GENRE';
 export const GET_GENRES = 'GET_GENRES';
 
+
 const config = {
   headers: {
     "Access-Control-Allow-Headers": "x-access-token",
@@ -69,9 +70,16 @@ export function getMoviesByGenre(genre){
     })
   }
 }
-
+export function updateShow(movie_title, date, time){
+  axios.put(`https://movies-henry-app.herokuapp.com/movies/updateShow`, {movie_title, date, time}, config);
+}
 export function getGenres() { 
   return  { 
    type: GET_GENRES, 
  };  
+}
+
+export const deleteMovie = async _id => {
+  const res = await axios.delete(`https://movies-henry-app.herokuapp.com/movies`, {params: {_id}}, config)
+  return res.data.message
 }

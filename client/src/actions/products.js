@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { getTokenLocalStorage } from "../reducer/reducer";
+
 const config = {
   headers: {
     "Access-Control-Allow-Headers": "x-access-token",
@@ -41,6 +42,7 @@ export function deleteProduct(product) {
     dispatch({ type: DELETE_PRODUCT, payload: product });
   };
 }
+
 export function sendToProducts(data) {
   return function(dispatch) {
     dispatch({ type: SEND_TO_PRODUCTS, payload: data });
@@ -55,6 +57,15 @@ export function updateStatus(data) {
   axios.put("https://movies-henry-app.herokuapp.com/users/bookings", data, config)
 }
 
+export const eraseProduct = async name => {
+  const res = await axios.delete("https://movies-henry-app.herokuapp.com/products/"+name, config)
+  return console.log(res.data.message)
+}
+
+export const getPrice = async extras => {
+  const res = await axios.post("https://movies-henry-app.herokuapp.com/products/price", extras)
+  return res.data
+}
 
 export const GET_PRODUCTS = 'GET_PRODUCTS'
 export const SUBSTRACT_TOTAL = 'SUBSTRACT_TOTAL'

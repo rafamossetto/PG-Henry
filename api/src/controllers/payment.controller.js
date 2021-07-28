@@ -50,9 +50,9 @@ const processPayment = async (req, res) => {
       ],
       auto_return: "approved",
       back_urls: {
-        failure: `http://localhost:3000/success/${req.userId}/`,
-        pending: "http://localhost:3000/products",
-        success: `http://localhost:3000/success/${req.userId}/`,
+        failure: `https://henry-movie-app.vercel.app/success/${req.userId}/`,
+        pending: "https://henry-movie-app.vercel.app/products",
+        success: `https://henry-movie-app.vercel.app/success/${req.userId}/`,
       },
     };
     let result = await mercadopago.preferences.create(preference);

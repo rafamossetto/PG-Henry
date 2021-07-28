@@ -51,7 +51,7 @@ function ResetPassword() {
           buttons: false,
           timer: 2000,
         });
-        window.location.assign("http://henry-movie-app.vercel.app/");
+        window.location.assign("http://localhost:3000");
       } else {
         swal(result, "Error", "error", {
           buttons: false,

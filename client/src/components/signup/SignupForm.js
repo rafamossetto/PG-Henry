@@ -7,7 +7,7 @@ import { signUp, signUpWithGoogle } from "../../actions/users";
 import { FcGoogle } from "react-icons/fc";
 import swal from "sweetalert";
 import { GoogleLogin } from "react-google-login";
-import axios from "axios";
+
 
 export default function SignupForm() {
   const dispatch = useDispatch();
@@ -19,6 +19,7 @@ export default function SignupForm() {
     email: undefined,
     password: undefined,
     passMatch: false,
+    passwordReset:false,
   });
 
   function handleUsername(e) {

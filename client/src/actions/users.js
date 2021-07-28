@@ -8,8 +8,11 @@ export const LOGIN = "LOGIN";
 export const LOG_OUT = "LOG_OUT";
 export const UPDATE_USER = "UPDATE_USER";
 export const GET_BOOKINGS = "GET_BOOKINGS";
+export const GET_BOOK = "GET_BOOK";
 export const SEARCH_USERS = "SEARCH_USERS";
 export const USER_INFO = "USER_INFO";
+export const DELETE_ACCOUNT = "DELETE_ACCOUNT";
+export const ALL_REV = "ALLOW_REVIEW";
 
 const config = {
   headers: {
@@ -22,7 +25,7 @@ export function getUsers() {
   return async function (dispatch) {
     const result = await axios.get("https://movies-henry-app.herokuapp.com/users", config);
     dispatch({ type: GET_USERS, payload: result.data });
-    console.log(result);
+    //console.log(result);
   };
 }
 
@@ -167,14 +170,6 @@ export function userBookings() {
   };
 }
 
-export function searchUsers(name) {
-  return (dispatch) => {
-    axios.get(`https://movies-henry-app.herokuapp.com/users?name=${name}`).then((res) => {
-      dispatch({ type: SEARCH_USERS, payload: res.data });
-    });
-  };
-}
-
 export async function verifyUser(email) {
   try {
     let result = await axios.post("https://movies-henry-app.herokuapp.com/users/verifyuser", {
@@ -185,6 +180,7 @@ export async function verifyUser(email) {
     console.log(error);
   }
 }
+
 export async function verifyToken(token) {
   try {
     let result = await axios.post("https://movies-henry-app.herokuapp.com/users/verifytoken", {
@@ -212,4 +208,30 @@ export async function changePassword(password, token) {
   } catch (error) {
     return error.response.data.message;
   }
+}
+
+export function getBook(id) {
+  return async function (dispatch) {
+    const book = await axios.get(
+      `https://movies-henry-app.herokuapp.com/users/bookings/${id}`,
+      config
+    );
+    await dispatch({ type: GET_BOOK, payload: book.data });
+  };
+}
+
+export async function deleteAccount() {
+  try {
+    let answer = await axios.delete(
+      "https://movies-henry-app.herokuapp.com/users/deleteAccount",
+      config
+    );
+    return answer.data.message;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export function allowRev(flag) {
+  return {type: ALL_REV, payload: flag}
 }
