@@ -28,7 +28,7 @@ function UserProfile() {
             buttons: false,
             timer: 3000,
           });
-          window.location.assign("https://henry-movie-app.vercel.app/");
+          window.location.assign("http://henry-movie-app.vercel.app/");
         }
       } else {
         return swal("we couldn't delete your acount", "Error", "error", {
@@ -45,16 +45,16 @@ function UserProfile() {
         <>
           <h1>Welcome back, {user.username}!</h1>
           <div className="row">
-          <Reservations />
-          <Reviews />
+            <Reservations />
+            <Reviews />
           </div>
+          <button type="submit" onClick={handleDelete}>
+            Delete Account
+          </button>
         </>
       ) : (
         <NotFound />
       )}
-      <button type="submit" onClick={handleDelete}>
-        Delete Account
-      </button>
     </StyledUserPage>
   );
 }

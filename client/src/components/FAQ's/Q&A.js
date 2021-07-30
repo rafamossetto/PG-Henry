@@ -9,7 +9,7 @@ export const QuestionsAndAnswers = [
   },
   {
     Q: `I’ve been charged twice by error`,
-    A: `We’re sorry this happened! Contact the administration https://henry-movie-app.vercel.app/contact telling us your situation and we’ll communicate as soon as we can.`,
+    A: `We’re sorry this happened! Contact the administration http://henry-movie-app.vercel.app/contact telling us your situation and we’ll communicate as soon as we can.`,
   },
   {
     Q: `How do I get the ticket to show at the entrance of the autocinema?`,
@@ -21,15 +21,15 @@ export const QuestionsAndAnswers = [
   },
   {
     Q: `Where can I see the billboard and coming soon movies?`,
-    A: `We’ve specific routes for each of this. You can see the billboard’s movie list https://henry-movie-app.vercel.app/billboard and the Coming soon movies https://henry-movie-app.vercel.app/comingsoon`,
+    A: `We’ve specific routes for each of this. You can see the billboard’s movie list http://henry-movie-app.vercel.app/billboard and the Coming soon movies http://henry-movie-app.vercel.app/comingsoon`,
   },
   {
     Q: `Can I get a refund if I can’t assist to the movie?`,
-    A: `We don’t offer refunds, but we can change the show’s day, movie and time if you contact us https://henry-movie-app.vercel.app/contact at least 24 hours earlier.`,
+    A: `We don’t offer refunds, but we can change the show’s day, movie and time if you contact us http://henry-movie-app.vercel.app/contact at least 24 hours earlier.`,
   },
   {
     Q: `What promotions are available?`,
-    A: `You can know the available promotions https://henry-movie-app.vercel.app/promotions`,
+    A: `You can know the available promotions http://henry-movie-app.vercel.app/promotions`,
   },
   {
     Q: `Do children or retirees pay entrance?`,
@@ -37,7 +37,7 @@ export const QuestionsAndAnswers = [
   },
   {
     Q: `I didn’t receive the confirmation e-mail, what should I do?`,
-    A: `Check the SPAM and junk mail folders in your mail account. If you can’t find it, contact us https://henry-movie-app.vercel.app/contact`,
+    A: `Check the SPAM and junk mail folders in your mail account. If you can’t find it, contact us http://henry-movie-app.vercel.app/contact`,
   },
   {
     Q: `I get an error when trying to pay`,
